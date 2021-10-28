@@ -10,84 +10,26 @@ import PeliconCoinIcon from '../../assets/images/coins.png'
 import PeliconWalletIcon from '../../assets/images/wallet.png'
 import VoteIconIcon from '../../assets/images/positive-vote.png'
 import LendingIcon from '../../assets/images/lending.png'
+import {
+  ConnectWalletBtn,
+  BannerRow1,
+  HomeSecondComp,
+  SecondaryHead,
+  BannerHeading,
+  HomeTopBannerContent,
+  HomeTopBanner,
+  GridOfCards,
+  Card,
+  CardImage,
+  HomeThirdComp,
+  Table,
+  Thead,
+  Th,
+  Td,
+  Tbody
+} from './styled'
 
 const PageWrapper = styled(AutoColumn)``
-
-const ConnectWalletBtn = styled.button`
-  font-size: 20px;
-  width: 60%;
-  padding: 0.5rem;
-  border: none;
-  border-radius: 10px;
-  background-color: rgba(245, 88, 39, 0.8);
-  color: white;
-  cursor: pointer;
-  font-weight: 400;
-  margin-top: 1rem;
-`
-
-const HomeTopBanner = styled.div`
-  height: 60vh;
-  background-color: rgba(240, 240, 240, 0.96);
-  width: 95vw;
-  border-radius: 4rem;
-`
-const HomeTopBannerContent = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  height: 100%;
-`
-
-const BannerRow1 = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 50%;
-  margin-left: 3rem;
-`
-
-const BannerHeading = styled.h1`
-  font-size: 2rem;
-  margin: 5px;
-  padding: 0;
-`
-
-const HomeSecondComp = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
-  background-color: red;
-`
-
-const SecondaryHead = styled.h2`
-  font-size: 1.8rem;
-  display: flex;
-  justify-content: center;
-  font-weight: 500;
-`
-const GridOfCards = styled.div`
-  display: grid;
-  width: 60%;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 8px;
-`
-const Card = styled.div`
-  height: 15rem;
-  width: 14rem;
-  cursor: pointer;
-  border-radius: 1rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem;
-`
-
-const CardImage = styled.img`
-  height: 70%;
-  width: 75%;
-`
 
 const Home = () => {
   const toggleWalletModal = useWalletModalToggle()
@@ -133,6 +75,28 @@ const Home = () => {
         </GridOfCards>
       </HomeSecondComp>
       <SecondaryHead>Top Gainers</SecondaryHead>
+      <HomeThirdComp>
+        <Table>
+          <Thead>
+            <tr>
+              <Th>Token</Th>
+              <Th>Volume(24H)</Th>
+              <Th>Price</Th>
+              <Th>24H</Th>
+              <Th>7D</Th>
+            </tr>
+          </Thead>
+          <Tbody>
+            <tr>
+              <Td>AVAX</Td>
+              <Td>$151548611</Td>
+              <Td>$57.16</Td>
+              <Td>0.60%</Td>
+              <Td>3.96%</Td>
+            </tr>
+          </Tbody>
+        </Table>
+      </HomeThirdComp>
     </PageWrapper>
   )
 }
