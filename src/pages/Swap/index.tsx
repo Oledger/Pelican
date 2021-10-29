@@ -3,6 +3,8 @@ import React, { useCallback, useContext, useEffect, useMemo, useState } from 're
 import { ArrowDown } from 'react-feather'
 import ReactGA from 'react-ga'
 import { Text } from 'rebass'
+import PelicanOpenLogo from '../../assets/Logo_Exports/Illustration/Pelican-Gullar-Open.png'
+import PelicanCloseLogo from '../../assets/Logo_Exports/Illustration/Pelican-Gullar-Closed.png'
 import styled, { ThemeContext } from 'styled-components'
 import AddressInputPanel from '../../components/AddressInputPanel'
 import { ButtonError, ButtonLight, ButtonPrimary, ButtonConfirmed } from '../../components/Button'
@@ -36,6 +38,14 @@ import {
   useSwapState
 } from '../../state/swap/hooks'
 import { useExpertModeManager, useUserSlippageTolerance } from '../../state/user/hooks'
+import {
+  PeliconCloseFlipImage,
+  PeliconOpenImage,
+  SwapBannerTextHead,
+  SwapBannerTextHolder,
+  SwapBannerTextTag,
+  SwapTopBanner
+} from './styled'
 import { LinkStyledButton, TYPE } from '../../theme'
 import { maxAmountSpend } from '../../utils/maxAmountSpend'
 import { computeTradePriceBreakdown, warningSeverity } from '../../utils/prices'
@@ -304,13 +314,19 @@ export default function Swap() {
         tokens={urlLoadedTokens}
         onConfirm={handleConfirmTokenWarning}
       />
-
       {isAEBToken && (
         <WarningWrapper>
           <DeprecatedWarning />
         </WarningWrapper>
       )}
-
+      <SwapTopBanner>
+        <PeliconOpenImage src={PelicanOpenLogo} />
+        <SwapBannerTextHolder>
+          <SwapBannerTextHead>Trade</SwapBannerTextHead>
+          <SwapBannerTextTag>Home {'<'} Trade</SwapBannerTextTag>
+        </SwapBannerTextHolder>
+        <PeliconCloseFlipImage src={PelicanCloseLogo} />
+      </SwapTopBanner>
       <TopText>
         <Trans i18nKey="swapPage.velox">
           Set a limit order on
@@ -319,7 +335,6 @@ export default function Swap() {
           </VeloxLink>
         </Trans>
       </TopText>
-
       <AppBody>
         <SwapPoolTabs active={'swap'} />
         <Wrapper id="swap-page">
@@ -533,9 +548,7 @@ export default function Swap() {
           </BottomGrouping>
         </Wrapper>
       </AppBody>
-
       <AdvancedSwapDetailsDropdown trade={trade} />
-
       <BottomText>
         <Trans i18nKey="swapPage.marginSwap">
           Trade with leverage on
