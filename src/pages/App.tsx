@@ -33,6 +33,7 @@ import VotePage from './Vote/VotePage'
 
 import IDO from './IDO'
 import Migrate from './Earn/Migrate'
+import Footer from '../components/Footer/index'
 
 const AppWrapper = styled.div`
   display: flex;
@@ -68,6 +69,15 @@ const BodyWrapper = styled.div`
 
 const Marginer = styled.div`
   margin-top: 5rem;
+`
+
+const FooterWrapper = styled.div`
+  background-color: rgba(245, 161, 39, 0.15);
+  height: 40vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `
 
 export default function App() {
@@ -118,6 +128,9 @@ export default function App() {
             </Switch>
           </Web3ReactManager>
           <Marginer />
+          <FooterWrapper>
+            <Footer />
+          </FooterWrapper>
         </BodyWrapper>
       </AppWrapper>
     </Suspense>

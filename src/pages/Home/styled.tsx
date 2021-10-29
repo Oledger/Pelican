@@ -1,5 +1,11 @@
 import styled from 'styled-components'
 
+export const PageWrapper = styled.div`
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+`
+
 export const ConnectWalletBtn = styled.button`
   font-size: 20px;
   width: 60%;
@@ -13,7 +19,7 @@ export const ConnectWalletBtn = styled.button`
   margin-top: 1rem;
 `
 export const HomeTopBanner = styled.div`
-  height: 60vh;
+  height: 70vh;
   background-color: rgba(240, 240, 240, 0.96);
   width: 95vw;
   border-radius: 4rem;
@@ -21,7 +27,7 @@ export const HomeTopBanner = styled.div`
 
 export const HomeTopBannerContent = styled.div`
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-around;
   align-items: center;
   height: 100%;
 `
@@ -31,6 +37,15 @@ export const BannerRow1 = styled.div`
   height: 50%;
   margin-left: 3rem;
 `
+export const BannerRow2 = styled.div``
+
+export const PelicanOpenImage = styled.img`
+  height: 30rem;
+`
+export const PelicanCloseImage = styled.img`
+  height: 20rem;
+`
+
 export const BannerHeading = styled.h1`
   font-size: 2rem;
   margin: 5px;
@@ -40,7 +55,7 @@ export const HomeSecondComp = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
   height: 80vh;
 `
 export const SecondaryHead = styled.h2`
@@ -51,7 +66,6 @@ export const SecondaryHead = styled.h2`
 `
 export const GridOfCards = styled.div`
   display: grid;
-  width: 60%;
   grid-template-columns: repeat(4, 1fr);
   gap: 8px;
 `

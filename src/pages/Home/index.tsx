@@ -1,6 +1,4 @@
 import React from 'react'
-import { AutoColumn } from '../../components/Column'
-import styled from 'styled-components'
 import { useWalletModalToggle } from '../../state/application/hooks'
 import TradeIcon from '../../assets/images/trading.png'
 import SwimmingPoolIcon from '../../assets/images/swimming-pool.png'
@@ -10,6 +8,8 @@ import PeliconCoinIcon from '../../assets/images/coins.png'
 import PeliconWalletIcon from '../../assets/images/wallet.png'
 import VoteIconIcon from '../../assets/images/positive-vote.png'
 import LendingIcon from '../../assets/images/lending.png'
+import PelicanOpenLogo from '../../assets/Logo_Exports/Illustration/Pelican-Gullar-Open.png'
+import PelicanCloseLogo from '../../assets/Logo_Exports/Illustration/Pelican-Gullar-Closed.png'
 import {
   ConnectWalletBtn,
   BannerRow1,
@@ -19,6 +19,7 @@ import {
   HomeTopBannerContent,
   HomeTopBanner,
   GridOfCards,
+  PageWrapper,
   Card,
   CardImage,
   HomeThirdComp,
@@ -26,15 +27,16 @@ import {
   Thead,
   Th,
   Td,
-  Tbody
+  Tbody,
+  BannerRow2,
+  PelicanOpenImage,
+  PelicanCloseImage
 } from './styled'
-
-const PageWrapper = styled(AutoColumn)``
 
 const Home = () => {
   const toggleWalletModal = useWalletModalToggle()
   return (
-    <PageWrapper gap="lg">
+    <PageWrapper>
       <HomeTopBanner>
         <HomeTopBannerContent>
           <BannerRow1>
@@ -43,6 +45,10 @@ const Home = () => {
             <BannerHeading>On Avakanche</BannerHeading>
             <ConnectWalletBtn onClick={toggleWalletModal}>Connect Wallet</ConnectWalletBtn>
           </BannerRow1>
+          <BannerRow2>
+            <PelicanOpenImage src={PelicanOpenLogo} />
+            <PelicanCloseImage src={PelicanCloseLogo} />
+          </BannerRow2>
         </HomeTopBannerContent>
       </HomeTopBanner>
       <HomeSecondComp>
