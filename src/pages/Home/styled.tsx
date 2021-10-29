@@ -23,7 +23,7 @@ export const HomeTopBanner = styled.div`
   background-color: rgba(240, 240, 240, 0.96);
   width: 95vw;
   border-radius: 4rem;
-  margin-bottom: 1rem;
+  margin-bottom: 30px;
   box-shadow: lightgray 1px 4px 10px;
 `
 
@@ -42,10 +42,10 @@ export const BannerRow1 = styled.div`
 export const BannerRow2 = styled.div``
 
 export const PelicanOpenImage = styled.img`
-  height: 30rem;
+  height: 420px;
 `
 export const PelicanCloseImage = styled.img`
-  height: 20rem;
+  height: 290px;
 `
 
 export const BannerHeading = styled.h1`
@@ -59,7 +59,7 @@ export const HomeSecondComp = styled.div`
   align-items: center;
   justify-content: center;
   height: 80vh;
-  margin-bottom: 1rem;
+  margin-bottom: 50px;
 `
 export const SecondaryHead = styled.h2`
   font-size: 1.8rem;
