@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useWalletModalToggle } from '../../state/application/hooks'
+import axios from 'axios'
 import TradeIcon from '../../assets/images/trading.png'
 import SwimmingPoolIcon from '../../assets/images/swimming-pool.png'
 import FarmIcon from '../../assets/images/harvest.png'
@@ -30,11 +31,31 @@ import {
   Tbody,
   BannerRow2,
   PelicanOpenImage,
-  PelicanCloseImage
+  PelicanCloseImage,
+  TokenIcon,
+  Tr
 } from './styled'
 
 const Home = () => {
   const toggleWalletModal = useWalletModalToggle()
+  const [coins, setCoins] = useState<any[]>([])
+
+  const tokenFetch = () => {
+    axios
+      .get(
+        'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false&price_change_percentage=24h%2C7d'
+      )
+      .then(res => {
+        setCoins(res.data)
+        //console.log(coins);
+      })
+      .catch(error => console.log(error))
+  }
+
+  useEffect(() => {
+    tokenFetch()
+  }, [coins])
+
   return (
     <PageWrapper>
       <HomeTopBanner>
@@ -42,7 +63,7 @@ const Home = () => {
           <BannerRow1>
             <BannerHeading>One-Stop</BannerHeading>
             <BannerHeading>Decentralized Trading</BannerHeading>
-            <BannerHeading>On Avakanche</BannerHeading>
+            <BannerHeading>On Avalanche</BannerHeading>
             <ConnectWalletBtn onClick={toggleWalletModal}>Connect Wallet</ConnectWalletBtn>
           </BannerRow1>
           <BannerRow2>
@@ -93,13 +114,31 @@ const Home = () => {
             </tr>
           </Thead>
           <Tbody>
-            <tr>
-              <Td>AVAX</Td>
-              <Td>$151548611</Td>
-              <Td>$57.16</Td>
-              <Td>0.60%</Td>
-              <Td>3.96%</Td>
-            </tr>
+            {coins.map(coin => {
+              return (
+                <Tr>
+                  <Td style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
+                    <TokenIcon src={coin.image} /> {coin.symbol.toUpperCase()}
+                  </Td>
+                  <Td>${coin.total_volume.toLocaleString('en-US')}</Td>
+                  <Td>${coin.current_price.toLocaleString('en-US')}</Td>
+                  {Math.sign(coin.price_change_percentage_24h.toFixed(2)) < 0 ? (
+                    <Td style={{ color: 'red' }}>{coin.price_change_percentage_24h.toFixed(2)}%</Td>
+                  ) : Math.sign(coin.price_change_percentage_24h.toFixed(2)) === 0 ? (
+                    <Td style={{ color: 'gray' }}>{coin.price_change_percentage_24h.toFixed(2)}%</Td>
+                  ) : (
+                    <Td style={{ color: 'green' }}>{coin.price_change_percentage_24h.toFixed(2)}%</Td>
+                  )}
+                  {Math.sign(coin.price_change_percentage_7d_in_currency.toFixed(2)) < 0 ? (
+                    <Td style={{ color: 'red' }}>{coin.price_change_percentage_7d_in_currency.toFixed(2)}%</Td>
+                  ) : Math.sign(coin.price_change_percentage_7d_in_currency.toFixed(2)) === 0 ? (
+                    <Td style={{ color: 'gray' }}>{coin.price_change_percentage_7d_in_currency.toFixed(2)}%</Td>
+                  ) : (
+                    <Td style={{ color: 'green' }}>{coin.price_change_percentage_7d_in_currency.toFixed(2)}%</Td>
+                  )}
+                </Tr>
+              )
+            })}
           </Tbody>
         </Table>
       </HomeThirdComp>

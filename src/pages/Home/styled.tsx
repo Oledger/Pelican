@@ -24,7 +24,6 @@ export const HomeTopBanner = styled.div`
   width: 95vw;
   border-radius: 4rem;
   margin-bottom: 30px;
-  box-shadow: lightgray 1px 4px 10px;
 `
 
 export const HomeTopBannerContent = styled.div`
@@ -96,18 +95,38 @@ export const HomeThirdComp = styled.div`
 
 export const Table = styled.table`
   width: 90%;
+  border-collapse: separate;
+  border-spacing: 0 10px;
 `
 
 export const Thead = styled.thead``
 
 export const Th = styled.th`
-  padding: 0.5rem;
+  padding: 1rem;
   color: gray;
 `
 export const Td = styled.td`
   padding: 1rem;
   font-weight: 500;
   text-align: center;
+  &:first-child {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+  }
+  &:last-child {
+    border-bottom-right-radius: 10px;
+    border-top-right-radius: 10px;
+  }
 `
 
 export const Tbody = styled.tbody``
+
+export const Tr = styled.tr`
+  &:hover {
+    background-color: rgba(245, 105, 39, 0.2);
+  }
+`
+
+export const TokenIcon = styled.img`
+  height: 20px;
+`
