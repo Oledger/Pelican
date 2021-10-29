@@ -23,6 +23,8 @@ export const HomeTopBanner = styled.div`
   background-color: rgba(240, 240, 240, 0.96);
   width: 95vw;
   border-radius: 4rem;
+  margin-bottom: 1rem;
+  box-shadow: lightgray 1px 4px 10px;
 `
 
 export const HomeTopBannerContent = styled.div`
@@ -57,6 +59,7 @@ export const HomeSecondComp = styled.div`
   align-items: center;
   justify-content: center;
   height: 80vh;
+  margin-bottom: 1rem;
 `
 export const SecondaryHead = styled.h2`
   font-size: 1.8rem;
