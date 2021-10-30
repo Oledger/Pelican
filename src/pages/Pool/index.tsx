@@ -163,6 +163,7 @@ export default function Pool() {
                   {t('pool.yourLiquidity')}
                 </TYPE.mediumHeader>
               </HideSmall>
+
               <ButtonRow>
                 <ResponsiveButtonSecondary as={Link} padding="6px 8px" to="/create/AVAX">
                   {t('pool.createPair')}

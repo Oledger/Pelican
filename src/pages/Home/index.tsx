@@ -33,11 +33,14 @@ import {
   PelicanOpenImage,
   PelicanCloseImage,
   TokenIcon,
-  Tr
+  Tr,
+  ConnectedWalletBtn
 } from './styled'
+import { useActiveWeb3React } from '../../hooks'
 
 const Home = () => {
   const toggleWalletModal = useWalletModalToggle()
+  const { account } = useActiveWeb3React()
   const [coins, setCoins] = useState<any[]>([])
 
   const tokenFetch = () => {
@@ -64,7 +67,11 @@ const Home = () => {
             <BannerHeading>One-Stop</BannerHeading>
             <BannerHeading>Decentralized Trading</BannerHeading>
             <BannerHeading>On Avalanche</BannerHeading>
-            <ConnectWalletBtn onClick={toggleWalletModal}>Connect Wallet</ConnectWalletBtn>
+            {account ? (
+              <ConnectedWalletBtn>Wallet Connected</ConnectedWalletBtn>
+            ) : (
+              <ConnectWalletBtn onClick={toggleWalletModal}>Connect Wallet</ConnectWalletBtn>
+            )}
           </BannerRow1>
           <BannerRow2>
             <PelicanOpenImage src={PelicanOpenLogo} />
@@ -117,7 +124,15 @@ const Home = () => {
             {coins.map(coin => {
               return (
                 <Tr>
-                  <Td style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
+                  <Td
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      gap: '8px'
+                      // backgroundColor: 'red'
+                    }}
+                  >
                     <TokenIcon src={coin.image} /> {coin.symbol.toUpperCase()}
                   </Td>
                   <Td>${coin.total_volume.toLocaleString('en-US')}</Td>

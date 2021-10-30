@@ -7,8 +7,8 @@ import { useTranslation } from 'react-i18next'
 
 import styled from 'styled-components'
 
-import Logo from '../../assets/svg/icon.svg'
-import LogoDark from '../../assets/svg/icon.svg'
+import Logo from '../../assets/Logo_Exports/Logos/Logo-with-Emblem-BG-Transparent.png'
+import LogoDark from '../../assets/Logo_Exports/Logos/Logo-with-Emblem-BG-Transparent-Dark-Background.png'
 import { useActiveWeb3React } from '../../hooks'
 import { useDarkModeManager } from '../../state/user/hooks'
 import { useETHBalances, useAggregatePngBalance } from '../../state/wallet/hooks'
@@ -17,7 +17,7 @@ import { CountUp } from 'use-count-up'
 import { TYPE, ExternalLink } from '../../theme'
 
 import { RedCard } from '../Card'
-import Settings from '../Settings'
+// import Settings from '../Settings'
 import Menu from '../Menu'
 
 import Row, { RowFixed } from '../Row'
@@ -187,9 +187,6 @@ const Title = styled.a`
 
 const PngIcon = styled.div`
   transition: transform 0.3s ease;
-  :hover {
-    transform: rotate(-5deg);
-  }
 `
 
 const activeClassName = 'ACTIVE'
@@ -281,7 +278,7 @@ export default function Header() {
       <HeaderRow>
         <Title href=".">
           <PngIcon>
-            <img width={'24px'} src={isDark ? LogoDark : Logo} alt="logo" />
+            <img width={'220px'} src={isDark ? LogoDark : Logo} alt="logo" />
           </PngIcon>
         </Title>
         <HeaderLinks>
@@ -372,7 +369,7 @@ export default function Header() {
           </AccountElement>
         </HeaderElement>
         <HeaderElementWrap>
-          <Settings />
+          {/* <Settings /> */}
           <LanguageSelection />
           <Menu />
         </HeaderElementWrap>

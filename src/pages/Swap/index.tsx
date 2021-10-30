@@ -3,6 +3,7 @@ import React, { useCallback, useContext, useEffect, useMemo, useState } from 're
 import { ArrowDown } from 'react-feather'
 import ReactGA from 'react-ga'
 import { Text } from 'rebass'
+import Settings from '../../components/Settings/index'
 import PelicanOpenLogo from '../../assets/Logo_Exports/Illustration/Pelican-Gullar-Open.png'
 import PelicanCloseLogo from '../../assets/Logo_Exports/Illustration/Pelican-Gullar-Closed.png'
 import styled, { ThemeContext } from 'styled-components'
@@ -41,6 +42,8 @@ import { useExpertModeManager, useUserSlippageTolerance } from '../../state/user
 import {
   PeliconCloseFlipImage,
   PeliconOpenImage,
+  SettingHolder,
+  Span,
   SwapBannerTextHead,
   SwapBannerTextHolder,
   SwapBannerTextTag,
@@ -323,7 +326,9 @@ export default function Swap() {
         <PeliconOpenImage src={PelicanOpenLogo} />
         <SwapBannerTextHolder>
           <SwapBannerTextHead>Trade</SwapBannerTextHead>
-          <SwapBannerTextTag>Home {'<'} Trade</SwapBannerTextTag>
+          <SwapBannerTextTag>
+            Home<Span> {'>'} </Span>Trade
+          </SwapBannerTextTag>
         </SwapBannerTextHolder>
         <PeliconCloseFlipImage src={PelicanCloseLogo} />
       </SwapTopBanner>
@@ -353,6 +358,9 @@ export default function Swap() {
           />
 
           <AutoColumn gap={'md'}>
+            <SettingHolder>
+              <Settings />
+            </SettingHolder>
             <CurrencyInputPanel
               label={
                 independentField === Field.OUTPUT && !showWrap && trade
@@ -399,7 +407,6 @@ export default function Swap() {
               otherCurrency={currencies[Field.INPUT]}
               id="swap-currency-output"
             />
-
             {recipient !== null && !showWrap ? (
               <>
                 <AutoRow justify="space-between" style={{ padding: '0 1rem' }}>
@@ -413,7 +420,6 @@ export default function Swap() {
                 <AddressInputPanel id="recipient" value={recipient} onChange={onChangeRecipient} />
               </>
             ) : null}
-
             {showWrap ? null : (
               <Card padding={'.25rem .75rem 0 .75rem'} borderRadius={'20px'}>
                 <AutoColumn gap="4px">
