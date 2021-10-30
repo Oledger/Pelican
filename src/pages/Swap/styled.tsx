@@ -14,22 +14,40 @@ export const SwapTopBanner = styled.div`
 
 export const PeliconOpenImage = styled.img`
   height: 220px;
+  margin-top: 8rem;
 `
 export const PeliconCloseFlipImage = styled.img`
   height: 220px;
   -webkit-transform: scaleX(-1);
   transform: scaleX(-1);
+  margin-top: 8rem;
 `
 export const SwapBannerTextHolder = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
+  height: 100%;
   align-items: center;
 `
 
 export const SwapBannerTextHead = styled.h1`
   font-size: 3.5rem;
-  font-weight: 500;
+  font-weight: 600;
+  margin: 0;
+  padding: 0;
   letter-spacing: 1px;
 `
-export const SwapBannerTextTag = styled.h4``
+export const SwapBannerTextTag = styled.h3`
+  color: rgba(245, 161, 39, 1);
+  font-size: 1.2rem;
+  font-weight: 500;
+`
+
+export const Span = styled.span`
+  margin-left: 20px;
+  margin-right: 20px;
+`
+export const SettingHolder = styled.div`
+  display: flex;
+  justify-content: flex-end;
+`
