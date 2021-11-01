@@ -44,10 +44,10 @@ import {
   PeliconOpenImage,
   SettingHolder,
   Span,
-  SwapBannerTextHead,
-  SwapBannerTextHolder,
-  SwapBannerTextTag,
-  SwapTopBanner
+  BannerTextHead,
+  BannerTextHolder,
+  BannerTextTag,
+  TopBanner
 } from './styled'
 import { LinkStyledButton, TYPE } from '../../theme'
 import { maxAmountSpend } from '../../utils/maxAmountSpend'
@@ -60,6 +60,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { useIsSelectedAEBToken, useSelectedTokenList } from '../../state/lists/hooks'
 import { DeprecatedWarning } from '../../components/Warning'
 import { isTokenOnList } from '../../utils'
+import { Link } from 'react-router-dom'
 
 const TopText = styled.span`
   margin-bottom: 8px;
@@ -322,16 +323,22 @@ export default function Swap() {
           <DeprecatedWarning />
         </WarningWrapper>
       )}
-      <SwapTopBanner>
+      <TopBanner>
         <PeliconOpenImage src={PelicanOpenLogo} />
-        <SwapBannerTextHolder>
-          <SwapBannerTextHead>Trade</SwapBannerTextHead>
-          <SwapBannerTextTag>
-            Home<Span> {'>'} </Span>Trade
-          </SwapBannerTextTag>
-        </SwapBannerTextHolder>
+        <BannerTextHolder>
+          <BannerTextHead>Trade</BannerTextHead>
+          <BannerTextTag>
+            <Link style={{ color: 'inherit', textDecoration: 'none' }} to="/">
+              Home
+            </Link>
+            <Span> {'>'} </Span>
+            <Link style={{ color: 'inherit', textDecoration: 'none' }} to="/swap">
+              Trade
+            </Link>
+          </BannerTextTag>
+        </BannerTextHolder>
         <PeliconCloseFlipImage src={PelicanCloseLogo} />
-      </SwapTopBanner>
+      </TopBanner>
       <TopText>
         <Trans i18nKey="swapPage.velox">
           Set a limit order on

@@ -25,8 +25,10 @@ export const ConnectedWalletBtn = styled.button`
   border: none;
   border-radius: 10px;
   background-color: white;
+  background-color: ${({ theme }) => theme.bg1};
   border: solid 2px rgba(245, 88, 39, 0.8);
   color: lightgray;
+  color: ${({ theme }) => theme.bg5};
   cursor: crossair;
   font-weight: 400;
   margin-top: 1rem;
@@ -35,6 +37,7 @@ export const ConnectedWalletBtn = styled.button`
 export const HomeTopBanner = styled.div`
   height: 70vh;
   background-color: rgba(240, 240, 240, 0.96);
+  background: ${({ theme }) => theme.bg1};
   width: 95vw;
   border-radius: 4rem;
   margin-bottom: 30px;

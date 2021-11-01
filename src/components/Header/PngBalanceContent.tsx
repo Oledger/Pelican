@@ -97,7 +97,8 @@ export default function PngBalanceContent({ setShowPngBalanceModal }: { setShowP
         <CardNoise />
         <CardSection gap="md">
           <RowBetween>
-            <TYPE.white color="white">{t('header.pngBreakDown')}</TYPE.white>
+            {/* <TYPE.white color="white">{t('header.pngBreakDown')}</TYPE.white> */}
+            <TYPE.white color="white">Your PCN Breakdown</TYPE.white>
             <StyledClose stroke="white" onClick={() => setShowPngBalanceModal(false)} />
           </RowBetween>
         </CardSection>
@@ -123,7 +124,8 @@ export default function PngBalanceContent({ setShowPngBalanceModal }: { setShowP
                     {pngToClaim && pngToClaim.greaterThan('0') && (
                       <StyledInternalLink
                         onClick={() => setShowPngBalanceModal(false)}
-                        to={`/png/${DOUBLE_SIDE_STAKING_REWARDS_CURRENT_VERSION}`}>
+                        to={`/png/${DOUBLE_SIDE_STAKING_REWARDS_CURRENT_VERSION}`}
+                      >
                         ({t('earn.claim')})
                       </StyledInternalLink>
                     )}
@@ -137,11 +139,13 @@ export default function PngBalanceContent({ setShowPngBalanceModal }: { setShowP
         <CardSection gap="sm">
           <AutoColumn gap="md">
             <RowBetween>
-              <TYPE.white color="white">{t('header.pngPrice')}</TYPE.white>
+              {/* <TYPE.white color="white">{t('header.pngPrice')}</TYPE.white> */}
+              <TYPE.white color="white">PCN Price</TYPE.white>
               <TYPE.white color="white">{pngPrice?.toFixed(5) ?? '-'} AVAX</TYPE.white>
             </RowBetween>
             <RowBetween>
-              <TYPE.white color="white">{t('header.pngCirculation')}</TYPE.white>
+              {/* <TYPE.white color="white">{t('header.pngCirculation')}</TYPE.white> */}
+              <TYPE.white color="white">PCN in Cirulation</TYPE.white>
               <TYPE.white color="white">{circulation?.toFixed(0, { groupSeparator: ',' })}</TYPE.white>
             </RowBetween>
             <RowBetween>
@@ -152,36 +156,39 @@ export default function PngBalanceContent({ setShowPngBalanceModal }: { setShowP
         </CardSection>
         {account && (
           <>
-          <CardSection gap="sm">
-            <AutoColumn gap="md">
-              <AddPNG onClick={() => {
-                injected.getProvider().then(provider => {
-                  if (provider) {
-                    provider.request({
-                      method: 'wallet_watchAsset',
-                      params: {
-                        type: 'ERC20',
-                        options: {
-                          address: png?.address,
-                          symbol: png?.symbol,
-                          decimals: png?.decimals,
-                          image: 'https://raw.githubusercontent.com/pangolindex/tokens/main/assets/0x60781C2586D68229fde47564546784ab3fACA982/logo.png',
-                        },
-                      },
-                    }).catch((error: any) => {
-                      console.error(error)
+            <CardSection gap="sm">
+              <AutoColumn gap="md">
+                <AddPNG
+                  onClick={() => {
+                    injected.getProvider().then(provider => {
+                      if (provider) {
+                        provider
+                          .request({
+                            method: 'wallet_watchAsset',
+                            params: {
+                              type: 'ERC20',
+                              options: {
+                                address: png?.address,
+                                symbol: png?.symbol,
+                                decimals: png?.decimals,
+                                image:
+                                  'https://raw.githubusercontent.com/pangolindex/tokens/main/assets/0x60781C2586D68229fde47564546784ab3fACA982/logo.png'
+                              }
+                            }
+                          })
+                          .catch((error: any) => {
+                            console.error(error)
+                          })
+                      }
                     })
-                  }
-                });
-              }
-            }>
-                <TYPE.white color="white">{t('header.addMetamask')}</TYPE.white>
-              </AddPNG>
-            </AutoColumn>
-          </CardSection>
+                  }}
+                >
+                  <TYPE.white color="white">{t('header.addMetamask')}</TYPE.white>
+                </AddPNG>
+              </AutoColumn>
+            </CardSection>
           </>
-          )
-        }
+        )}
       </ModalUpper>
     </ContentWrapper>
   )
