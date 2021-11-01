@@ -319,7 +319,8 @@ export default function Header() {
             {t('header.vote')}
           </StyledNavLink>
           <StyledExternalLink id={`info-nav-link`} href={ANALYTICS_PAGE}>
-            {t('header.charts')} <span style={{ fontSize: '11px' }}>↗</span>
+            {t('header.charts')}
+            <span style={{ fontSize: '11px' }}>↗</span>
           </StyledExternalLink>
           <StyledExternalLink id={`gov-nav-link`} href={'https://gov.pangolin.exchange'}>
             {t('header.forum')} <span style={{ fontSize: '11px' }}>↗</span>
@@ -329,9 +330,7 @@ export default function Header() {
       <HeaderControls>
         <HeaderElement>
           <HideSmall>
-            {chainId && NETWORK_LABELS[chainId] && (
-              <NetworkCard title={NETWORK_LABELS[chainId]}>{NETWORK_LABELS[chainId]}</NetworkCard>
-            )}
+            {chainId && NETWORK_LABELS[chainId] && <NetworkCard title={NETWORK_LABELS[chainId]}>Optimism</NetworkCard>}
           </HideSmall>
           {aggregateBalance && (
             <PNGWrapper onClick={() => setShowPngBalanceModal(true)}>
@@ -354,7 +353,7 @@ export default function Header() {
                     </TYPE.white>
                   </HideSmall>
                 )}
-                PNG
+                PCN
               </PNGAmount>
               <CardNoise />
             </PNGWrapper>

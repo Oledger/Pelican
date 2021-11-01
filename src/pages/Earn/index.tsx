@@ -2,10 +2,12 @@ import React, { useCallback, useEffect, useState } from 'react'
 import { AutoColumn } from '../../components/Column'
 import { ChevronDown, ChevronUp } from 'react-feather'
 import styled from 'styled-components'
+import PelicanOpenLogo from '../../assets/Logo_Exports/Illustration/Pelican-Gullar-Open.png'
+import PelicanCloseLogo from '../../assets/Logo_Exports/Illustration/Pelican-Gullar-Closed.png'
 import { MIGRATIONS, DOUBLE_SIDE_STAKING_REWARDS_INFO, useStakingInfo } from '../../state/stake/hooks'
 import { TYPE, ExternalLink } from '../../theme'
 import DoubleSidePoolCard from '../../components/earn/DoubleSidePoolCard'
-import { RouteComponentProps, NavLink } from 'react-router-dom'
+import { RouteComponentProps, NavLink, Link } from 'react-router-dom'
 import { RowBetween } from '../../components/Row'
 import { CardSection, DataCard, CardNoise, CardBGImage } from '../../components/earn/styled'
 import Loader from '../../components/Loader'
@@ -14,6 +16,15 @@ import { JSBI } from '@pangolindex/sdk'
 import { useTranslation } from 'react-i18next'
 import { SearchInput } from '../../components/SearchModal/styleds'
 import useDebounce from '../../hooks/useDebounce'
+import {
+  TopBanner,
+  PeliconOpenImage,
+  BannerTextHolder,
+  BannerTextHead,
+  BannerTextTag,
+  Span,
+  PeliconCloseFlipImage
+} from '../Swap/styled'
 
 const PageWrapper = styled(AutoColumn)`
   max-width: 640px;
@@ -103,17 +114,9 @@ export default function Earn({
       stakingInfoData.sort(function(info_a, info_b) {
         if (sortBy.field === SortingType.totalStakedInUsd) {
           if (sortBy.desc) {
-            return info_a.totalStakedInUsd?.greaterThan(
-              info_b.totalStakedInUsd ?? JSBI.BigInt(0)
-            )
-              ? -1
-              : 1
+            return info_a.totalStakedInUsd?.greaterThan(info_b.totalStakedInUsd ?? JSBI.BigInt(0)) ? -1 : 1
           } else {
-            return info_a.totalStakedInUsd?.lessThan(
-              info_b.totalStakedInUsd ?? JSBI.BigInt(0)
-            )
-              ? -1
-              : 1
+            return info_a.totalStakedInUsd?.lessThan(info_b.totalStakedInUsd ?? JSBI.BigInt(0)) ? -1 : 1
           }
         }
         if (sortBy.field === SortingType.multiplier) {
@@ -239,86 +242,104 @@ export default function Earn({
   }
 
   return (
-    <PageWrapper gap="lg" justify="center">
-      <TopSection gap="md">
-        <DataCard>
-          <CardBGImage />
-          <CardNoise />
-          <CardSection>
-            <AutoColumn gap="md">
-              <RowBetween>
-                <TYPE.white fontWeight={600}>{t('earnPage.pangolinLiquidityMining')}</TYPE.white>
-              </RowBetween>
-              <RowBetween>
-                <TYPE.white fontSize={14}>{t('earnPage.depositPangolinLiquidity')}</TYPE.white>
-              </RowBetween>{' '}
-              <ExternalLink
-                style={{ color: 'white', textDecoration: 'underline' }}
-                href="https://pangolin.exchange/litepaper"
-                target="_blank"
-              >
-                <TYPE.white fontSize={14}>{t('earnPage.readMoreAboutPng')}</TYPE.white>
-              </ExternalLink>
-            </AutoColumn>
-          </CardSection>
-          <CardBGImage />
-          <CardNoise />
-        </DataCard>
-        {(hasPositionV0 || version === '0') && (
+    <>
+      <TopBanner>
+        <PeliconOpenImage src={PelicanOpenLogo} />
+        <BannerTextHolder>
+          <BannerTextHead>Farm</BannerTextHead>
+          <BannerTextTag>
+            <Link style={{ color: 'inherit', textDecoration: 'none' }} to="/">
+              Home
+            </Link>
+            <Span> {'>'} </Span>
+            <Link style={{ color: 'inherit', textDecoration: 'none' }} to="/png/1">
+              Farm
+            </Link>
+          </BannerTextTag>
+        </BannerTextHolder>
+        <PeliconCloseFlipImage src={PelicanCloseLogo} />
+      </TopBanner>
+      <PageWrapper gap="lg" justify="center">
+        <TopSection gap="md">
           <DataCard>
+            <CardBGImage />
             <CardNoise />
             <CardSection>
               <AutoColumn gap="md">
                 <RowBetween>
-                  <TYPE.white fontWeight={600}>{t('earnPage.importantUpdate')}</TYPE.white>
+                  <TYPE.white fontWeight={600}>{t('earnPage.pangolinLiquidityMining')}</TYPE.white>
                 </RowBetween>
                 <RowBetween>
-                  <TYPE.white fontSize={14}>{t('earnPage.pangolinGovernanceProposalResult')}</TYPE.white>
-                </RowBetween>
-                {version !== '0' && (
-                  <NavLink style={{ color: 'white', textDecoration: 'underline' }} to="/png/0">
-                    <TYPE.white fontSize={14}>{t('earnPage.oldPngPools')}</TYPE.white>
-                  </NavLink>
-                )}
+                  <TYPE.white fontSize={14}>{t('earnPage.depositPangolinLiquidity')}</TYPE.white>
+                </RowBetween>{' '}
+                <ExternalLink
+                  style={{ color: 'white', textDecoration: 'underline' }}
+                  href="https://pangolin.exchange/litepaper"
+                  target="_blank"
+                >
+                  <TYPE.white fontSize={14}>{t('earnPage.readMoreAboutPng')}</TYPE.white>
+                </ExternalLink>
               </AutoColumn>
             </CardSection>
+            <CardBGImage />
+            <CardNoise />
           </DataCard>
-        )}
-      </TopSection>
-
-      <AutoColumn gap="lg" style={{ width: '100%', maxWidth: '720px' }}>
-        <DataRow style={{ alignItems: 'baseline' }}>
-          <TYPE.mediumHeader style={{ marginTop: '0.5rem' }}>{t('earnPage.participatingPools')}</TYPE.mediumHeader>
-        </DataRow>
-
-        <PoolSection>
-          {(stakingRewardsExist && stakingInfos?.length === 0) || poolCardsLoading ? (
-            <Loader style={{ margin: 'auto' }} />
-          ) : (!stakingRewardsExist || poolCards?.length === 0) && !poolCardsLoading ? (
-            t('earnPage.noActiveRewards')
-          ) : (
-            <>
-              <SearchInput
-                type="text"
-                id="token-search-input"
-                placeholder={t('searchModal.tokenName')}
-                value={searchQuery}
-                onChange={handleSearch}
-              />
-              <SortSection>
-                Sort by :{' '}
-                <SortFieldContainer>
-                  {getSortField('Liquidity', SortingType.totalStakedInUsd, sortBy, setSortBy)} |{' '}
-                  {getSortField('Pool Weight', SortingType.multiplier, sortBy, setSortBy)} |{' '}
-                </SortFieldContainer>
-                {getSortField('APR', SortingType.totalApr, sortBy, setSortBy)}
-              </SortSection>
-
-              {filteredPoolCards}
-            </>
+          {(hasPositionV0 || version === '0') && (
+            <DataCard>
+              <CardNoise />
+              <CardSection>
+                <AutoColumn gap="md">
+                  <RowBetween>
+                    <TYPE.white fontWeight={600}>{t('earnPage.importantUpdate')}</TYPE.white>
+                  </RowBetween>
+                  <RowBetween>
+                    <TYPE.white fontSize={14}>{t('earnPage.pangolinGovernanceProposalResult')}</TYPE.white>
+                  </RowBetween>
+                  {version !== '0' && (
+                    <NavLink style={{ color: 'white', textDecoration: 'underline' }} to="/png/0">
+                      <TYPE.white fontSize={14}>{t('earnPage.oldPngPools')}</TYPE.white>
+                    </NavLink>
+                  )}
+                </AutoColumn>
+              </CardSection>
+            </DataCard>
           )}
-        </PoolSection>
-      </AutoColumn>
-    </PageWrapper>
+        </TopSection>
+
+        <AutoColumn gap="lg" style={{ width: '100%', maxWidth: '720px' }}>
+          <DataRow style={{ alignItems: 'baseline' }}>
+            <TYPE.mediumHeader style={{ marginTop: '0.5rem' }}>{t('earnPage.participatingPools')}</TYPE.mediumHeader>
+          </DataRow>
+
+          <PoolSection>
+            {(stakingRewardsExist && stakingInfos?.length === 0) || poolCardsLoading ? (
+              <Loader style={{ margin: 'auto' }} />
+            ) : (!stakingRewardsExist || poolCards?.length === 0) && !poolCardsLoading ? (
+              t('earnPage.noActiveRewards')
+            ) : (
+              <>
+                <SearchInput
+                  type="text"
+                  id="token-search-input"
+                  placeholder={t('searchModal.tokenName')}
+                  value={searchQuery}
+                  onChange={handleSearch}
+                />
+                <SortSection>
+                  Sort by :{' '}
+                  <SortFieldContainer>
+                    {getSortField('Liquidity', SortingType.totalStakedInUsd, sortBy, setSortBy)} |{' '}
+                    {getSortField('Pool Weight', SortingType.multiplier, sortBy, setSortBy)} |{' '}
+                  </SortFieldContainer>
+                  {getSortField('APR', SortingType.totalApr, sortBy, setSortBy)}
+                </SortSection>
+
+                {filteredPoolCards}
+              </>
+            )}
+          </PoolSection>
+        </AutoColumn>
+      </PageWrapper>
+    </>
   )
 }

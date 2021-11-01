@@ -1,9 +1,10 @@
 import styled from 'styled-components'
 
-export const SwapTopBanner = styled.div`
+export const TopBanner = styled.div`
   background-color: rgba(240, 240, 240, 0.96);
   height: 250px;
   width: 90%;
+  background: ${({ theme }) => theme.bg1};
   border-radius: 20px;
   margin-bottom: 20px;
   display: flex;
@@ -22,7 +23,7 @@ export const PeliconCloseFlipImage = styled.img`
   transform: scaleX(-1);
   margin-top: 8rem;
 `
-export const SwapBannerTextHolder = styled.div`
+export const BannerTextHolder = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -30,14 +31,14 @@ export const SwapBannerTextHolder = styled.div`
   align-items: center;
 `
 
-export const SwapBannerTextHead = styled.h1`
+export const BannerTextHead = styled.h1`
   font-size: 3.5rem;
   font-weight: 600;
   margin: 0;
   padding: 0;
   letter-spacing: 1px;
 `
-export const SwapBannerTextTag = styled.h3`
+export const BannerTextTag = styled.h3`
   color: rgba(245, 161, 39, 1);
   font-size: 1.2rem;
   font-weight: 500;
