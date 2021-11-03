@@ -67,7 +67,6 @@ const ContentWrapper = styled.div`
 
 const UpperSection = styled.div`
   position: relative;
-
   h5 {
     margin: 0;
     margin-bottom: 0.5rem;
@@ -206,7 +205,6 @@ export default function WalletModal({
       const option = SUPPORTED_WALLETS[key]
       // check for mobile options
       if (isMobile) {
-
         if (!window.web3 && !window.ethereum && option.mobile) {
           return (
             <Option

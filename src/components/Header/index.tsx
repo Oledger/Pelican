@@ -1,11 +1,11 @@
 import { ChainId, TokenAmount } from '@pangolindex/sdk'
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Text } from 'rebass'
 import { NavLink } from 'react-router-dom'
-import { darken } from 'polished'
+// import { darken } from 'polished'
 import { useTranslation } from 'react-i18next'
 
-import styled from 'styled-components'
+import styled, { ThemeContext } from 'styled-components'
 
 import Logo from '../../assets/Logo_Exports/Logos/Logo-with-Emblem-BG-Transparent.png'
 import LogoDark from '../../assets/Logo_Exports/Logos/Logo-with-Emblem-BG-Transparent-Dark-Background.png'
@@ -18,15 +18,17 @@ import { TYPE } from '../../theme'
 
 import { RedCard } from '../Card'
 // import Settings from '../Settings'
-import Menu from '../Menu'
+// import Menu from '../Menu'
 
-import Row, { RowFixed } from '../Row'
+import Row, { RowBetween, RowFixed } from '../Row'
 import Web3Status from '../Web3Status'
 import Modal from '../Modal'
 import PngBalanceContent from './PngBalanceContent'
 import usePrevious from '../../hooks/usePrevious'
 // import { ANALYTICS_PAGE } from '../../constants'
 import LanguageSelection from '../LanguageSelection'
+// import Toggle from '../Toggle'
+import ToggleNight from '../ToggleNight'
 
 const HeaderFrame = styled.div`
   display: grid;
@@ -41,6 +43,7 @@ const HeaderFrame = styled.div`
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   padding: 1rem;
   z-index: 2;
+  background-color: ${({ color }) => color};
   ${({ theme }) => theme.mediaWidth.upToMedium`
     grid-template-columns: 1fr;
     padding: 0 1rem;
@@ -210,12 +213,12 @@ const StyledNavLink = styled(NavLink).attrs({
   &.${activeClassName} {
     border-radius: 12px;
     font-weight: 600;
-    color: ${({ theme }) => theme.text1};
+    color: ${({ theme }) => theme.primary1};
   }
 
   :hover,
   :focus {
-    color: ${({ theme }) => darken(0.1, theme.text1)};
+    color: ${({ theme }) => theme.primary1};
   }
 `
 
@@ -256,9 +259,18 @@ const NETWORK_LABELS: { [chainId in ChainId]?: string } = {
   [ChainId.AVALANCHE]: 'Avalanche'
 }
 
-export default function Header() {
+export interface LendingProps {
+  isLending: boolean
+  setIsLending: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+const Header = () => {
   const { account, chainId } = useActiveWeb3React()
   const { t } = useTranslation()
+  const [isLending, setIsLending] = useState(false)
+
+  const theme = useContext(ThemeContext)
+  const [darkMode, toggleDarkMode] = useDarkModeManager()
 
   const userEthBalance = useETHBalances(account ? [account] : [])?.[account ?? '']
   const [isDark] = useDarkModeManager()
@@ -271,7 +283,7 @@ export default function Header() {
   const countUpValuePrevious = usePrevious(countUpValue) ?? '0'
 
   return (
-    <HeaderFrame>
+    <HeaderFrame color={isLending ? ' rgba(245, 161, 39, 0.15)' : 'transparent'}>
       <Modal isOpen={showPngBalanceModal} onDismiss={() => setShowPngBalanceModal(false)}>
         <PngBalanceContent setShowPngBalanceModal={setShowPngBalanceModal} />
       </Modal>
@@ -282,12 +294,10 @@ export default function Header() {
           </PngIcon>
         </Title>
         <HeaderLinks>
-          <StyledNavLink id={`swap-nav-link`} to={'/swap'}>
-            {t('header.swap')}
+          <StyledNavLink id={`swap-nav-link`} to={'/trade'}>
+            Trade
           </StyledNavLink>
-          <StyledNavLink id={`swap-nav-link`} to={'/buy'}>
-            {t('header.buy')}
-          </StyledNavLink>
+
           <StyledNavLink
             id={`pool-nav-link`}
             to={'/pool'}
@@ -301,6 +311,9 @@ export default function Header() {
           >
             {t('header.pool')}
           </StyledNavLink>
+          {/* <StyledNavLink id={`swap-nav-link`} to={'/buy'}>
+            {t('header.buy')}
+          </StyledNavLink> */}
           <StyledNavLink
             id={`png-nav-link`}
             to={'/png/1'}
@@ -309,14 +322,23 @@ export default function Header() {
             {t('header.farm')}
           </StyledNavLink>
           <StyledNavLink
+            to={`/lending`}
+            isActive={(match, { pathname }) => {
+              pathname.startsWith('/lending') ? setIsLending(true) : setIsLending(false)
+              return Boolean(match) || pathname.startsWith('/lending')
+            }}
+          >
+            Lending
+          </StyledNavLink>
+          <StyledNavLink
             id={`stake-nav-link`}
             to={'/stake/0'}
             isActive={(match, { pathname }) => Boolean(match) || pathname.startsWith('/stake')}
           >
             {t('header.stake')}
           </StyledNavLink>
-          <StyledNavLink id={`vote-nav-link`} to={'/vote'}>
-            {t('header.vote')}
+          <StyledNavLink id={`vote-nav-link`} to={'/zap'}>
+            Zap
           </StyledNavLink>
           {/* <StyledExternalLink id={`info-nav-link`} href={ANALYTICS_PAGE}>
             {t('header.charts')}
@@ -329,6 +351,12 @@ export default function Header() {
       </HeaderRow>
       <HeaderControls>
         <HeaderElement>
+          <RowBetween>
+            <RowFixed>
+              <TYPE.black fontWeight={400} fontSize={14} color={theme.text1}></TYPE.black>
+            </RowFixed>
+            <ToggleNight isActive={darkMode} toggle={toggleDarkMode} />
+          </RowBetween>
           <HideSmall>
             {chainId && NETWORK_LABELS[chainId] && <NetworkCard title={NETWORK_LABELS[chainId]}>Optimism</NetworkCard>}
           </HideSmall>
@@ -370,9 +398,11 @@ export default function Header() {
         <HeaderElementWrap>
           {/* <Settings /> */}
           <LanguageSelection />
-          <Menu />
+          {/* <Menu /> */}
         </HeaderElementWrap>
       </HeaderControls>
     </HeaderFrame>
   )
 }
+
+export default Header

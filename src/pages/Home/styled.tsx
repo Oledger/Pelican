@@ -12,11 +12,12 @@ export const ConnectWalletBtn = styled.button`
   padding: 0.5rem;
   border: none;
   border-radius: 10px;
-  background-color: rgba(245, 88, 39, 0.8);
-  color: white;
+  color: ${({ theme }) => theme.bg1};
+  background-color: ${({ theme }) => theme.primary1};
   cursor: pointer;
   font-weight: 400;
   margin-top: 1rem;
+  border-radius: 20px;
 `
 export const ConnectedWalletBtn = styled.button`
   font-size: 20px;
@@ -32,6 +33,7 @@ export const ConnectedWalletBtn = styled.button`
   cursor: crossair;
   font-weight: 400;
   margin-top: 1rem;
+  border-radius: 20px;
 `
 
 export const HomeTopBanner = styled.div`
@@ -39,8 +41,8 @@ export const HomeTopBanner = styled.div`
   background-color: rgba(240, 240, 240, 0.96);
   background: ${({ theme }) => theme.bg1};
   width: 95vw;
-  border-radius: 4rem;
-  margin-bottom: 30px;
+  border-bottom-left-radius: 4rem;
+  border-bottom-right-radius: 4rem;
 `
 
 export const HomeTopBannerContent = styled.div`
@@ -75,7 +77,6 @@ export const HomeSecondComp = styled.div`
   align-items: center;
   justify-content: center;
   height: 80vh;
-  margin-bottom: 50px;
 `
 export const SecondaryHead = styled.h2`
   font-size: 1.8rem;
@@ -96,8 +97,13 @@ export const Card = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   padding: 1rem;
+`
+
+export const LinkText = styled.h3`
+  color: black;
+  font-weight: 500;
 `
 
 export const CardImage = styled.img`

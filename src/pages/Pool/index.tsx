@@ -3,36 +3,61 @@ import styled, { ThemeContext } from 'styled-components'
 import { Pair } from '@pangolindex/sdk'
 import { Link } from 'react-router-dom'
 import { SwapPoolTabs } from '../../components/NavigationTabs'
-
+import SwimmingPoolIcon from '../../assets/images/swimming-pool.png'
+import PelicanOpenLogo from '../../assets/Logo_Exports/Illustration/Pelican-Gullar-Open.png'
+import PelicanCloseLogo from '../../assets/Logo_Exports/Illustration/Pelican-Gullar-Closed.png'
 import FullPositionCard from '../../components/PositionCard'
 import { useTokenBalancesWithLoadingIndicator } from '../../state/wallet/hooks'
-import { StyledInternalLink, TYPE, HideSmall, ExternalLink } from '../../theme'
+// import { StyledInternalLink, TYPE, HideSmall, ExternalLink } from '../../theme'
+import { StyledInternalLink, TYPE, HideSmall } from '../../theme'
+
 import { Text } from 'rebass'
 import Card from '../../components/Card'
 import { RowBetween, RowFixed } from '../../components/Row'
 import { ButtonPrimary, ButtonSecondary } from '../../components/Button'
 import { AutoColumn } from '../../components/Column'
-
+// import ModalOnTop from '../../components/ModalOnTop'
 import { useActiveWeb3React } from '../../hooks'
 import { usePairs } from '../../data/Reserves'
 import { toV2LiquidityToken, useTrackedTokenPairs } from '../../state/user/hooks'
 import { Dots } from '../../components/swap/styleds'
 import { ChainId } from '@pangolindex/sdk'
-import { CardSection, DataCard, CardNoise, CardBGImage } from '../../components/earn/styled'
-import { LANDING_PAGE, ANALYTICS_PAGE } from '../../constants'
+// import { CardSection, DataCard, CardNoise, CardBGImage } from '../../components/earn/styled'
+// import { DataCard } from '../../components/earn/styled'
+// import { LANDING_PAGE, ANALYTICS_PAGE } from '../../constants'
 import { useTranslation } from 'react-i18next'
+import {
+  TopBanner,
+  PeliconOpenImage,
+  BannerTextHolder,
+  BannerTextHead,
+  BannerTextTag,
+  Span,
+  PeliconCloseFlipImage
+} from '../Swap/styled'
+import {
+  ButtonInZap,
+  LargeIcon,
+  MigrateButton,
+  PoolLargeIconContainer,
+  PoolTextContainer,
+  PoolTextIconContainer,
+  ZapGrayButton,
+  ZapRowTransparent,
+  ZapRowTransparentRow1,
+  ZapTextTag
+} from './styleds'
 
-const LiquidityTutorial = LANDING_PAGE + 'tutorials/manage-liquidity'
+// const LiquidityTutorial = LANDING_PAGE + 'tutorials/manage-liquidity'
 
-const PageWrapper = styled(AutoColumn)`
-  max-width: 640px;
-  width: 100%;
+const PageWrapper = styled.div`
+  width: 90%;
 `
 
-const VoteCard = styled(DataCard)`
-  background: radial-gradient(76.02% 75.41% at 1.84% 0%, #27ae60 0%, #000000 100%);
-  overflow: hidden;
-`
+// const VoteCard = styled(DataCard)`
+//   background: radial-gradient(76.02% 75.41% at 1.84% 0%, #27ae60 0%, #000000 100%);
+//   overflow: hidden;
+// `
 
 const TitleRow = styled(RowBetween)`
   ${({ theme }) => theme.mediaWidth.upToSmall`
@@ -79,8 +104,9 @@ const EmptyProposals = styled.div`
 export default function Pool() {
   const theme = useContext(ThemeContext)
   const { account, chainId } = useActiveWeb3React()
+  // const [modal,setModal] = useState(false)
 
-  const AccountAnalytics = account ? ANALYTICS_PAGE + '#/account/' + account : ANALYTICS_PAGE + '#/accounts'
+  // const AccountAnalytics = account ? ANALYTICS_PAGE + '#/account/' + account : ANALYTICS_PAGE + '#/accounts'
 
   // fetch the user's balances of all tracked V2 LP tokens
   const trackedTokenPairs = useTrackedTokenPairs()
@@ -120,10 +146,26 @@ export default function Pool() {
 
   return (
     <>
+      <TopBanner>
+        <PeliconOpenImage src={PelicanOpenLogo} />
+        <BannerTextHolder>
+          <BannerTextHead>Pool</BannerTextHead>
+          <BannerTextTag>
+            <Link style={{ color: 'inherit', textDecoration: 'none' }} to="/">
+              Home
+            </Link>
+            <Span> {'>'} </Span>
+            <Link style={{ color: 'inherit', textDecoration: 'none' }} to="/pool">
+              Pool
+            </Link>
+          </BannerTextTag>
+        </BannerTextHolder>
+        <PeliconCloseFlipImage src={PelicanCloseLogo} />
+      </TopBanner>
       <PageWrapper>
         <SwapPoolTabs active={'pool'} />
 
-        <VoteCard>
+        {/* <VoteCard>
           <CardBGImage />
           <CardNoise />
           <CardSection>
@@ -145,16 +187,44 @@ export default function Pool() {
           </CardSection>
           <CardBGImage />
           <CardNoise />
-        </VoteCard>
+        </VoteCard> */}
 
-        <ExternalLink
+        {/* <ExternalLink
           style={{ marginTop: '1.5rem', color: 'black', textDecoration: 'underline' }}
           target="_blank"
           href={AccountAnalytics}
         >
           <TYPE.black fontSize={18}>{t('pool.viewStakedLiquidity')}</TYPE.black>
-        </ExternalLink>
-
+        </ExternalLink> */}
+        <PoolTextIconContainer>
+          <PoolTextContainer>
+            <BannerTextHead>Pool</BannerTextHead>
+            <Link to="/zap" style={{ color: 'inherit', textDecoration: 'inherit' }}>
+              <ButtonPrimary>ZAP</ButtonPrimary>
+            </Link>
+            <ZapRowTransparent>
+              <ZapTextTag> {hasV1Liquidity ? t('pool.uniswapV1Found') : t('pool.noSeePoolJoined')} </ZapTextTag>
+              <ZapRowTransparentRow1>
+                <ButtonInZap>
+                  {' '}
+                  <Link to="/pool/create" style={{ color: 'inherit', textDecoration: 'inherit' }}>
+                    Create
+                  </Link>
+                </ButtonInZap>
+                <ZapGrayButton>
+                  <StyledInternalLink id="import-pool-link" to={hasV1Liquidity ? '/migrate/v1' : '/find'}>
+                    {hasV1Liquidity ? t('pool.migrateNow') : t('Import')}
+                  </StyledInternalLink>
+                </ZapGrayButton>
+              </ZapRowTransparentRow1>
+            </ZapRowTransparent>
+            <ZapTextTag>Moving From Pangolin ?</ZapTextTag>
+            <MigrateButton>Migrate</MigrateButton>
+          </PoolTextContainer>
+          <PoolLargeIconContainer>
+            <LargeIcon src={SwimmingPoolIcon}></LargeIcon>
+          </PoolLargeIconContainer>
+        </PoolTextIconContainer>
         <AutoColumn gap="lg" justify="center">
           <AutoColumn gap="lg" style={{ width: '100%' }}>
             <TitleRow style={{ marginTop: '1rem' }} padding={'0'}>
@@ -163,7 +233,6 @@ export default function Pool() {
                   {t('pool.yourLiquidity')}
                 </TYPE.mediumHeader>
               </HideSmall>
-
               <ButtonRow>
                 <ResponsiveButtonSecondary as={Link} padding="6px 8px" to="/create/AVAX">
                   {t('pool.createPair')}
@@ -202,14 +271,14 @@ export default function Pool() {
               </EmptyProposals>
             )}
 
-            <AutoColumn justify={'center'} gap="md">
+            {/* <AutoColumn justify={'center'} gap="md">
               <Text textAlign="center" fontSize={14} style={{ padding: '.5rem 0 .5rem 0' }}>
                 {hasV1Liquidity ? t('pool.uniswapV1Found') : t('pool.noSeePoolJoined')}{' '}
                 <StyledInternalLink id="import-pool-link" to={hasV1Liquidity ? '/migrate/v1' : '/find'}>
                   {hasV1Liquidity ? t('pool.migrateNow') : t('pool.importIt')}
                 </StyledInternalLink>
               </Text>
-            </AutoColumn>
+            </AutoColumn> */}
           </AutoColumn>
         </AutoColumn>
       </PageWrapper>

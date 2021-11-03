@@ -332,7 +332,7 @@ export default function Swap() {
               Home
             </Link>
             <Span> {'>'} </Span>
-            <Link style={{ color: 'inherit', textDecoration: 'none' }} to="/swap">
+            <Link style={{ color: 'inherit', textDecoration: 'none' }} to="/trade">
               Trade
             </Link>
           </BannerTextTag>

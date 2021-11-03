@@ -6,6 +6,7 @@ import Header from '../components/Header'
 import Polling from '../components/Header/Polling'
 import URLWarning from '../components/Header/URLWarning'
 import Home from './Home'
+import CreatePool from '../pages/Pool/CreatePool'
 import Popups from '../components/Popups'
 import Web3ReactManager from '../components/Web3ReactManager'
 import DarkModeQueryParamReader from '../theme/DarkModeQueryParamReader'
@@ -18,6 +19,7 @@ import {
 import Earn from './Earn'
 import ManageEarn from './Earn/Manage'
 import Stake from './Stake'
+import Lending from './Lending/index'
 import ManageStake from './Stake/Manage'
 import Pool from './Pool'
 import Buy from './Buy'
@@ -48,11 +50,21 @@ const HeaderWrapper = styled.div`
   justify-content: space-between;
 `
 
+// const BodyWrapper = styled.div`
+//   display: flex;
+//   flex-direction: column;
+//   width: 100%;
+//   padding-top: 100px;
+//   align-items: center;
+//   flex: 1;
+//   overflow-y: auto;
+//   overflow-x: hidden;
+//   z-index: 10;
+
 const BodyWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding-top: 100px;
   align-items: center;
   flex: 1;
   overflow-y: auto;
@@ -69,6 +81,7 @@ const BodyWrapper = styled.div`
 
 const Marginer = styled.div`
   margin-top: 5rem;
+  margin: 0;
 `
 
 const FooterWrapper = styled.div`
@@ -78,6 +91,7 @@ const FooterWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 2rem;
 `
 
 export default function App() {
@@ -96,15 +110,17 @@ export default function App() {
           <Web3ReactManager>
             <Switch>
               <Route exact path="/" component={Home} />
-              <Route exact strict path="/swap" component={Swap} />
-              <Route exact strict path="/swap/:outputCurrency" component={RedirectToSwap} />
+              <Route exact strict path="/trade" component={Swap} />
+              <Route exact strict path="/trade/:outputCurrency" component={RedirectToSwap} />
               <Route exact strict path="/send" component={RedirectPathToSwapOnly} />
               <Route exact strict path="/buy" component={Buy} />
               <Route exact strict path="/find" component={PoolFinder} />
               <Route exact strict path="/pool" component={Pool} />
+              <Route exact strict path="/lending" component={Lending} />
               <Route exact strict path="/png/:version" component={Earn} />
               <Route exact strict path="/stake/:version" component={Stake} />
-              <Route exact strict path="/vote" component={Vote} />
+              <Route exact strict path="/pool/create" component={CreatePool} />
+              <Route exact strict path="/zap" component={Vote} />
               <Route exact strict path="/ido" component={IDO} />
               <Route exact strict path="/airdrop" component={Airdrop} />
               <Route exact strict path="/create" component={RedirectToAddLiquidity} />
