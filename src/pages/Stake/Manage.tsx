@@ -43,6 +43,7 @@ const BottomSection = styled(AutoColumn)`
    border-radius: 12px;
    width: 100%;
    position: relative;
+   
  `
 
 const StyledDataCard = styled(DataCard) <{ bgColor?: any; showBackground?: any }>`

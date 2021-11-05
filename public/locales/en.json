@@ -400,7 +400,7 @@
     "priceImpactHigh": "Price Impact High",
     "swap": "Swap",
     "anyway": " Anyway",
-    "from": "From",
+    "from": "From ",
     "fromEstimated": "From (estimated)",
     "velox": "Set a limit order on <1>Velox</1>",
     "marginSwap": "Trade with leverage on <1>MarginSwap</1>",
@@ -440,7 +440,12 @@
     "for": "For",
     "details": "Details",
     "overview": "Overview",
-    "proposer": "Proposer"
+    "proposer": "Proposer",
+    "from": "From Token",
+    "to": "To LP(estimate not available)",
+    "selectToken": "Select a token"
+    
+    
   },
   "IDOPage": {
     "pangolinIDOs": "Initial DEX Offering (IDO)",

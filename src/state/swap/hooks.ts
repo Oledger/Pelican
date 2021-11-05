@@ -224,7 +224,7 @@ function parseCurrencyFromURLParameter(urlParam: any): string {
     if (urlParam.toUpperCase() === 'AVAX') return 'AVAX'
     if (valid === false) return 'AVAX'
   }
-  return 'AVAX' ?? ''
+  return 'Select a token' ?? ''
 }
 
 function parseTokenAmountURLParameter(urlParam: any): string {
