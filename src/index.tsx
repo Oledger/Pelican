@@ -9,6 +9,7 @@ import { HashRouter } from 'react-router-dom'
 import { NetworkContextName } from './constants'
 import './i18n'
 import App from './pages/App'
+import ScrollToTop from './ScrollToTop'
 import store from './state'
 import ApplicationUpdater from './state/application/updater'
 import ListsUpdater from './state/lists/updater'
@@ -63,6 +64,7 @@ ReactDOM.render(
           <ThemeProvider>
             <ThemedGlobalStyle />
             <HashRouter>
+              <ScrollToTop />
               <App />
             </HashRouter>
           </ThemeProvider>

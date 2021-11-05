@@ -4,11 +4,15 @@ import { Currency, currencyEquals, CAVAX, TokenAmount, WAVAX } from '@pangolinde
 import React, { useCallback, useContext, useState } from 'react'
 import { Plus } from 'react-feather'
 import ReactGA from 'react-ga'
-import { RouteComponentProps } from 'react-router-dom'
+import PelicanOpenLogo from '../../assets/Logo_Exports/Illustration/Pelican-Gullar-Open.png'
+import PelicanCloseLogo from '../../assets/Logo_Exports/Illustration/Pelican-Gullar-Closed.png'
+import { Link, RouteComponentProps } from 'react-router-dom'
 import { Text } from 'rebass'
 import { ThemeContext } from 'styled-components'
 import { ButtonError, ButtonLight, ButtonPrimary } from '../../components/Button'
-import { BlueCard, LightCard } from '../../components/Card'
+// import { BlueCard, LightCard } from '../../components/Card'
+import { LightCard } from '../../components/Card'
+
 import { AutoColumn, ColumnCenter } from '../../components/Column'
 import TransactionConfirmationModal, { ConfirmationModalContent } from '../../components/TransactionConfirmationModal'
 import CurrencyInputPanel from '../../components/CurrencyInputPanel'
@@ -33,13 +37,39 @@ import { TYPE } from '../../theme'
 import { calculateGasMargin, calculateSlippageAmount, getRouterContract } from '../../utils'
 import { maxAmountSpend } from '../../utils/maxAmountSpend'
 import { wrappedCurrency } from '../../utils/wrappedCurrency'
-import AppBody from '../AppBody'
-import { Dots, Wrapper } from '../Pool/styleds'
+// import AppBody from '../AppBody'
+// import { Dots, Wrapper } from '../Pool/styleds'
+import { Dots } from '../Pool/styleds'
 import { ConfirmAddModalBottom } from './ConfirmAddModalBottom'
 import { currencyId } from '../../utils/currencyId'
 import { PoolPriceBar } from './PoolPriceBar'
 import { ChainId } from '@pangolindex/sdk'
+import { IoIosArrowBack } from 'react-icons/io'
 import { useTranslation } from 'react-i18next'
+import PoolIcon from '../../assets/images/swimming-pool.png'
+import {
+  AppHolder,
+  CreateCard,
+  CreatePoolHeadBg,
+  CreatePoolHeaderLeft,
+  BackArrowHolder,
+  PoolExtendedIcon,
+  CreatePoolHead,
+  PoolIconSmall,
+  CreatePoolTextContainer,
+  ParaInBox,
+  MainHeadinBox,
+  SubHeadinBox
+} from './styled'
+import {
+  TopBanner,
+  PeliconOpenImage,
+  BannerTextHolder,
+  BannerTextHead,
+  BannerTextTag,
+  Span,
+  PeliconCloseFlipImage
+} from '../Swap/styled'
 
 export default function AddLiquidity({
   match: {
@@ -317,9 +347,49 @@ export default function AddLiquidity({
 
   return (
     <>
-      <AppBody>
-        <AddRemoveTabs creating={isCreate} adding={true} />
-        <Wrapper>
+      <TopBanner>
+        <PeliconOpenImage src={PelicanOpenLogo} />
+        <BannerTextHolder>
+          <BannerTextHead>Manage Pool</BannerTextHead>
+          <BannerTextTag>
+            <Link style={{ color: 'inherit', textDecoration: 'none' }} to="/">
+              Home
+            </Link>
+            <Span> {'>'} </Span>
+            <Link style={{ color: 'inherit', textDecoration: 'none' }} to="/pool">
+              Pool
+            </Link>
+            <Span> {'>'} </Span>
+            <Link style={{ color: 'inherit', textDecoration: 'none' }} to="/create/AVAX">
+              Manage Pool
+            </Link>
+          </BannerTextTag>
+        </BannerTextHolder>
+        <PeliconCloseFlipImage src={PelicanCloseLogo} />
+      </TopBanner>
+      <CreatePoolHeadBg>
+        <CreatePoolHeaderLeft>
+          <Link to="/pool" style={{ color: 'inherit', textDecoration: 'inherit' }}>
+            <BackArrowHolder>
+              <IoIosArrowBack />
+            </BackArrowHolder>
+          </Link>
+          <CreatePoolHead>Manage Pool</CreatePoolHead>
+        </CreatePoolHeaderLeft>
+        <PoolExtendedIcon src={PoolIcon}></PoolExtendedIcon>
+      </CreatePoolHeadBg>
+      <AppHolder>
+        <CreatePoolTextContainer>
+          <MainHeadinBox>Create a Pool</MainHeadinBox>
+          <SubHeadinBox>{t('addLiquidity.firstLP')}</SubHeadinBox>
+          <div>
+            <ParaInBox>{t('addLiquidity.ratioTokens')}</ParaInBox>
+            <ParaInBox>{t('addLiquidity.happyRate')}</ParaInBox>
+          </div>
+          <PoolIconSmall src={PoolIcon}></PoolIconSmall>
+        </CreatePoolTextContainer>
+        <CreateCard>
+          <AddRemoveTabs creating={isCreate} adding={true} />
           <TransactionConfirmationModal
             isOpen={showConfirm}
             onDismiss={handleDismissConfirmation}
@@ -336,7 +406,7 @@ export default function AddLiquidity({
             pendingText={pendingText}
           />
           <AutoColumn gap="20px">
-            {noLiquidity ||
+            {/* {noLiquidity ||
               (isCreate && (
                 <ColumnCenter>
                   <BlueCard>
@@ -353,7 +423,7 @@ export default function AddLiquidity({
                     </AutoColumn>
                   </BlueCard>
                 </ColumnCenter>
-              ))}
+              ))} */}
             <CurrencyInputPanel
               value={formattedAmounts[Field.CURRENCY_A]}
               onUserInput={onFieldAInput}
@@ -454,8 +524,8 @@ export default function AddLiquidity({
               </AutoColumn>
             )}
           </AutoColumn>
-        </Wrapper>
-      </AppBody>
+        </CreateCard>
+      </AppHolder>
 
       {pair && !noLiquidity && pairState !== PairState.INVALID ? (
         <AutoColumn style={{ minWidth: '20rem', width: '100%', maxWidth: '400px', marginTop: '1rem' }}>

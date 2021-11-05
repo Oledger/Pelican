@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useWalletModalToggle } from '../../state/application/hooks'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 import TradeIcon from '../../assets/images/trading.png'
 import SwimmingPoolIcon from '../../assets/images/swimming-pool.png'
 import FarmIcon from '../../assets/images/harvest.png'
@@ -34,7 +35,8 @@ import {
   PelicanCloseImage,
   TokenIcon,
   Tr,
-  ConnectedWalletBtn
+  ConnectedWalletBtn,
+  LinkText
 } from './styled'
 import { useActiveWeb3React } from '../../hooks'
 
@@ -82,30 +84,48 @@ const Home = () => {
       <HomeSecondComp>
         <SecondaryHead>Explore</SecondaryHead>
         <GridOfCards>
-          <Card style={{ backgroundColor: 'rgba(222, 222, 222, 0.8)' }}>
-            <CardImage src={TradeIcon} />
-          </Card>
-          <Card style={{ backgroundColor: 'rgba(255, 201, 164, 0.8)' }}>
-            <CardImage src={SwimmingPoolIcon} />
-          </Card>
-          <Card style={{ backgroundColor: 'rgba(188, 255, 166, 0.8)' }}>
-            <CardImage src={FarmIcon} />
-          </Card>
-          <Card style={{ backgroundColor: 'rgba(202, 234, 255, 0.8)' }}>
-            <CardImage src={StakeIcon} />
-          </Card>
+          <Link style={{ color: 'inherit', textDecoration: 'none' }} to="/trade">
+            <Card style={{ backgroundColor: 'rgba(222, 222, 222, 0.8)' }}>
+              <CardImage src={TradeIcon} />
+              <LinkText>Trade</LinkText>
+            </Card>
+          </Link>
+          <Link style={{ color: 'inherit', textDecoration: 'none' }} to="/pool">
+            <Card style={{ backgroundColor: 'rgba(255, 201, 164, 0.8)' }}>
+              <CardImage src={SwimmingPoolIcon} />
+              <LinkText>Pool</LinkText>
+            </Card>
+          </Link>
+          <Link style={{ color: 'inherit', textDecoration: 'none' }} to="/png/1">
+            <Card style={{ backgroundColor: 'rgba(188, 255, 166, 0.8)' }}>
+              <CardImage src={FarmIcon} />
+              <LinkText>Farm</LinkText>
+            </Card>
+          </Link>
+          <Link style={{ color: 'inherit', textDecoration: 'none' }} to="/stake/0">
+            <Card style={{ backgroundColor: 'rgba(202, 234, 255, 0.8)' }}>
+              <CardImage src={StakeIcon} />
+              <LinkText>Stake</LinkText>
+            </Card>
+          </Link>
           <Card style={{ backgroundColor: 'rgba(188, 255, 166, 0.8)' }}>
             <CardImage src={PeliconCoinIcon} />
+            <LinkText>Pelican</LinkText>
           </Card>
           <Card style={{ backgroundColor: 'rgba(248, 214, 196, 0.8)' }}>
             <CardImage src={PeliconWalletIcon} />
+            <LinkText>Add to Pelican Wallet</LinkText>
           </Card>
           <Card style={{ backgroundColor: 'rgba(222, 222, 222, 0.8)' }}>
             <CardImage src={VoteIconIcon} />
+            <LinkText>Vote</LinkText>
           </Card>
-          <Card style={{ backgroundColor: 'rgba(248, 205, 196, 0.8)' }}>
-            <CardImage src={LendingIcon} />
-          </Card>
+          <Link style={{ color: 'inherit', textDecoration: 'none' }} to="/lending">
+            <Card style={{ backgroundColor: 'rgba(248, 205, 196, 0.8)' }}>
+              <CardImage src={LendingIcon} />
+              <LinkText>Lend</LinkText>
+            </Card>
+          </Link>
         </GridOfCards>
       </HomeSecondComp>
       <SecondaryHead>Top Gainers</SecondaryHead>
