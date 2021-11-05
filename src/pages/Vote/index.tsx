@@ -84,7 +84,7 @@ height: 50px;
 left: 240px;
 margin-left : -2rem;
 top: 455.88px;
-margin-top : 15rem;
+margin-top : 6.6rem;
 
 font-weight: 600;
 font-size: 60px;
@@ -96,7 +96,7 @@ width:70%;
 
 margin-left : 0.5rem;
 font-weight: 600;
-margin-top : 16rem;
+margin-top : 7.5rem;
 top:520px;
 color: #F8941D
 `
@@ -107,7 +107,7 @@ width : 40%;
 margin-left : -25rem;
 font-weight: 500;
 font-size:17px;
-margin-top:38rem;
+margin-top:36.3rem;
 line-height:22px;
 text-align: justify;
 text-justify: inter-word

@@ -60,6 +60,7 @@ font-weight: 500;
 font-size:17px;
 padding-top:5px;
 line-height:22px;
+margin-top : 0.5rem;
 text-align: justify;
 text-justify: inter-word
 `
@@ -103,10 +104,11 @@ const StyledLink  = styled(Link)`
 width: 153.16px;
 height: 49.54px;
 left: 182.54px;
-top: 605.75px;
+top: 615.75px;
 color : white;
 text-decoration : none;
 margin-left : 2rem;
+margin-top:1.5rem;
 padding:  14px 25px  ;
 
 background: #F7931F;
@@ -126,12 +128,13 @@ border-radius: 15px
 const Logo = styled.img`
 max-width: 10%;
 margin-left : 2.4rem;
-margin-top:2.6rem
+margin-top: 1rem
+
 `
 const Text4 = styled.h1`
 position: absolute;
 height: 18px;
-top: 890px;
+top: 780px;
 font-weight: 500;
 font-size: 16px;
 line-height: 18px;
@@ -141,7 +144,7 @@ const Text5 = styled.h2`
 position: absolute;
 width: 14px;
 height: 18px;
-top: 910px;
+top: 799px;
 
 font-weight: 500;
 font-size: 16px;
@@ -156,7 +159,7 @@ margin-top:2.6rem
 const Text6 = styled.h2`
 position: absolute;
 height: 18px;
-top: 890px;
+top: 780px;
 font-weight: 500;
 font-size: 16px;
 line-height: 18px;
@@ -166,7 +169,7 @@ const Text7 = styled.h2`
 position: absolute;
 width: 14px;
 height: 18px;
-top: 910px;
+top: 799px;
 
 font-weight: 500;
 font-size: 16px;
@@ -179,7 +182,7 @@ position:absolute;
 width: auto;
 height: 49.54px;
 left: 182.54px;
-margin-top: 150px;
+margin-top: 170px;
 color : white;
 text-align : center;
 text-decoration : none;
@@ -195,7 +198,7 @@ position: absolute;
 width: 431px;
 height: 13px;
 margin-left : 2.3rem;
-top: 1075.05px;
+top: 980.05px;
 
 font-weight: normal;
 font-size: 12px;
@@ -220,7 +223,7 @@ padding-bottom : 27.7rem;
 const Text9 = styled.h2`
 position: absolute;
 height: 18px;
-top: 700px;
+top: 600px;
 font-weight: 500;
 font-size: 16px;
 line-height: 18px;
@@ -231,7 +234,7 @@ position: absolute;
 width: 40px;
 height: 13px;
 margin-left : 11.4rem;
-top: 705px;
+top: 605px;
 
 font-weight: normal;
 font-size: 13px;
@@ -243,7 +246,7 @@ position: absolute;
 width: 313.27px;
 height: 49.54px;
 left: 799px;
-top: 765px;
+top: 680px;
 margin-left : -2rem;
 
 background: #FFFFFF;
@@ -298,7 +301,7 @@ position: absolute;
 width: 313.27px;
 height: 49.54px;
 left: 799px;
-top: 910px;
+top: 840px;
 margin-left : -2rem;
 padding-right: 28.5rem;
 background: #FFFFFF;
