@@ -14,7 +14,9 @@ import { StyledInternalLink, TYPE, HideSmall } from '../../theme'
 import { Text } from 'rebass'
 import Card from '../../components/Card'
 import { RowBetween, RowFixed } from '../../components/Row'
-import { ButtonPrimary, ButtonSecondary } from '../../components/Button'
+// import { ButtonPrimary, ButtonSecondary } from '../../components/Button'
+import { ButtonPrimary } from '../../components/Button'
+
 import { AutoColumn } from '../../components/Column'
 // import ModalOnTop from '../../components/ModalOnTop'
 import { useActiveWeb3React } from '../../hooks'
@@ -84,12 +86,12 @@ const ResponsiveButtonPrimary = styled(ButtonPrimary)`
   `};
 `
 
-const ResponsiveButtonSecondary = styled(ButtonSecondary)`
-  width: fit-content;
-  ${({ theme }) => theme.mediaWidth.upToSmall`
-    width: 48%;
-  `};
-`
+// const ResponsiveButtonSecondary = styled(ButtonSecondary)`
+//   width: fit-content;
+//   ${({ theme }) => theme.mediaWidth.upToSmall`
+//     width: 48%;
+//   `};
+// `
 
 const EmptyProposals = styled.div`
   border: 1px solid ${({ theme }) => theme.text4};
@@ -207,7 +209,7 @@ export default function Pool() {
               <ZapRowTransparentRow1>
                 <ButtonInZap>
                   {' '}
-                  <Link to="/pool/create" style={{ color: 'inherit', textDecoration: 'inherit' }}>
+                  <Link to="/create/AVAX" style={{ color: 'inherit', textDecoration: 'inherit' }}>
                     Create
                   </Link>
                 </ButtonInZap>
@@ -234,9 +236,9 @@ export default function Pool() {
                 </TYPE.mediumHeader>
               </HideSmall>
               <ButtonRow>
-                <ResponsiveButtonSecondary as={Link} padding="6px 8px" to="/create/AVAX">
+                {/* <ResponsiveButtonSecondary as={Link} padding="6px 8px" to="/create/AVAX">
                   {t('pool.createPair')}
-                </ResponsiveButtonSecondary>
+                </ResponsiveButtonSecondary> */}
                 <ResponsiveButtonPrimary id="join-pool-button" as={Link} padding="6px 8px" to="/add/AVAX">
                   <Text fontWeight={500} fontSize={16}>
                     {t('pool.addLiquidity')}

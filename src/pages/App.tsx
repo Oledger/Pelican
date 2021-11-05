@@ -6,7 +6,6 @@ import Header from '../components/Header'
 import Polling from '../components/Header/Polling'
 import URLWarning from '../components/Header/URLWarning'
 import Home from './Home'
-import CreatePool from '../pages/Pool/CreatePool'
 import Popups from '../components/Popups'
 import Web3ReactManager from '../components/Web3ReactManager'
 import DarkModeQueryParamReader from '../theme/DarkModeQueryParamReader'
@@ -119,7 +118,6 @@ export default function App() {
               <Route exact strict path="/lending" component={Lending} />
               <Route exact strict path="/png/:version" component={Earn} />
               <Route exact strict path="/stake/:version" component={Stake} />
-              <Route exact strict path="/pool/create" component={CreatePool} />
               <Route exact strict path="/zap" component={Vote} />
               <Route exact strict path="/ido" component={IDO} />
               <Route exact strict path="/airdrop" component={Airdrop} />

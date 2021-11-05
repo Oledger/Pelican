@@ -6,7 +6,7 @@ import { injected, walletlink, walletconnect } from '../connectors'
 export const GAS_PRICE = 225
 
 export const ROUTER_ADDRESS: { [chainId in ChainId]: string } = {
-  [ChainId.FUJI]: '0x2D99ABD9008Dc933ff5c0CD271B88309593aB921',
+  [ChainId.FUJI]: '0xE31741c8dd2E14Dff2Db89db71E0785bcb81539D',
   [ChainId.AVALANCHE]: '0xE54Ca86531e17Ef3616d22Ca28b0D458b6C89106'
 }
 
@@ -527,12 +527,24 @@ export const YAY: { [chainId in ChainId]: Token } = {
 
 export const STORM: { [chainId in ChainId]: Token } = {
   [ChainId.FUJI]: new Token(ChainId.FUJI, ZERO_ADDRESS, 18, 'STORM', 'STORM Token'),
-  [ChainId.AVALANCHE]: new Token(ChainId.AVALANCHE, '0x6AFD5A1ea4b793CC1526d6Dc7e99A608b356eF7b', 18, 'STORM', 'STORM Token')
+  [ChainId.AVALANCHE]: new Token(
+    ChainId.AVALANCHE,
+    '0x6AFD5A1ea4b793CC1526d6Dc7e99A608b356eF7b',
+    18,
+    'STORM',
+    'STORM Token'
+  )
 }
 
 export const OOE: { [chainId in ChainId]: Token } = {
   [ChainId.FUJI]: new Token(ChainId.FUJI, ZERO_ADDRESS, 18, 'OOE', 'OpenOcean'),
-  [ChainId.AVALANCHE]: new Token(ChainId.AVALANCHE, '0x0ebd9537A25f56713E34c45b38F421A1e7191469', 18, 'OOE', 'OpenOcean')
+  [ChainId.AVALANCHE]: new Token(
+    ChainId.AVALANCHE,
+    '0x0ebd9537A25f56713E34c45b38F421A1e7191469',
+    18,
+    'OOE',
+    'OpenOcean'
+  )
 }
 
 export const VEE: { [chainId in ChainId]: Token } = {
@@ -547,7 +559,13 @@ export const AVXT: { [chainId in ChainId]: Token } = {
 
 export const OLIVE: { [chainId in ChainId]: Token } = {
   [ChainId.FUJI]: new Token(ChainId.FUJI, ZERO_ADDRESS, 18, 'OLIVE', 'Olive Token'),
-  [ChainId.AVALANCHE]: new Token(ChainId.AVALANCHE, '0x617724974218A18769020A70162165A539c07E8a', 18, 'OLIVE', 'Olive Token')
+  [ChainId.AVALANCHE]: new Token(
+    ChainId.AVALANCHE,
+    '0x617724974218A18769020A70162165A539c07E8a',
+    18,
+    'OLIVE',
+    'Olive Token'
+  )
 }
 
 export const APEIN: { [chainId in ChainId]: Token } = {
@@ -557,7 +575,13 @@ export const APEIN: { [chainId in ChainId]: Token } = {
 
 export const GB: { [chainId in ChainId]: Token } = {
   [ChainId.FUJI]: new Token(ChainId.FUJI, ZERO_ADDRESS, 9, 'GB', 'Good Bridging'),
-  [ChainId.AVALANCHE]: new Token(ChainId.AVALANCHE, '0x90842eb834cFD2A1DB0b1512B254a18E4D396215', 9, 'GB', 'Good Bridging')
+  [ChainId.AVALANCHE]: new Token(
+    ChainId.AVALANCHE,
+    '0x90842eb834cFD2A1DB0b1512B254a18E4D396215',
+    9,
+    'GB',
+    'Good Bridging'
+  )
 }
 
 export const CNR: { [chainId in ChainId]: Token } = {
@@ -587,7 +611,7 @@ export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
     WAVAX[ChainId.AVALANCHE],
     PNG[ChainId.AVALANCHE],
     USDTe[ChainId.AVALANCHE],
-    DAIe[ChainId.AVALANCHE],
+    DAIe[ChainId.AVALANCHE]
   ]
 }
 
@@ -655,7 +679,7 @@ export const SUPPORTED_WALLETS: { [key: string]: WalletInfo } = {
     iconName: 'coinbaseWalletIcon.svg',
     description: 'Use Coinbase Wallet app on mobile device',
     href: null,
-    color: '#315CF5',
+    color: '#315CF5'
   },
   WALLET_CONNECT: {
     connector: walletconnect,
@@ -663,8 +687,8 @@ export const SUPPORTED_WALLETS: { [key: string]: WalletInfo } = {
     iconName: 'walletConnectIcon.svg',
     description: 'Use Wallet Connect',
     href: null,
-    color: '#315CF5',
-  },
+    color: '#315CF5'
+  }
 }
 
 export const NetworkContextName = 'NETWORK'
