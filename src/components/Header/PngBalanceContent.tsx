@@ -2,14 +2,15 @@ import { TokenAmount, WAVAX, JSBI } from '@pangolindex/sdk'
 import React, { useMemo, useState } from 'react'
 import { X } from 'react-feather'
 import styled from 'styled-components'
-import tokenLogo from '../../assets/images/token-logo.png'
+// import tokenLogo from '../../assets/images/token-logo.png'
 import { injected } from '../../connectors'
 import { PNG } from '../../constants'
 import { useTotalSupply } from '../../data/TotalSupply'
 import { useActiveWeb3React } from '../../hooks'
 import { DOUBLE_SIDE_STAKING_REWARDS_CURRENT_VERSION, useTotalPngEarned } from '../../state/stake/hooks'
 import { useAggregatePngBalance, useTokenBalance } from '../../state/wallet/hooks'
-import { StyledInternalLink, TYPE, PngTokenAnimated } from '../../theme'
+// import { StyledInternalLink, TYPE, PngTokenAnimated } from '../../theme'
+import { StyledInternalLink, TYPE } from '../../theme'
 import { AutoColumn } from '../Column'
 import { RowBetween } from '../Row'
 import { Break, CardBGImage, CardNoise, CardSection, DataCard } from '../earn/styled'
@@ -107,7 +108,7 @@ export default function PngBalanceContent({ setShowPngBalanceModal }: { setShowP
           <>
             <CardSection gap="sm">
               <AutoColumn gap="md" justify="center">
-                <PngTokenAnimated width="48px" src={tokenLogo} />{' '}
+                {/* <PngTokenAnimated width="48px" src={tokenLogo} />{' '} */}
                 <TYPE.white fontSize={48} fontWeight={600} color="white">
                   {total?.toFixed(2, { groupSeparator: ',' })}
                 </TYPE.white>

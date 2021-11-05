@@ -5,7 +5,8 @@ import styled from 'styled-components'
 import PelicanOpenLogo from '../../assets/Logo_Exports/Illustration/Pelican-Gullar-Open.png'
 import PelicanCloseLogo from '../../assets/Logo_Exports/Illustration/Pelican-Gullar-Closed.png'
 import { MIGRATIONS, DOUBLE_SIDE_STAKING_REWARDS_INFO, useStakingInfo } from '../../state/stake/hooks'
-import { TYPE, ExternalLink } from '../../theme'
+// import { TYPE, ExternalLink } from '../../theme'
+import { TYPE } from '../../theme'
 import DoubleSidePoolCard from '../../components/earn/DoubleSidePoolCard'
 import { RouteComponentProps, NavLink, Link } from 'react-router-dom'
 import { RowBetween } from '../../components/Row'
@@ -264,7 +265,7 @@ export default function Earn({
           <DataCard>
             <CardBGImage />
             <CardNoise />
-            <CardSection>
+            {/* <CardSection>
               <AutoColumn gap="md">
                 <RowBetween>
                   <TYPE.white fontWeight={600}>{t('earnPage.pangolinLiquidityMining')}</TYPE.white>
@@ -280,7 +281,7 @@ export default function Earn({
                   <TYPE.white fontSize={14}>{t('earnPage.readMoreAboutPng')}</TYPE.white>
                 </ExternalLink>
               </AutoColumn>
-            </CardSection>
+            </CardSection> */}
             <CardBGImage />
             <CardNoise />
           </DataCard>

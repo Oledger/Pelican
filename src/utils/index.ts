@@ -18,8 +18,9 @@ export function isAddress(value: any): string | false {
 }
 
 const ETHERSCAN_PREFIXES: { [chainId in ChainId]: string } = {
-  3: 'avax-test',
-  43114: 'avax'
+  43113: 'https://testnet.snowtrace.io',
+  43114: 'https://snowtrace.io',
+  3: 'https://ropsten.etherscan.io/'
 }
 
 export function getEtherscanLink(
