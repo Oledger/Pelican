@@ -69,6 +69,7 @@ const Web3StatusConnect = styled(Web3StatusGeneric)<{ faded?: boolean }>`
         color: ${({ theme }) => darken(0.05, theme.primaryText1)};
       }
     `}
+  border-radius:20px;
 `
 
 const Web3StatusConnected = styled(Web3StatusGeneric)<{ pending?: boolean }>`

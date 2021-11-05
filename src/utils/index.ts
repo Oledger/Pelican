@@ -18,7 +18,7 @@ export function isAddress(value: any): string | false {
 }
 
 const ETHERSCAN_PREFIXES: { [chainId in ChainId]: string } = {
-  43113: 'avax-test',
+  3: 'avax-test',
   43114: 'avax'
 }
 
@@ -96,7 +96,12 @@ export function getContract(address: string, ABI: any, library: Web3Provider, ac
 
 // account is optional
 export function getRouterContract(chainId: ChainId, library: Web3Provider, account?: string): Contract {
-  return getContract(chainId ? ROUTER_ADDRESS[chainId] : ROUTER_ADDRESS[ChainId.AVALANCHE], IPangolinRouterABI, library, account)
+  return getContract(
+    chainId ? ROUTER_ADDRESS[chainId] : ROUTER_ADDRESS[ChainId.AVALANCHE],
+    IPangolinRouterABI,
+    library,
+    account
+  )
 }
 
 export function escapeRegExp(string: string): string {
