@@ -6,8 +6,9 @@ import { injected, walletlink, walletconnect } from '../connectors'
 export const GAS_PRICE = 225
 
 export const ROUTER_ADDRESS: { [chainId in ChainId]: string } = {
-  [ChainId.FUJI]: '0xE31741c8dd2E14Dff2Db89db71E0785bcb81539D',
-  [ChainId.AVALANCHE]: '0xE54Ca86531e17Ef3616d22Ca28b0D458b6C89106'
+  [ChainId.FUJI]: '0x2D99ABD9008Dc933ff5c0CD271B88309593aB921',
+  [ChainId.AVALANCHE]: '0xE54Ca86531e17Ef3616d22Ca28b0D458b6C89106',
+  [ChainId.ROPSTEN]: '0xe4DBE9cbEa9C496Fb535e56394F430A3717eFCFA'
 }
 
 export const LANDING_PAGE = 'https://pangolin.exchange/'
@@ -26,17 +27,32 @@ type ChainTokenList = {
 
 export const PNG: { [chainId in ChainId]: Token } = {
   [ChainId.FUJI]: new Token(ChainId.FUJI, '0x83080D4b5fC60e22dFFA8d14AD3BB41Dde48F199', 18, 'PNG', 'Pangolin'),
-  [ChainId.AVALANCHE]: new Token(ChainId.AVALANCHE, '0x60781C2586D68229fde47564546784ab3fACA982', 18, 'PNG', 'Pangolin')
+  [ChainId.AVALANCHE]: new Token(
+    ChainId.AVALANCHE,
+    '0x60781C2586D68229fde47564546784ab3fACA982',
+    18,
+    'PNG',
+    'Pangolin'
+  ),
+  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, '0x6B41a7996a6d609E65537C4b5381c6FCA005232d', 18, 'PCN', 'Pelican')
 }
 
 export const ETH: { [chainId in ChainId]: Token } = {
   [ChainId.FUJI]: new Token(ChainId.FUJI, ZERO_ADDRESS, 18, 'ETH', 'Ether'),
-  [ChainId.AVALANCHE]: new Token(ChainId.AVALANCHE, '0xf20d962a6c8f70c731bd838a3a388D7d48fA6e15', 18, 'ETH', 'Ether')
+  [ChainId.AVALANCHE]: new Token(ChainId.AVALANCHE, '0xf20d962a6c8f70c731bd838a3a388D7d48fA6e15', 18, 'ETH', 'Ether'),
+  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, '0x32D07d58eB049b1617a921a5d7C6DC2BB377Ead7', 18, 'ETH', 'ETHER')
 }
 
 export const WETHe: { [chainId in ChainId]: Token } = {
   [ChainId.FUJI]: new Token(ChainId.FUJI, ZERO_ADDRESS, 18, 'WETH.e', 'Ether'),
-  [ChainId.AVALANCHE]: new Token(ChainId.AVALANCHE, '0x49D5c2BdFfac6CE2BFdB6640F4F80f226bc10bAB', 18, 'WETH.e', 'Ether')
+  [ChainId.AVALANCHE]: new Token(
+    ChainId.AVALANCHE,
+    '0x49D5c2BdFfac6CE2BFdB6640F4F80f226bc10bAB',
+    18,
+    'WETH.e',
+    'Ether'
+  ),
+  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, '0x32D07d58eB049b1617a921a5d7C6DC2BB377Ead7', 18, 'ETH', 'ETHER')
 }
 
 export const USDT: { [chainId in ChainId]: Token } = {
@@ -47,7 +63,8 @@ export const USDT: { [chainId in ChainId]: Token } = {
     6,
     'USDT',
     'Tether USD'
-  )
+  ),
+  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, '0x73e7040B225bF6bB72F511e954e845CF4c218685', 18, 'LEDU', 'LEDU')
 }
 
 export const USDTe: { [chainId in ChainId]: Token } = {
@@ -58,7 +75,8 @@ export const USDTe: { [chainId in ChainId]: Token } = {
     6,
     'USDT.e',
     'Tether USD'
-  )
+  ),
+  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, '0x73e7040B225bF6bB72F511e954e845CF4c218685', 18, 'LEDU', 'LEDU')
 }
 
 export const WBTC: { [chainId in ChainId]: Token } = {
@@ -69,7 +87,8 @@ export const WBTC: { [chainId in ChainId]: Token } = {
     8,
     'WBTC',
     'Wrapped Bitcoin'
-  )
+  ),
+  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, '0x73e7040B225bF6bB72F511e954e845CF4c218685', 18, 'LEDU', 'LEDU')
 }
 
 export const WBTCe: { [chainId in ChainId]: Token } = {
@@ -80,7 +99,8 @@ export const WBTCe: { [chainId in ChainId]: Token } = {
     8,
     'WBTC.e',
     'Wrapped Bitcoin'
-  )
+  ),
+  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, '0x73e7040B225bF6bB72F511e954e845CF4c218685', 18, 'LEDU', 'LEDU')
 }
 
 export const LINK: { [chainId in ChainId]: Token } = {
@@ -91,7 +111,8 @@ export const LINK: { [chainId in ChainId]: Token } = {
     18,
     'LINK',
     'ChainLink Token'
-  )
+  ),
+  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, '0x73e7040B225bF6bB72F511e954e845CF4c218685', 18, 'LEDU', 'LEDU')
 }
 
 export const LINKe: { [chainId in ChainId]: Token } = {
@@ -102,7 +123,8 @@ export const LINKe: { [chainId in ChainId]: Token } = {
     18,
     'LINK.e',
     'ChainLink Token'
-  )
+  ),
+  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, '0x73e7040B225bF6bB72F511e954e845CF4c218685', 18, 'LEDU', 'LEDU')
 }
 
 export const DAI: { [chainId in ChainId]: Token } = {
@@ -113,7 +135,8 @@ export const DAI: { [chainId in ChainId]: Token } = {
     18,
     'DAI',
     'Dai Stablecoin'
-  )
+  ),
+  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, '0x73e7040B225bF6bB72F511e954e845CF4c218685', 18, 'LEDU', 'LEDU')
 }
 
 export const DAIe: { [chainId in ChainId]: Token } = {
@@ -124,12 +147,14 @@ export const DAIe: { [chainId in ChainId]: Token } = {
     18,
     'DAI.e',
     'Dai Stablecoin'
-  )
+  ),
+  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, '0x73e7040B225bF6bB72F511e954e845CF4c218685', 18, 'LEDU', 'LEDU')
 }
 
 export const UNI: { [chainId in ChainId]: Token } = {
   [ChainId.FUJI]: new Token(ChainId.FUJI, ZERO_ADDRESS, 18, 'UNI', 'Uniswap'),
-  [ChainId.AVALANCHE]: new Token(ChainId.AVALANCHE, '0xf39f9671906d8630812f9d9863bBEf5D523c84Ab', 18, 'UNI', 'Uniswap')
+  [ChainId.AVALANCHE]: new Token(ChainId.AVALANCHE, '0xf39f9671906d8630812f9d9863bBEf5D523c84Ab', 18, 'UNI', 'Uniswap'),
+  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, '0x73e7040B225bF6bB72F511e954e845CF4c218685', 18, 'LEDU', 'LEDU')
 }
 
 export const UNIe: { [chainId in ChainId]: Token } = {
@@ -140,7 +165,8 @@ export const UNIe: { [chainId in ChainId]: Token } = {
     18,
     'UNI.e',
     'Uniswap'
-  )
+  ),
+  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, '0x73e7040B225bF6bB72F511e954e845CF4c218685', 18, 'LEDU', 'LEDU')
 }
 
 export const SUSHI: { [chainId in ChainId]: Token } = {
@@ -151,7 +177,8 @@ export const SUSHI: { [chainId in ChainId]: Token } = {
     18,
     'SUSHI',
     'SushiToken'
-  )
+  ),
+  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, '0x73e7040B225bF6bB72F511e954e845CF4c218685', 18, 'LEDU', 'LEDU')
 }
 
 export const SUSHIe: { [chainId in ChainId]: Token } = {
@@ -162,7 +189,8 @@ export const SUSHIe: { [chainId in ChainId]: Token } = {
     18,
     'SUSHI.e',
     'SushiToken'
-  )
+  ),
+  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, '0x73e7040B225bF6bB72F511e954e845CF4c218685', 18, 'LEDU', 'LEDU')
 }
 
 export const AAVE: { [chainId in ChainId]: Token } = {
@@ -173,7 +201,8 @@ export const AAVE: { [chainId in ChainId]: Token } = {
     18,
     'AAVE',
     'Aave Token'
-  )
+  ),
+  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, '0x73e7040B225bF6bB72F511e954e845CF4c218685', 18, 'LEDU', 'LEDU')
 }
 
 export const AAVEe: { [chainId in ChainId]: Token } = {
@@ -184,7 +213,8 @@ export const AAVEe: { [chainId in ChainId]: Token } = {
     18,
     'AAVE.e',
     'Aave Token'
-  )
+  ),
+  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, '0x73e7040B225bF6bB72F511e954e845CF4c218685', 18, 'LEDU', 'LEDU')
 }
 
 export const YFI: { [chainId in ChainId]: Token } = {
@@ -195,7 +225,8 @@ export const YFI: { [chainId in ChainId]: Token } = {
     18,
     'YFI',
     'yearn.finance'
-  )
+  ),
+  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, '0x73e7040B225bF6bB72F511e954e845CF4c218685', 18, 'LEDU', 'LEDU')
 }
 
 export const YFIe: { [chainId in ChainId]: Token } = {
@@ -206,7 +237,8 @@ export const YFIe: { [chainId in ChainId]: Token } = {
     18,
     'YFI.e',
     'yearn.finance'
-  )
+  ),
+  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, '0x73e7040B225bF6bB72F511e954e845CF4c218685', 18, 'LEDU', 'LEDU')
 }
 
 export const SNOB: { [chainId in ChainId]: Token } = {
@@ -217,7 +249,8 @@ export const SNOB: { [chainId in ChainId]: Token } = {
     18,
     'SNOB',
     'Snowball'
-  )
+  ),
+  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, '0x73e7040B225bF6bB72F511e954e845CF4c218685', 18, 'LEDU', 'LEDU')
 }
 
 export const VSO: { [chainId in ChainId]: Token } = {
@@ -228,7 +261,8 @@ export const VSO: { [chainId in ChainId]: Token } = {
     18,
     'VSO',
     'VersoToken'
-  )
+  ),
+  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, '0x73e7040B225bF6bB72F511e954e845CF4c218685', 18, 'LEDU', 'LEDU')
 }
 
 export const SPORE: { [chainId in ChainId]: Token } = {
@@ -239,7 +273,8 @@ export const SPORE: { [chainId in ChainId]: Token } = {
     9,
     'SPORE',
     'Spore.Finance'
-  )
+  ),
+  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, '0x73e7040B225bF6bB72F511e954e845CF4c218685', 18, 'LEDU', 'LEDU')
 }
 
 // Bridged via anyswap
@@ -251,13 +286,15 @@ export const BIFI: { [chainId in ChainId]: Token } = {
     18,
     'BIFI',
     'beefy.finance'
-  )
+  ),
+  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, '0x73e7040B225bF6bB72F511e954e845CF4c218685', 18, 'LEDU', 'LEDU')
 }
 
 // Bridged via anyswap
 export const BNB: { [chainId in ChainId]: Token } = {
   [ChainId.FUJI]: new Token(ChainId.FUJI, ZERO_ADDRESS, 18, 'BNB', 'Binance'),
-  [ChainId.AVALANCHE]: new Token(ChainId.AVALANCHE, '0x264c1383EA520f73dd837F915ef3a732e204a493', 18, 'BNB', 'Binance')
+  [ChainId.AVALANCHE]: new Token(ChainId.AVALANCHE, '0x264c1383EA520f73dd837F915ef3a732e204a493', 18, 'BNB', 'Binance'),
+  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, '0x73e7040B225bF6bB72F511e954e845CF4c218685', 18, 'LEDU', 'LEDU')
 }
 
 export const XAVA: { [chainId in ChainId]: Token } = {
@@ -268,7 +305,8 @@ export const XAVA: { [chainId in ChainId]: Token } = {
     18,
     'XAVA',
     'Avalaunch'
-  )
+  ),
+  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, '0x73e7040B225bF6bB72F511e954e845CF4c218685', 18, 'LEDU', 'LEDU')
 }
 
 export const PEFI: { [chainId in ChainId]: Token } = {
@@ -279,12 +317,14 @@ export const PEFI: { [chainId in ChainId]: Token } = {
     18,
     'PEFI',
     'PenguinToken'
-  )
+  ),
+  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, '0x73e7040B225bF6bB72F511e954e845CF4c218685', 18, 'LEDU', 'LEDU')
 }
 
 export const TRYB: { [chainId in ChainId]: Token } = {
   [ChainId.FUJI]: new Token(ChainId.FUJI, ZERO_ADDRESS, 6, 'TRYB', 'BiLira'),
-  [ChainId.AVALANCHE]: new Token(ChainId.AVALANCHE, '0x564A341Df6C126f90cf3ECB92120FD7190ACb401', 6, 'TRYB', 'BiLira')
+  [ChainId.AVALANCHE]: new Token(ChainId.AVALANCHE, '0x564A341Df6C126f90cf3ECB92120FD7190ACb401', 6, 'TRYB', 'BiLira'),
+  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, '0x73e7040B225bF6bB72F511e954e845CF4c218685', 18, 'LEDU', 'LEDU')
 }
 
 export const SHERPA: { [chainId in ChainId]: Token } = {
@@ -295,7 +335,8 @@ export const SHERPA: { [chainId in ChainId]: Token } = {
     18,
     'SHERPA',
     'Sherpa'
-  )
+  ),
+  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, '0x73e7040B225bF6bB72F511e954e845CF4c218685', 18, 'LEDU', 'LEDU')
 }
 
 export const YAK: { [chainId in ChainId]: Token } = {
@@ -306,12 +347,14 @@ export const YAK: { [chainId in ChainId]: Token } = {
     18,
     'YAK',
     'Yak Token'
-  )
+  ),
+  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, '0x73e7040B225bF6bB72F511e954e845CF4c218685', 18, 'LEDU', 'LEDU')
 }
 
 export const QI: { [chainId in ChainId]: Token } = {
   [ChainId.FUJI]: new Token(ChainId.FUJI, ZERO_ADDRESS, 18, 'QI', 'BENQI'),
-  [ChainId.AVALANCHE]: new Token(ChainId.AVALANCHE, '0x8729438EB15e2C8B576fCc6AeCdA6A148776C0F5', 18, 'QI', 'BENQI')
+  [ChainId.AVALANCHE]: new Token(ChainId.AVALANCHE, '0x8729438EB15e2C8B576fCc6AeCdA6A148776C0F5', 18, 'QI', 'BENQI'),
+  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, '0x73e7040B225bF6bB72F511e954e845CF4c218685', 18, 'LEDU', 'LEDU')
 }
 
 export const DYP: { [chainId in ChainId]: Token } = {
@@ -322,7 +365,8 @@ export const DYP: { [chainId in ChainId]: Token } = {
     18,
     'DYP',
     'DeFiYieldProtocol'
-  )
+  ),
+  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, '0x73e7040B225bF6bB72F511e954e845CF4c218685', 18, 'LEDU', 'LEDU')
 }
 
 export const WALBT: { [chainId in ChainId]: Token } = {
@@ -333,12 +377,14 @@ export const WALBT: { [chainId in ChainId]: Token } = {
     18,
     'WALBT',
     'Wrapped AllianceBlock Token'
-  )
+  ),
+  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, '0x73e7040B225bF6bB72F511e954e845CF4c218685', 18, 'LEDU', 'LEDU')
 }
 
 export const HUSKY: { [chainId in ChainId]: Token } = {
   [ChainId.FUJI]: new Token(ChainId.FUJI, ZERO_ADDRESS, 18, 'HUSKY', 'Husky'),
-  [ChainId.AVALANCHE]: new Token(ChainId.AVALANCHE, '0x65378b697853568dA9ff8EaB60C13E1Ee9f4a654', 18, 'HUSKY', 'Husky')
+  [ChainId.AVALANCHE]: new Token(ChainId.AVALANCHE, '0x65378b697853568dA9ff8EaB60C13E1Ee9f4a654', 18, 'HUSKY', 'Husky'),
+  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, '0x73e7040B225bF6bB72F511e954e845CF4c218685', 18, 'LEDU', 'LEDU')
 }
 
 export const USDCe: { [chainId in ChainId]: Token } = {
@@ -349,7 +395,8 @@ export const USDCe: { [chainId in ChainId]: Token } = {
     6,
     'USDC.e',
     'USD Coin'
-  )
+  ),
+  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, '0x73e7040B225bF6bB72F511e954e845CF4c218685', 18, 'LEDU', 'LEDU')
 }
 
 export const LYD: { [chainId in ChainId]: Token } = {
@@ -360,12 +407,20 @@ export const LYD: { [chainId in ChainId]: Token } = {
     18,
     'LYD',
     'LydiaFinance Token'
-  )
+  ),
+  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, '0x73e7040B225bF6bB72F511e954e845CF4c218685', 18, 'LEDU', 'LEDU')
 }
 
 export const TUSD: { [chainId in ChainId]: Token } = {
   [ChainId.FUJI]: new Token(ChainId.FUJI, ZERO_ADDRESS, 18, 'TUSD', 'TrueUSD'),
-  [ChainId.AVALANCHE]: new Token(ChainId.AVALANCHE, '0x1C20E891Bab6b1727d14Da358FAe2984Ed9B59EB', 18, 'TUSD', 'TrueUSD')
+  [ChainId.AVALANCHE]: new Token(
+    ChainId.AVALANCHE,
+    '0x1C20E891Bab6b1727d14Da358FAe2984Ed9B59EB',
+    18,
+    'TUSD',
+    'TrueUSD'
+  ),
+  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, '0x73e7040B225bF6bB72F511e954e845CF4c218685', 18, 'LEDU', 'LEDU')
 }
 
 export const GAJ: { [chainId in ChainId]: Token } = {
@@ -376,12 +431,14 @@ export const GAJ: { [chainId in ChainId]: Token } = {
     18,
     'GAJ',
     'PolyGaj Token'
-  )
+  ),
+  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, '0x73e7040B225bF6bB72F511e954e845CF4c218685', 18, 'LEDU', 'LEDU')
 }
 
 export const GDL: { [chainId in ChainId]: Token } = {
   [ChainId.FUJI]: new Token(ChainId.FUJI, ZERO_ADDRESS, 18, 'GDL', 'Gondola'),
-  [ChainId.AVALANCHE]: new Token(ChainId.AVALANCHE, '0xD606199557c8Ab6F4Cc70bD03FaCc96ca576f142', 18, 'GDL', 'Gondola')
+  [ChainId.AVALANCHE]: new Token(ChainId.AVALANCHE, '0xD606199557c8Ab6F4Cc70bD03FaCc96ca576f142', 18, 'GDL', 'Gondola'),
+  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, '0x73e7040B225bF6bB72F511e954e845CF4c218685', 18, 'LEDU', 'LEDU')
 }
 
 export const MFI: { [chainId in ChainId]: Token } = {
@@ -392,7 +449,8 @@ export const MFI: { [chainId in ChainId]: Token } = {
     18,
     'MFI',
     'MarginSwap'
-  )
+  ),
+  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, '0x73e7040B225bF6bB72F511e954e845CF4c218685', 18, 'LEDU', 'LEDU')
 }
 
 export const SHIBX: { [chainId in ChainId]: Token } = {
@@ -403,12 +461,14 @@ export const SHIBX: { [chainId in ChainId]: Token } = {
     18,
     'SHIBX',
     'SHIBAVAX'
-  )
+  ),
+  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, '0x73e7040B225bF6bB72F511e954e845CF4c218685', 18, 'LEDU', 'LEDU')
 }
 
 export const AVE: { [chainId in ChainId]: Token } = {
   [ChainId.FUJI]: new Token(ChainId.FUJI, ZERO_ADDRESS, 18, 'AVE', 'Avaware'),
-  [ChainId.AVALANCHE]: new Token(ChainId.AVALANCHE, '0x78ea17559B3D2CF85a7F9C2C704eda119Db5E6dE', 18, 'AVE', 'Avaware')
+  [ChainId.AVALANCHE]: new Token(ChainId.AVALANCHE, '0x78ea17559B3D2CF85a7F9C2C704eda119Db5E6dE', 18, 'AVE', 'Avaware'),
+  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, '0x73e7040B225bF6bB72F511e954e845CF4c218685', 18, 'LEDU', 'LEDU')
 }
 
 export const ELE: { [chainId in ChainId]: Token } = {
@@ -419,12 +479,14 @@ export const ELE: { [chainId in ChainId]: Token } = {
     18,
     'ELE',
     'Eleven.finance'
-  )
+  ),
+  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, '0x73e7040B225bF6bB72F511e954e845CF4c218685', 18, 'LEDU', 'LEDU')
 }
 
 export const FRAX: { [chainId in ChainId]: Token } = {
   [ChainId.FUJI]: new Token(ChainId.FUJI, ZERO_ADDRESS, 18, 'FRAX', 'Frax'),
-  [ChainId.AVALANCHE]: new Token(ChainId.AVALANCHE, '0xDC42728B0eA910349ed3c6e1c9Dc06b5FB591f98', 18, 'FRAX', 'Frax')
+  [ChainId.AVALANCHE]: new Token(ChainId.AVALANCHE, '0xDC42728B0eA910349ed3c6e1c9Dc06b5FB591f98', 18, 'FRAX', 'Frax'),
+  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, '0x73e7040B225bF6bB72F511e954e845CF4c218685', 18, 'LEDU', 'LEDU')
 }
 
 export const FXS: { [chainId in ChainId]: Token } = {
@@ -435,7 +497,8 @@ export const FXS: { [chainId in ChainId]: Token } = {
     18,
     'FXS',
     'Frax Share'
-  )
+  ),
+  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, '0x73e7040B225bF6bB72F511e954e845CF4c218685', 18, 'LEDU', 'LEDU')
 }
 
 export const START: { [chainId in ChainId]: Token } = {
@@ -446,7 +509,8 @@ export const START: { [chainId in ChainId]: Token } = {
     18,
     'START',
     'Starter'
-  )
+  ),
+  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, '0x73e7040B225bF6bB72F511e954e845CF4c218685', 18, 'LEDU', 'LEDU')
 }
 
 export const SWAPe: { [chainId in ChainId]: Token } = {
@@ -457,12 +521,20 @@ export const SWAPe: { [chainId in ChainId]: Token } = {
     18,
     'SWAP.e',
     'TrustSwap Token'
-  )
+  ),
+  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, '0x73e7040B225bF6bB72F511e954e845CF4c218685', 18, 'LEDU', 'LEDU')
 }
 
 export const YTS: { [chainId in ChainId]: Token } = {
   [ChainId.FUJI]: new Token(ChainId.FUJI, ZERO_ADDRESS, 18, 'YTS', 'YetiSwap'),
-  [ChainId.AVALANCHE]: new Token(ChainId.AVALANCHE, '0x488F73cddDA1DE3664775fFd91623637383D6404', 18, 'YTS', 'YetiSwap')
+  [ChainId.AVALANCHE]: new Token(
+    ChainId.AVALANCHE,
+    '0x488F73cddDA1DE3664775fFd91623637383D6404',
+    18,
+    'YTS',
+    'YetiSwap'
+  ),
+  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, '0x73e7040B225bF6bB72F511e954e845CF4c218685', 18, 'LEDU', 'LEDU')
 }
 
 export const TUNDRA: { [chainId in ChainId]: Token } = {
@@ -473,7 +545,8 @@ export const TUNDRA: { [chainId in ChainId]: Token } = {
     18,
     'TUNDRA',
     'TUNDRA Token'
-  )
+  ),
+  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, '0x73e7040B225bF6bB72F511e954e845CF4c218685', 18, 'LEDU', 'LEDU')
 }
 
 export const XUSD: { [chainId in ChainId]: Token } = {
@@ -484,12 +557,14 @@ export const XUSD: { [chainId in ChainId]: Token } = {
     18,
     'xUSD',
     'xDollar Stablecoin'
-  )
+  ),
+  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, '0x73e7040B225bF6bB72F511e954e845CF4c218685', 18, 'LEDU', 'LEDU')
 }
 
 export const XDO: { [chainId in ChainId]: Token } = {
   [ChainId.FUJI]: new Token(ChainId.FUJI, ZERO_ADDRESS, 18, 'XDO', 'xDollar'),
-  [ChainId.AVALANCHE]: new Token(ChainId.AVALANCHE, '0x9eF758aC000a354479e538B8b2f01b917b8e89e7', 18, 'XDO', 'xDollar')
+  [ChainId.AVALANCHE]: new Token(ChainId.AVALANCHE, '0x9eF758aC000a354479e538B8b2f01b917b8e89e7', 18, 'XDO', 'xDollar'),
+  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, '0x73e7040B225bF6bB72F511e954e845CF4c218685', 18, 'LEDU', 'LEDU')
 }
 
 export const JOE: { [chainId in ChainId]: Token } = {
@@ -500,7 +575,8 @@ export const JOE: { [chainId in ChainId]: Token } = {
     18,
     'JOE',
     'JOE Token'
-  )
+  ),
+  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, '0x73e7040B225bF6bB72F511e954e845CF4c218685', 18, 'LEDU', 'LEDU')
 }
 
 export const ZABU: { [chainId in ChainId]: Token } = {
@@ -511,7 +587,8 @@ export const ZABU: { [chainId in ChainId]: Token } = {
     18,
     'ZABU',
     'ZABU Token'
-  )
+  ),
+  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, '0x73e7040B225bF6bB72F511e954e845CF4c218685', 18, 'LEDU', 'LEDU')
 }
 
 export const YAY: { [chainId in ChainId]: Token } = {
@@ -522,7 +599,8 @@ export const YAY: { [chainId in ChainId]: Token } = {
     18,
     'YAY',
     'YAY Games'
-  )
+  ),
+  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, '0x73e7040B225bF6bB72F511e954e845CF4c218685', 18, 'LEDU', 'LEDU')
 }
 
 export const STORM: { [chainId in ChainId]: Token } = {
@@ -533,7 +611,8 @@ export const STORM: { [chainId in ChainId]: Token } = {
     18,
     'STORM',
     'STORM Token'
-  )
+  ),
+  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, '0x73e7040B225bF6bB72F511e954e845CF4c218685', 18, 'LEDU', 'LEDU')
 }
 
 export const OOE: { [chainId in ChainId]: Token } = {
@@ -544,17 +623,26 @@ export const OOE: { [chainId in ChainId]: Token } = {
     18,
     'OOE',
     'OpenOcean'
-  )
+  ),
+  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, '0x73e7040B225bF6bB72F511e954e845CF4c218685', 18, 'LEDU', 'LEDU')
 }
 
 export const VEE: { [chainId in ChainId]: Token } = {
   [ChainId.FUJI]: new Token(ChainId.FUJI, ZERO_ADDRESS, 18, 'VEE', 'Vee'),
-  [ChainId.AVALANCHE]: new Token(ChainId.AVALANCHE, '0x3709E8615E02C15B096f8a9B460ccb8cA8194e86', 18, 'VEE', 'Vee')
+  [ChainId.AVALANCHE]: new Token(ChainId.AVALANCHE, '0x3709E8615E02C15B096f8a9B460ccb8cA8194e86', 18, 'VEE', 'Vee'),
+  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, '0x73e7040B225bF6bB72F511e954e845CF4c218685', 18, 'LEDU', 'LEDU')
 }
 
 export const AVXT: { [chainId in ChainId]: Token } = {
   [ChainId.FUJI]: new Token(ChainId.FUJI, ZERO_ADDRESS, 6, 'AVXT', 'Avaxtars'),
-  [ChainId.AVALANCHE]: new Token(ChainId.AVALANCHE, '0x397bBd6A0E41bdF4C3F971731E180Db8Ad06eBc1', 6, 'AVXT', 'Avaxtars')
+  [ChainId.AVALANCHE]: new Token(
+    ChainId.AVALANCHE,
+    '0x397bBd6A0E41bdF4C3F971731E180Db8Ad06eBc1',
+    6,
+    'AVXT',
+    'Avaxtars'
+  ),
+  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, '0x73e7040B225bF6bB72F511e954e845CF4c218685', 18, 'LEDU', 'LEDU')
 }
 
 export const OLIVE: { [chainId in ChainId]: Token } = {
@@ -565,12 +653,20 @@ export const OLIVE: { [chainId in ChainId]: Token } = {
     18,
     'OLIVE',
     'Olive Token'
-  )
+  ),
+  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, '0x73e7040B225bF6bB72F511e954e845CF4c218685', 18, 'LEDU', 'LEDU')
 }
 
 export const APEIN: { [chainId in ChainId]: Token } = {
   [ChainId.FUJI]: new Token(ChainId.FUJI, ZERO_ADDRESS, 18, 'APEIN', 'Ape In'),
-  [ChainId.AVALANCHE]: new Token(ChainId.AVALANCHE, '0x938FE3788222A74924E062120E7BFac829c719Fb', 18, 'APEIN', 'Ape In')
+  [ChainId.AVALANCHE]: new Token(
+    ChainId.AVALANCHE,
+    '0x938FE3788222A74924E062120E7BFac829c719Fb',
+    18,
+    'APEIN',
+    'Ape In'
+  ),
+  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, '0x73e7040B225bF6bB72F511e954e845CF4c218685', 18, 'LEDU', 'LEDU')
 }
 
 export const GB: { [chainId in ChainId]: Token } = {
@@ -581,17 +677,176 @@ export const GB: { [chainId in ChainId]: Token } = {
     9,
     'GB',
     'Good Bridging'
-  )
+  ),
+  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, '0x73e7040B225bF6bB72F511e954e845CF4c218685', 18, 'LEDU', 'LEDU')
 }
 
 export const CNR: { [chainId in ChainId]: Token } = {
   [ChainId.FUJI]: new Token(ChainId.FUJI, ZERO_ADDRESS, 18, 'CNR', 'Canary'),
-  [ChainId.AVALANCHE]: new Token(ChainId.AVALANCHE, '0x8D88e48465F30Acfb8daC0b3E35c9D6D7d36abaf', 18, 'CNR', 'Canary')
+  [ChainId.AVALANCHE]: new Token(ChainId.AVALANCHE, '0x8D88e48465F30Acfb8daC0b3E35c9D6D7d36abaf', 18, 'CNR', 'Canary'),
+  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, '0x73e7040B225bF6bB72F511e954e845CF4c218685', 18, 'LEDU', 'LEDU')
 }
 
 export const CYCLE: { [chainId in ChainId]: Token } = {
   [ChainId.FUJI]: new Token(ChainId.FUJI, ZERO_ADDRESS, 18, 'CYCLE', 'Cycle'),
-  [ChainId.AVALANCHE]: new Token(ChainId.AVALANCHE, '0x81440C939f2C1E34fc7048E518a637205A632a74', 18, 'CYCLE', 'Cycle')
+  [ChainId.AVALANCHE]: new Token(ChainId.AVALANCHE, '0x81440C939f2C1E34fc7048E518a637205A632a74', 18, 'CYCLE', 'Cycle'),
+  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, '0x73e7040B225bF6bB72F511e954e845CF4c218685', 18, 'LEDU', 'LEDU')
+}
+
+export const IronICE: { [chainId in ChainId]: Token } = {
+  [ChainId.FUJI]: new Token(ChainId.FUJI, ZERO_ADDRESS, 18, 'IronICE', 'Iron Finance ICE'),
+  [ChainId.AVALANCHE]: new Token(
+    ChainId.AVALANCHE,
+    '0xfC108f21931576a21D0b4b301935DAc80d9E5086',
+    18,
+    'IronICE',
+    'Iron Finance ICE'
+  ),
+  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, '0x73e7040B225bF6bB72F511e954e845CF4c218685', 18, 'LEDU', 'LEDU')
+}
+
+export const MYAK: { [chainId in ChainId]: Token } = {
+  [ChainId.FUJI]: new Token(ChainId.FUJI, ZERO_ADDRESS, 12, 'mYAK', 'MiniYAK'),
+  [ChainId.AVALANCHE]: new Token(
+    ChainId.AVALANCHE,
+    '0xdDAaAD7366B455AfF8E7c82940C43CEB5829B604',
+    12,
+    'mYAK',
+    'MiniYAK'
+  ),
+  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, '0x73e7040B225bF6bB72F511e954e845CF4c218685', 18, 'LEDU', 'LEDU')
+}
+
+export const WOW: { [chainId in ChainId]: Token } = {
+  [ChainId.FUJI]: new Token(ChainId.FUJI, ZERO_ADDRESS, 18, 'WOW', 'WOWswap'),
+  [ChainId.AVALANCHE]: new Token(ChainId.AVALANCHE, '0xA384Bc7Cdc0A93e686da9E7B8C0807cD040F4E0b', 18, 'WOW', 'WOWswap'),
+  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, '0x73e7040B225bF6bB72F511e954e845CF4c218685', 18, 'LEDU', 'LEDU')
+}
+
+export const TEDDY: { [chainId in ChainId]: Token } = {
+  [ChainId.FUJI]: new Token(ChainId.FUJI, ZERO_ADDRESS, 18, 'TEDDY', 'TEDDY'),
+  [ChainId.AVALANCHE]: new Token(ChainId.AVALANCHE, '0x094bd7B2D99711A1486FB94d4395801C6d0fdDcC', 18, 'TEDDY', 'TEDDY'),
+  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, '0x73e7040B225bF6bB72F511e954e845CF4c218685', 18, 'LEDU', 'LEDU')
+}
+
+export const TSD: { [chainId in ChainId]: Token } = {
+  [ChainId.FUJI]: new Token(ChainId.FUJI, ZERO_ADDRESS, 18, 'TSD', 'TSD Stablecoin'),
+  [ChainId.AVALANCHE]: new Token(
+    ChainId.AVALANCHE,
+    '0x4fbf0429599460D327BD5F55625E30E4fC066095',
+    18,
+    'TSD',
+    'TSD Stablecoin'
+  ),
+  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, '0x73e7040B225bF6bB72F511e954e845CF4c218685', 18, 'LEDU', 'LEDU')
+}
+
+export const EVRT: { [chainId in ChainId]: Token } = {
+  [ChainId.FUJI]: new Token(ChainId.FUJI, ZERO_ADDRESS, 18, 'EVRT', 'Everest Token'),
+  [ChainId.AVALANCHE]: new Token(
+    ChainId.AVALANCHE,
+    '0x3ACa5545e76746A3Fe13eA66B24BC0eBcC51E6b4',
+    18,
+    'EVRT',
+    'Everest Token'
+  ),
+  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, '0x73e7040B225bF6bB72F511e954e845CF4c218685', 18, 'LEDU', 'LEDU')
+}
+
+export const RAI: { [chainId in ChainId]: Token } = {
+  [ChainId.FUJI]: new Token(ChainId.FUJI, ZERO_ADDRESS, 18, 'RAI', 'Rai Reflex Index'),
+  [ChainId.AVALANCHE]: new Token(
+    ChainId.AVALANCHE,
+    '0x97Cd1CFE2ed5712660bb6c14053C0EcB031Bff7d',
+    18,
+    'RAI',
+    'Rai Reflex Index'
+  ),
+  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, '0x73e7040B225bF6bB72F511e954e845CF4c218685', 18, 'LEDU', 'LEDU')
+}
+
+export const AAVAXB: { [chainId in ChainId]: Token } = {
+  [ChainId.FUJI]: new Token(ChainId.FUJI, ZERO_ADDRESS, 18, 'aAVAXb', 'Ankr AVAX Bond'),
+  [ChainId.AVALANCHE]: new Token(
+    ChainId.AVALANCHE,
+    '0x6C6f910A79639dcC94b4feEF59Ff507c2E843929',
+    18,
+    'aAVAXb',
+    'Ankr AVAX Bond'
+  ),
+  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, '0x73e7040B225bF6bB72F511e954e845CF4c218685', 18, 'LEDU', 'LEDU')
+}
+
+export const INSUR: { [chainId in ChainId]: Token } = {
+  [ChainId.FUJI]: new Token(ChainId.FUJI, ZERO_ADDRESS, 18, 'INSUR', 'InsurAce Token'),
+  [ChainId.AVALANCHE]: new Token(
+    ChainId.AVALANCHE,
+    '0x544c42fBB96B39B21DF61cf322b5EDC285EE7429',
+    18,
+    'INSUR',
+    'InsurAce Token'
+  ),
+  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, '0x73e7040B225bF6bB72F511e954e845CF4c218685', 18, 'LEDU', 'LEDU')
+}
+
+export const AVME: { [chainId in ChainId]: Token } = {
+  [ChainId.FUJI]: new Token(ChainId.FUJI, ZERO_ADDRESS, 18, 'AVME', 'AVME'),
+  [ChainId.AVALANCHE]: new Token(ChainId.AVALANCHE, '0x1ECd47FF4d9598f89721A2866BFEb99505a413Ed', 18, 'AVME', 'AVME'),
+  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, '0x73e7040B225bF6bB72F511e954e845CF4c218685', 18, 'LEDU', 'LEDU')
+}
+
+export const TIME: { [chainId in ChainId]: Token } = {
+  [ChainId.FUJI]: new Token(ChainId.FUJI, ZERO_ADDRESS, 9, 'TIME', 'Time'),
+  [ChainId.AVALANCHE]: new Token(ChainId.AVALANCHE, '0xb54f16fB19478766A268F172C9480f8da1a7c9C3', 9, 'TIME', 'Time'),
+  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, '0x73e7040B225bF6bB72F511e954e845CF4c218685', 18, 'LEDU', 'LEDU')
+}
+
+export const HCT: { [chainId in ChainId]: Token } = {
+  [ChainId.FUJI]: new Token(ChainId.FUJI, ZERO_ADDRESS, 18, 'HCT', 'Hurricane Token'),
+  [ChainId.AVALANCHE]: new Token(
+    ChainId.AVALANCHE,
+    '0x45C13620B55C35A5f539d26E88247011Eb10fDbd',
+    18,
+    'HCT',
+    'Hurricane Token'
+  ),
+  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, '0x73e7040B225bF6bB72F511e954e845CF4c218685', 18, 'LEDU', 'LEDU')
+}
+
+export const FRAXV2: { [chainId in ChainId]: Token } = {
+  [ChainId.FUJI]: new Token(ChainId.FUJI, ZERO_ADDRESS, 18, 'FRAX', 'Frax'),
+  [ChainId.AVALANCHE]: new Token(ChainId.AVALANCHE, '0xD24C2Ad096400B6FBcd2ad8B24E7acBc21A1da64', 18, 'FRAX', 'Frax'),
+  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, '0x73e7040B225bF6bB72F511e954e845CF4c218685', 18, 'LEDU', 'LEDU')
+}
+
+export const ROCO: { [chainId in ChainId]: Token } = {
+  [ChainId.FUJI]: new Token(ChainId.FUJI, ZERO_ADDRESS, 18, 'ROCO', 'ROCO'),
+  [ChainId.AVALANCHE]: new Token(ChainId.AVALANCHE, '0xb2a85C5ECea99187A977aC34303b80AcbDdFa208', 18, 'ROCO', 'ROCO'),
+  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, '0x73e7040B225bF6bB72F511e954e845CF4c218685', 18, 'LEDU', 'LEDU')
+}
+
+export const IMX: { [chainId in ChainId]: Token } = {
+  [ChainId.FUJI]: new Token(ChainId.FUJI, ZERO_ADDRESS, 18, 'IMX', 'IMX'),
+  [ChainId.AVALANCHE]: new Token(ChainId.AVALANCHE, '0xeA6887e4a9CdA1B77E70129E5Fba830CdB5cdDef', 18, 'IMX', 'IMX'),
+  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, '0x73e7040B225bF6bB72F511e954e845CF4c218685', 18, 'LEDU', 'LEDU')
+}
+
+export const AMPL: { [chainId in ChainId]: Token } = {
+  [ChainId.FUJI]: new Token(ChainId.FUJI, ZERO_ADDRESS, 9, 'AMPL', 'Ampleforth'),
+  [ChainId.AVALANCHE]: new Token(
+    ChainId.AVALANCHE,
+    '0x027dbcA046ca156De9622cD1e2D907d375e53aa7',
+    9,
+    'AMPL',
+    'Ampleforth'
+  ),
+  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, '0x73e7040B225bF6bB72F511e954e845CF4c218685', 18, 'LEDU', 'LEDU')
+}
+
+export const ORBS: { [chainId in ChainId]: Token } = {
+  [ChainId.FUJI]: new Token(ChainId.FUJI, ZERO_ADDRESS, 18, 'ORBS', 'Orbs'),
+  [ChainId.AVALANCHE]: new Token(ChainId.AVALANCHE, '0x340fE1D898ECCAad394e2ba0fC1F93d27c7b717A', 9, 'ORBS', 'Orbs'),
+  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, '0x73e7040B225bF6bB72F511e954e845CF4c218685', 18, 'LEDU', 'LEDU')
 }
 
 export const AIRDROP_ADDRESS: { [chainId in ChainId]?: string } = {
@@ -601,7 +856,8 @@ export const AIRDROP_ADDRESS: { [chainId in ChainId]?: string } = {
 
 const WAVAX_AND_PNG_ONLY: ChainTokenList = {
   [ChainId.FUJI]: [WAVAX[ChainId.FUJI], PNG[ChainId.FUJI]],
-  [ChainId.AVALANCHE]: [WAVAX[ChainId.AVALANCHE], PNG[ChainId.AVALANCHE]]
+  [ChainId.AVALANCHE]: [WAVAX[ChainId.AVALANCHE], PNG[ChainId.AVALANCHE]],
+  [ChainId.ROPSTEN]: [WAVAX[ChainId.ROPSTEN], PNG[ChainId.ROPSTEN]]
 }
 
 // used to construct intermediary pairs for trading
@@ -611,8 +867,10 @@ export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
     WAVAX[ChainId.AVALANCHE],
     PNG[ChainId.AVALANCHE],
     USDTe[ChainId.AVALANCHE],
-    DAIe[ChainId.AVALANCHE]
-  ]
+    DAIe[ChainId.AVALANCHE],
+    USDCe[ChainId.AVALANCHE]
+  ],
+  [ChainId.ROPSTEN]: [WAVAX[ChainId.ROPSTEN], PNG[ChainId.ROPSTEN]]
 }
 
 /**
@@ -640,7 +898,8 @@ export const PINNED_PAIRS: { readonly [chainId in ChainId]?: [Token, Token][] } 
 // these tokens can be directly linked to (via url params) in the swap page without prompting a warning
 export const TRUSTED_TOKEN_ADDRESSES: { readonly [chainId in ChainId]: string[] } = {
   [ChainId.FUJI]: [],
-  [ChainId.AVALANCHE]: [WAVAX[ChainId.AVALANCHE].address, PNG[ChainId.AVALANCHE].address]
+  [ChainId.AVALANCHE]: [WAVAX[ChainId.AVALANCHE].address, PNG[ChainId.AVALANCHE].address],
+  [ChainId.ROPSTEN]: []
 }
 
 export interface WalletInfo {
@@ -702,7 +961,19 @@ export const AVALANCHE_CHAIN_PARAMS = {
     decimals: 18
   },
   rpcUrls: ['https://api.avax.network/ext/bc/C/rpc'],
-  blockExplorerUrls: ['https://cchain.explorer.avax.network/']
+  blockExplorerUrls: ['https://snowtrace.io//']
+}
+
+export const ROPSTEN_CHAIN_PARAMS = {
+  chainId: '0x03', // A 0x-prefixed hexadecimal chainId
+  chainName: 'ROPSTEN',
+  nativeCurrency: {
+    name: 'ETH',
+    symbol: 'ETH',
+    decimals: 18
+  },
+  rpcUrls: ['https://ropsten.infura.io/v3/b3866b1857994f17b06df9cd3d915610'],
+  blockExplorerUrls: ['https://ropsten.etherscan.io/']
 }
 
 // default allowed slippage, in bips

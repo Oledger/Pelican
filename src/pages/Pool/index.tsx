@@ -40,7 +40,7 @@ import {
 import {
   ButtonInZap,
   LargeIcon,
-  MigrateButton,
+  // MigrateButton,
   PoolLargeIconContainer,
   PoolTextContainer,
   PoolTextIconContainer,
@@ -220,8 +220,8 @@ export default function Pool() {
                 </ZapGrayButton>
               </ZapRowTransparentRow1>
             </ZapRowTransparent>
-            <ZapTextTag>Moving From Pangolin ?</ZapTextTag>
-            <MigrateButton>Migrate</MigrateButton>
+            {/* <ZapTextTag>Moving From Pangolin ?</ZapTextTag> */}
+            {/* <MigrateButton>Migrate</MigrateButton> */}
           </PoolTextContainer>
           <PoolLargeIconContainer>
             <LargeIcon src={SwimmingPoolIcon}></LargeIcon>
