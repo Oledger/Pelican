@@ -267,7 +267,7 @@ export interface LendingProps {
 const Header = () => {
   const { account, chainId } = useActiveWeb3React()
   const { t } = useTranslation()
-  const [isLending, setIsLending] = useState(false)
+  // const [isLending, setIsLending] = useState(false)
 
   const theme = useContext(ThemeContext)
   const [darkMode, toggleDarkMode] = useDarkModeManager()
@@ -283,7 +283,8 @@ const Header = () => {
   const countUpValuePrevious = usePrevious(countUpValue) ?? '0'
 
   return (
-    <HeaderFrame color={isLending ? ' rgba(245, 161, 39, 0.15)' : 'transparent'}>
+    // <HeaderFrame color={isLending ? ' rgba(245, 161, 39, 0.15)' : 'transparent'}>
+    <HeaderFrame>
       <Modal isOpen={showPngBalanceModal} onDismiss={() => setShowPngBalanceModal(false)}>
         <PngBalanceContent setShowPngBalanceModal={setShowPngBalanceModal} />
       </Modal>
@@ -321,7 +322,7 @@ const Header = () => {
           >
             {t('header.farm')}
           </StyledNavLink>
-          <StyledNavLink
+          {/* <StyledNavLink
             to={`/lending`}
             isActive={(match, { pathname }) => {
               pathname.startsWith('/lending') ? setIsLending(true) : setIsLending(false)
@@ -329,7 +330,7 @@ const Header = () => {
             }}
           >
             Lending
-          </StyledNavLink>
+          </StyledNavLink> */}
           <StyledNavLink
             id={`stake-nav-link`}
             to={'/stake/0'}
@@ -337,9 +338,9 @@ const Header = () => {
           >
             {t('header.stake')}
           </StyledNavLink>
-          <StyledNavLink id={`vote-nav-link`} to={'/zap'}>
+          {/* <StyledNavLink id={`vote-nav-link`} to={'/zap'}>
             Zap
-          </StyledNavLink>
+          </StyledNavLink> */}
           {/* <StyledExternalLink id={`info-nav-link`} href={ANALYTICS_PAGE}>
             {t('header.charts')}
             <span style={{ fontSize: '11px' }}>↗</span>

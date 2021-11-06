@@ -68,7 +68,7 @@ const Home = () => {
           <BannerRow1>
             <BannerHeading>One-Stop</BannerHeading>
             <BannerHeading>Decentralized Trading</BannerHeading>
-            <BannerHeading>On Avalanche</BannerHeading>
+            <BannerHeading>On Optimism</BannerHeading>
             {account ? (
               <ConnectedWalletBtn>Wallet Connected</ConnectedWalletBtn>
             ) : (
