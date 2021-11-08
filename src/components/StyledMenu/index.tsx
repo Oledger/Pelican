@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { NavLink } from 'react-router-dom'
-import {ExternalLink} from "../../theme";
+import { ExternalLink } from '../../theme'
 
 export const StyledMenuButton = styled.button`
   position: relative;
@@ -51,9 +51,7 @@ export const MenuFlyout = styled.span`
   top: 4rem;
   right: 0rem;
   z-index: 100;
-
 `
-
 
 export const MenuItem = styled(ExternalLink)`
   flex: 1;

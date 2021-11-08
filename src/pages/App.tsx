@@ -86,7 +86,7 @@ const Marginer = styled.div`
 const FooterWrapper = styled.div`
   background-color: rgba(245, 161, 39, 0.15);
   height: 40vh;
-  width: 100%;
+  width: 100vw;
   display: flex;
   justify-content: center;
   align-items: center;
