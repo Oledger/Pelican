@@ -89,7 +89,7 @@ export const LargeIcon = styled.img`
 `
 
 export const ZapRowTransparent = styled.div`
-  height: 7rem;
+  height: 7%;
   background-color: rgba(245, 161, 39, 0.15);
   border-radius: 10px;
   display: flex;
@@ -97,18 +97,32 @@ export const ZapRowTransparent = styled.div`
   justify-content: center;
   gap: 1rem;
   align-items: flex-start;
-  padding-left: 2%;
+  padding: 3%;
   margin: 0;
 `
 export const ZapTextTag = styled.h3`
   font-weight: 500;
   margin: 0;
   padding: 0;
+  ${({ theme }) => theme.mediaWidth.upToSmall`
+  font-size: .8rem;
+  `};
 `
 
 export const ZapRowTransparentRow1 = styled.div`
   display: flex;
-  gap: 10px;
+  width: 40%;
+  justify-content: space-between;
+  ${({ theme }) => theme.mediaWidth.upToSmall`
+  gap: 5px;
+  width: 60%;
+  `};
+  ${({ theme }) => theme.mediaWidth.upToExtraSmall`
+   flex-direction: column;
+   width: 100%;
+   justify-content: center;
+   align-items: center; 
+  `};
 `
 export const ButtonInZap = styled.button`
   background-color: ${({ theme }) => theme.primary1};
@@ -146,4 +160,7 @@ export const ZapGrayButton = styled.button`
   padding: 8% 16%;
   border: 1px solid ${({ theme }) => theme.primary1};
   margin-left: 10px;
+  ${({ theme }) => theme.mediaWidth.upToSmall`
+  margin: 0;
+  `};
 `

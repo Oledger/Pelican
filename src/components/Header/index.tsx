@@ -4,7 +4,7 @@ import { Text } from 'rebass'
 import { NavLink } from 'react-router-dom'
 // import { darken } from 'polished'
 import { useTranslation } from 'react-i18next'
-
+import { FaTimes } from 'react-icons/fa'
 import styled, { ThemeContext } from 'styled-components'
 
 import Logo from '../../assets/Logo_Exports/Logos/Logo-with-Emblem-BG-Transparent.png'
@@ -15,7 +15,7 @@ import { useETHBalances, useAggregatePngBalance } from '../../state/wallet/hooks
 import { CardNoise } from '../earn/styled'
 import { CountUp } from 'use-count-up'
 import { TYPE } from '../../theme'
-
+import { ImMenu3 } from 'react-icons/im'
 import { RedCard } from '../Card'
 // import Settings from '../Settings'
 // import Menu from '../Menu'
@@ -31,6 +31,7 @@ import LanguageSelection from '../LanguageSelection'
 import ToggleNight from '../ToggleNight'
 
 const HeaderFrame = styled.div`
+  height: 10vh;
   display: grid;
   grid-template-columns: 1fr 120px;
   align-items: center;
@@ -76,6 +77,7 @@ const HeaderControls = styled.div`
     z-index: 99;
     height: 72px;
     border-radius: 12px 12px 0 0;
+    
     background-color: ${({ theme }) => theme.bg1};
   `};
 `
@@ -99,6 +101,9 @@ const HeaderElementWrap = styled.div`
 const HeaderRow = styled(RowFixed)`
   ${({ theme }) => theme.mediaWidth.upToMedium`
    width: 100%;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
   `};
 `
 
@@ -108,6 +113,22 @@ const HeaderLinks = styled(Row)`
     padding: 1rem 0 1rem 1rem;
     justify-content: flex-end;
 `};
+  ${({ theme }) => theme.mediaWidth.upToSmall`
+ display: none;
+  `};
+`
+
+const MobileIconButton = styled.button`
+  border: none;
+  font-size: 1.5rem;
+  padding: 5px;
+  cursor: pointer;
+  background-color: transparent;
+  display: none;
+  color: ${({ theme }) => theme.text1};
+  ${({ theme }) => theme.mediaWidth.upToSmall`
+ display: block;
+  `};
 `
 
 const AccountElement = styled.div<{ active: boolean }>`
@@ -188,6 +209,24 @@ const Title = styled.a`
   }
 `
 
+const HeaderLinksMobile = styled(Row)`
+  display: none;
+  ${({ theme }) => theme.mediaWidth.upToSmall`
+    position: absolute;
+  display: flex;
+  flex-direction: column;
+  background-color: ${({ theme }) => theme.bg2};
+  top: 10vh;
+  right: 0;
+  width: 60vw;
+  justify-content: space-around;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  box-shadow: 0 2px 8px black;
+  border-radius: 0 0 0 1rem;
+  `};
+`
+
 const PngIcon = styled.div`
   transition: transform 0.3s ease;
 `
@@ -197,6 +236,10 @@ const activeClassName = 'ACTIVE'
 const StyledNavLink = styled(NavLink).attrs({
   activeClassName
 })`
+  ${({ theme }) => theme.mediaWidth.upToSmall`
+    margin: 1rem;
+  `};
+
   ${({ theme }) => theme.flexRowNoWrap}
   align-items: left;
   border-radius: 3rem;
@@ -271,6 +314,7 @@ const Header = () => {
 
   const theme = useContext(ThemeContext)
   const [darkMode, toggleDarkMode] = useDarkModeManager()
+  const [mobileMenu, setMobileMenu] = useState(false)
 
   const userEthBalance = useETHBalances(account ? [account] : [])?.[account ?? '']
   const [isDark] = useDarkModeManager()
@@ -282,8 +326,11 @@ const Header = () => {
   const countUpValue = aggregateBalance?.toFixed(0) ?? '0'
   const countUpValuePrevious = usePrevious(countUpValue) ?? '0'
 
+  const CloseMobileMenu = () => {
+    setMobileMenu(!mobileMenu)
+  }
+
   return (
-    // <HeaderFrame color={isLending ? ' rgba(245, 161, 39, 0.15)' : 'transparent'}>
     <HeaderFrame>
       <Modal isOpen={showPngBalanceModal} onDismiss={() => setShowPngBalanceModal(false)}>
         <PngBalanceContent setShowPngBalanceModal={setShowPngBalanceModal} />
@@ -294,35 +341,71 @@ const Header = () => {
             <img width={'220px'} src={isDark ? LogoDark : Logo} alt="logo" />
           </PngIcon>
         </Title>
-        <HeaderLinks>
-          <StyledNavLink id={`swap-nav-link`} to={'/trade'}>
-            Trade
-          </StyledNavLink>
-
-          <StyledNavLink
-            id={`pool-nav-link`}
-            to={'/pool'}
-            isActive={(match, { pathname }) =>
-              Boolean(match) ||
-              pathname.startsWith('/add') ||
-              pathname.startsWith('/remove') ||
-              pathname.startsWith('/create') ||
-              pathname.startsWith('/find')
-            }
-          >
-            {t('header.pool')}
-          </StyledNavLink>
-          {/* <StyledNavLink id={`swap-nav-link`} to={'/buy'}>
+        {mobileMenu ? (
+          <HeaderLinksMobile>
+            <StyledNavLink onClick={CloseMobileMenu} id={`swap-nav-link`} to={'/trade'}>
+              Trade
+            </StyledNavLink>
+            <StyledNavLink
+              onClick={CloseMobileMenu}
+              id={`pool-nav-link`}
+              to={'/pool'}
+              isActive={(match, { pathname }) =>
+                Boolean(match) ||
+                pathname.startsWith('/add') ||
+                pathname.startsWith('/remove') ||
+                pathname.startsWith('/create') ||
+                pathname.startsWith('/find')
+              }
+            >
+              {t('header.pool')}
+            </StyledNavLink>
+            <StyledNavLink
+              onClick={CloseMobileMenu}
+              id={`png-nav-link`}
+              to={'/png/1'}
+              isActive={(match, { pathname }) => Boolean(match) || pathname.startsWith('/png')}
+            >
+              {t('header.farm')}
+            </StyledNavLink>
+            <StyledNavLink
+              onClick={CloseMobileMenu}
+              id={`stake-nav-link`}
+              to={'/stake/0'}
+              isActive={(match, { pathname }) => Boolean(match) || pathname.startsWith('/stake')}
+            >
+              {t('header.stake')}
+            </StyledNavLink>
+          </HeaderLinksMobile>
+        ) : (
+          <HeaderLinks>
+            <StyledNavLink id={`swap-nav-link`} to={'/trade'}>
+              Trade
+            </StyledNavLink>
+            <StyledNavLink
+              id={`pool-nav-link`}
+              to={'/pool'}
+              isActive={(match, { pathname }) =>
+                Boolean(match) ||
+                pathname.startsWith('/add') ||
+                pathname.startsWith('/remove') ||
+                pathname.startsWith('/create') ||
+                pathname.startsWith('/find')
+              }
+            >
+              {t('header.pool')}
+            </StyledNavLink>
+            {/* <StyledNavLink id={`swap-nav-link`} to={'/buy'}>
             {t('header.buy')}
           </StyledNavLink> */}
-          <StyledNavLink
-            id={`png-nav-link`}
-            to={'/png/1'}
-            isActive={(match, { pathname }) => Boolean(match) || pathname.startsWith('/png')}
-          >
-            {t('header.farm')}
-          </StyledNavLink>
-          {/* <StyledNavLink
+            <StyledNavLink
+              id={`png-nav-link`}
+              to={'/png/1'}
+              isActive={(match, { pathname }) => Boolean(match) || pathname.startsWith('/png')}
+            >
+              {t('header.farm')}
+            </StyledNavLink>
+            {/* <StyledNavLink
             to={`/lending`}
             isActive={(match, { pathname }) => {
               pathname.startsWith('/lending') ? setIsLending(true) : setIsLending(false)
@@ -331,24 +414,27 @@ const Header = () => {
           >
             Lending
           </StyledNavLink> */}
-          <StyledNavLink
-            id={`stake-nav-link`}
-            to={'/stake/0'}
-            isActive={(match, { pathname }) => Boolean(match) || pathname.startsWith('/stake')}
-          >
-            {t('header.stake')}
-          </StyledNavLink>
-          {/* <StyledNavLink id={`vote-nav-link`} to={'/zap'}>
+            <StyledNavLink
+              id={`stake-nav-link`}
+              to={'/stake/0'}
+              isActive={(match, { pathname }) => Boolean(match) || pathname.startsWith('/stake')}
+            >
+              {t('header.stake')}
+            </StyledNavLink>
+            {/* <StyledNavLink id={`vote-nav-link`} to={'/zap'}>
             Zap
           </StyledNavLink> */}
-          {/* <StyledExternalLink id={`info-nav-link`} href={ANALYTICS_PAGE}>
+            {/* <StyledExternalLink id={`info-nav-link`} href={ANALYTICS_PAGE}>
             {t('header.charts')}
             <span style={{ fontSize: '11px' }}>↗</span>
           </StyledExternalLink>
           <StyledExternalLink id={`gov-nav-link`} href={'https://gov.pangolin.exchange'}>
             {t('header.forum')} <span style={{ fontSize: '11px' }}>↗</span>
           </StyledExternalLink> */}
-        </HeaderLinks>
+          </HeaderLinks>
+        )}
+
+        <MobileIconButton onClick={CloseMobileMenu}>{mobileMenu ? <FaTimes /> : <ImMenu3 />}</MobileIconButton>
       </HeaderRow>
       <HeaderControls>
         <HeaderElement>

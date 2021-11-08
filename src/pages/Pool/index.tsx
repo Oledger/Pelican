@@ -205,7 +205,7 @@ export default function Pool() {
               <ButtonPrimary>ZAP</ButtonPrimary>
             </Link>
             <ZapRowTransparent>
-              <ZapTextTag> {hasV1Liquidity ? t('pool.uniswapV1Found') : t('pool.noSeePoolJoined')} </ZapTextTag>
+              <ZapTextTag>{hasV1Liquidity ? t('pool.uniswapV1Found') : t('pool.noSeePoolJoined')} </ZapTextTag>
               <ZapRowTransparentRow1>
                 <ButtonInZap>
                   {' '}

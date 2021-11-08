@@ -12,13 +12,12 @@ const FooterHolder = styled.div`
   height: 40%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
 `
 const FooterImageHanlder = styled.div`
   display: flex;
-  width: 25%;
-  justify-content: space-between;
+  gap: 10px;
 `
 
 const FooterImage = styled.img`
@@ -26,6 +25,9 @@ const FooterImage = styled.img`
   background-color: rgba(245, 161, 39, 1);
   padding: 0.5rem;
   border-radius: 50%;
+  ${({ theme }) => theme.mediaWidth.upToExtraSmall`
+  height: 2.2rem;
+  `};
 `
 
 const FooterText = styled.div``
