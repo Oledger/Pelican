@@ -201,7 +201,7 @@ export default function Pool() {
         <PoolTextIconContainer>
           <PoolTextContainer>
             <BannerTextHead>Pool</BannerTextHead>
-            <Link to="/zap" style={{ color: 'inherit', textDecoration: 'inherit' }}>
+            <Link to="/pool" style={{ color: 'inherit', textDecoration: 'inherit' }}>
               <ButtonPrimary>ZAP</ButtonPrimary>
             </Link>
             <ZapRowTransparent>
