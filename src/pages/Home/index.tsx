@@ -114,7 +114,7 @@ const Home = () => {
           </Card>
           <Card style={{ backgroundColor: 'rgba(248, 214, 196, 0.8)' }}>
             <CardImage src={PeliconWalletIcon} />
-            <LinkText>Add to Pelican Wallet</LinkText>
+            <LinkText>Add to Wallet</LinkText>
           </Card>
           <Card style={{ backgroundColor: 'rgba(222, 222, 222, 0.8)' }}>
             <CardImage src={VoteIconIcon} />

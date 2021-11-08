@@ -12,12 +12,14 @@ export const StakeFirstTextComponent = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  gap: 1rem;
+
+  margin-bottom: 2rem;
 `
 export const StakeMainHead = styled.h1`
   font-weight: 500;
   font-size: 3rem;
   margin: 0;
+  margin-bottom: 1rem;
   ${({ theme }) => theme.mediaWidth.upToSmall`
   font-size: 2.5rem;
   `};
@@ -26,6 +28,7 @@ export const OrangeSubHead = styled.h3`
   margin: 0;
   font-weight: 500;
   color: ${({ theme }) => theme.primary1};
+  margin-bottom: 1rem;
 `
 export const StakeDescriptions = styled.h4`
   font-size: 1rem;
