@@ -34,3 +34,42 @@ export const ProposalStatus = styled.span<{ status: string }>`
   justify-self: flex-end;
   text-transform: uppercase;
 `
+
+export const ZapContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 70%;
+  ${({ theme }) => theme.mediaWidth.upToMedium`
+flex-direction: column;
+width: 80%;
+`}
+  ${({ theme }) => theme.mediaWidth.upToSmall`
+width: 100%;
+`}
+`
+export const ZapTextContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  width: 45%;
+  ${({ theme }) => theme.mediaWidth.upToMedium`
+  margin-bottom: 1rem;
+  `}
+`
+export const ZapMainHead = styled.h1`
+  margin: 0;
+  font-weight: 500;
+  margin-bottom: 2rem;
+  font-size: 3rem;
+`
+export const ZapOrangeHead = styled.h4`
+  margin: 0;
+  color: ${({ theme }) => theme.primary1};
+  margin-bottom: 1rem;
+  font-weight: 500;
+`
+export const ZapTextTag = styled.h4`
+  margin: 0;
+  font-weight: 500;
+`

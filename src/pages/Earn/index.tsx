@@ -1,22 +1,30 @@
-import React, { useCallback, useEffect, useState } from 'react'
-import { AutoColumn } from '../../components/Column'
-import { ChevronDown, ChevronUp } from 'react-feather'
+// import React, { useCallback, useEffect, useState } from 'react'
+import React from 'react'
+
+// import { AutoColumn } from '../../components/Column'
+// import { ChevronDown, ChevronUp } from 'react-feather'
 import styled from 'styled-components'
 import PelicanOpenLogo from '../../assets/Logo_Exports/Illustration/Pelican-Gullar-Open.png'
 import PelicanCloseLogo from '../../assets/Logo_Exports/Illustration/Pelican-Gullar-Closed.png'
-import { MIGRATIONS, DOUBLE_SIDE_STAKING_REWARDS_INFO, useStakingInfo } from '../../state/stake/hooks'
+import SampleTokenOne from '../../assets/Logo_Exports/Emblem/Alt-Emblem-Filled-Darker-background.png'
+import SampleTokenTwo from '../../assets/Logo_Exports/Emblem/Alt-Emblem-Filled.png'
+// import { MIGRATIONS, DOUBLE_SIDE_STAKING_REWARDS_INFO, useStakingInfo } from '../../state/stake/hooks'
+// import { MIGRATIONS, DOUBLE_SIDE_STAKING_REWARDS_INFO } from '../../state/stake/hooks'
+
 // import { TYPE, ExternalLink } from '../../theme'
-import { TYPE } from '../../theme'
-import DoubleSidePoolCard from '../../components/earn/DoubleSidePoolCard'
-import { RouteComponentProps, NavLink, Link } from 'react-router-dom'
-import { RowBetween } from '../../components/Row'
-import { CardSection, DataCard, CardNoise, CardBGImage } from '../../components/earn/styled'
-import Loader from '../../components/Loader'
-import { useActiveWeb3React } from '../../hooks'
-import { JSBI } from '@pangolindex/sdk'
-import { useTranslation } from 'react-i18next'
-import { SearchInput } from '../../components/SearchModal/styleds'
-import useDebounce from '../../hooks/useDebounce'
+// import { TYPE } from '../../theme'
+// import DoubleSidePoolCard from '../../components/earn/DoubleSidePoolCard'
+// import { RouteComponentProps, NavLink, Link } from 'react-router-dom'
+import { RouteComponentProps, Link } from 'react-router-dom'
+
+// import { RowBetween } from '../../components/Row'
+// import { CardSection, DataCard, CardNoise, CardBGImage } from '../../components/earn/styled'
+// import Loader from '../../components/Loader'
+// import { useActiveWeb3React } from '../../hooks'
+// import { JSBI } from '@pangolindex/sdk'
+// import { useTranslation } from 'react-i18next'
+// import { SearchInput } from '../../components/SearchModal/styleds'
+// import useDebounce from '../../hooks/useDebounce'
 import {
   TopBanner,
   PeliconOpenImage,
@@ -27,220 +35,321 @@ import {
   PeliconCloseFlipImage
 } from '../Swap/styled'
 
-const PageWrapper = styled(AutoColumn)`
-  max-width: 640px;
-  width: 100%;
+// const PageWrapper = styled(AutoColumn)`
+//   max-width: 640px;
+//   width: 100%;
+// `
+
+// const TopSection = styled(AutoColumn)`
+//   max-width: 720px;
+//   width: 100%;
+// `
+
+// const PoolSection = styled.div`
+//   display: grid;
+//   grid-template-columns: 1fr;
+//   column-gap: 10px;
+//   row-gap: 15px;
+//   width: 100%;
+//   justify-self: center;
+// `
+
+// const DataRow = styled(RowBetween)`
+//   ${({ theme }) => theme.mediaWidth.upToSmall`
+//    flex-direction: column;
+//  `};
+// `
+
+// const SortSection = styled.div`
+//   display: flex;
+// `
+// const SortField = styled.div`
+//   margin: 0px 5px 0px 5px;
+//   font-weight: 400;
+//   font-size: 14px;
+//   cursor: pointer;
+//   display: flex;
+//   line-height: 20px;
+// `
+
+const ZapSecondComp = styled.div`
+  width: 80%;
+  margin-top: 2rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 `
 
-const TopSection = styled(AutoColumn)`
-  max-width: 720px;
-  width: 100%;
+const ZapContainer = styled.div`
+  background-color: rgba(245, 161, 39, 0.15);
+  padding: 1rem 8rem 1.5rem 1rem;
+  border-radius: 10px;
 `
 
-const PoolSection = styled.div`
+const ZapHead = styled.h1`
+  font-size: 3rem;
+  font-weight: 500;
+  margin: 0;
+  margin-bottom: 0.5rem;
+`
+
+const ZapValue = styled.h3`
+  margin: 0;
+  color: ${({ theme }) => theme.primary1};
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+`
+const CardContainer = styled.div`
   display: grid;
-  grid-template-columns: 1fr;
-  column-gap: 10px;
-  row-gap: 15px;
+  grid-template-columns: repeat(2, 1fr);
+  width: 70%;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  margin-top: 2rem;
+  row-gap: 1rem;
+  column-gap: 2rem;
+
+  ${({ theme }) => theme.mediaWidth.upToMedium`
+  grid-template-columns: repeat(1, 1fr);
+  `}
+  ${({ theme }) => theme.mediaWidth.upToExtraSmall`
+width:100vw;
+  `}
+`
+const PoolCard = styled.div`
+  padding: 2rem;
+  background-color: ${({ theme }) => theme.bg1};
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border-radius: 1rem;
+  border: 0.5px solid lightgray;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.25);
+`
+const CardHeadSection = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+`
+
+const CardTokenIcon = styled.img`
+  width: 2rem;
+  margin-right: 5px;
+  ${({ theme }) => theme.mediaWidth.upToExtraSmall`
+  width:1rem;
+`}
+`
+
+const CardHead = styled.h4`
+  margin: 0;
+  font-weight: 500;
+  margin-left: 1rem;
+`
+const CardSubHead = styled.h5`
+  margin: 0;
+  font-weight: 500;
+  color: gray;
+  margin-bottom: 0.5rem;
+`
+
+const BoxInCard = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+`
+
+const CardContent = styled.div`
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   width: 100%;
-  justify-self: center;
+  row-gap: 1.5rem;
 `
 
-const DataRow = styled(RowBetween)`
-  ${({ theme }) => theme.mediaWidth.upToSmall`
-   flex-direction: column;
- `};
+const CardValue = styled.h5`
+  margin: 0;
+  font-weight: 500;
 `
 
-const SortSection = styled.div`
-  display: flex;
-`
-const SortField = styled.div`
-  margin: 0px 5px 0px 5px;
-  font-weight: 400;
-  font-size: 14px;
-  cursor: pointer;
-  display: flex;
-  line-height: 20px;
-`
+// const SortFieldContainer = styled.div`
+//   display: flex;
+//   ${({ theme }) => theme.mediaWidth.upToSmall`
+//    display: none;
+//  `};
+// `
 
-const SortFieldContainer = styled.div`
-  display: flex;
-  ${({ theme }) => theme.mediaWidth.upToSmall`
-   display: none;
- `};
-`
-
-enum SortingType {
-  totalStakedInUsd = 'totalStakedInUsd',
-  multiplier = 'multiplier',
-  totalApr = 'totalApr'
-}
+// enum SortingType {
+//   totalStakedInUsd = 'totalStakedInUsd',
+//   multiplier = 'multiplier',
+//   totalApr = 'totalApr'
+// }
 
 export default function Earn({
   match: {
     params: { version }
   }
 }: RouteComponentProps<{ version: string }>) {
-  const { chainId } = useActiveWeb3React()
-  const { t } = useTranslation()
-  const stakingInfos = useStakingInfo(Number(version))
-  const [poolCardsLoading, setPoolCardsLoading] = useState(false)
-  const [poolCards, setPoolCards] = useState<any[]>()
-  const [filteredPoolCards, setFilteredPoolCards] = useState<any[]>()
-  const [searchQuery, setSearchQuery] = useState<string>('')
-  const [sortBy, setSortBy] = useState<any>({ field: '', desc: true })
-  const debouncedSearchQuery = useDebounce(searchQuery, 250)
-  const [stakingInfoData, setStakingInfoData] = useState<any[]>(stakingInfos)
+  // const { chainId } = useActiveWeb3React()
+  // const { t } = useTranslation()
+  // const stakingInfos = useStakingInfo(Number(version))
+  // const [poolCardsLoading, setPoolCardsLoading] = useState(false)
+  // const [poolCards, setPoolCards] = useState<any[]>()
+  // const [filteredPoolCards, setFilteredPoolCards] = useState<any[]>()
+  // const [searchQuery, setSearchQuery] = useState<string>('')
+  // const [sortBy, setSortBy] = useState<any>({ field: '', desc: true })
+  // const debouncedSearchQuery = useDebounce(searchQuery, 250)
+  // const [stakingInfoData, setStakingInfoData] = useState<any[]>(stakingInfos)
 
-  const stakingInfoV0 = useStakingInfo(Number(0))
-  const hasPositionV0 = stakingInfoV0?.some(stakingInfo => stakingInfo.stakedAmount.greaterThan('0'))
+  // const stakingInfoV0 = useStakingInfo(Number(0))
+  // const hasPositionV0 = stakingInfoV0?.some(stakingInfo => stakingInfo.stakedAmount.greaterThan('0'))
 
-  const handleSearch = useCallback(event => {
-    setSearchQuery(event.target.value.trim().toUpperCase())
-  }, [])
+  // const handleSearch = useCallback(event => {
+  //   setSearchQuery(event.target.value.trim().toUpperCase())
+  // }, [])
 
-  useEffect(() => {
-    const filtered = poolCards?.filter(
-      card =>
-        card.props.stakingInfo.tokens[0].symbol.toUpperCase().includes(debouncedSearchQuery) ||
-        card.props.stakingInfo.tokens[1].symbol.toUpperCase().includes(debouncedSearchQuery)
-    )
-    setFilteredPoolCards(filtered)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [poolCards, debouncedSearchQuery])
+  // useEffect(() => {
+  //   const filtered = poolCards?.filter(
+  //     card =>
+  //       card.props.stakingInfo.tokens[0].symbol.toUpperCase().includes(debouncedSearchQuery) ||
+  //       card.props.stakingInfo.tokens[1].symbol.toUpperCase().includes(debouncedSearchQuery)
+  //   )
+  // setFilteredPoolCards(filtered)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [poolCards, debouncedSearchQuery])
 
-  useEffect(() => {
-    Promise.all(
-      stakingInfoData.sort(function(info_a, info_b) {
-        if (sortBy.field === SortingType.totalStakedInUsd) {
-          if (sortBy.desc) {
-            return info_a.totalStakedInUsd?.greaterThan(info_b.totalStakedInUsd ?? JSBI.BigInt(0)) ? -1 : 1
-          } else {
-            return info_a.totalStakedInUsd?.lessThan(info_b.totalStakedInUsd ?? JSBI.BigInt(0)) ? -1 : 1
-          }
-        }
-        if (sortBy.field === SortingType.multiplier) {
-          if (sortBy.desc) {
-            return JSBI.greaterThan(info_a.multiplier, info_b.multiplier) ? -1 : 1
-          } else {
-            return JSBI.lessThan(info_a.multiplier, info_b.multiplier) ? -1 : 1
-          }
-        }
-        if (sortBy.field === SortingType.totalApr) {
-          if (sortBy.desc) {
-            return info_a.stakingApr + info_a.swapFeeApr > info_b.stakingApr + info_b.swapFeeApr ? -1 : 1
-          } else {
-            return info_a.stakingApr + info_a.swapFeeApr < info_b.stakingApr + info_b.swapFeeApr ? -1 : 1
-          }
-        }
-        return 0
-      })
-    ).then(stakingInfoData => {
-      const poolCards = stakingInfoData.map(stakingInfo => (
-        <DoubleSidePoolCard
-          swapFeeApr={stakingInfo.swapFeeApr}
-          stakingApr={stakingInfo.stakingApr}
-          key={stakingInfo.stakingRewardAddress}
-          stakingInfo={stakingInfo}
-          migration={
-            MIGRATIONS.find(migration => migration.from.stakingRewardAddress === stakingInfo.stakingRewardAddress)?.to
-          }
-          version={version}
-        />
-      ))
-      setPoolCards(poolCards)
-    })
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [sortBy?.field, sortBy?.desc])
+  // useEffect(() => {
+  //   Promise.all(
+  //     stakingInfoData.sort(function(info_a, info_b) {
+  //       if (sortBy.field === SortingType.totalStakedInUsd) {
+  //         if (sortBy.desc) {
+  //           return info_a.totalStakedInUsd?.greaterThan(info_b.totalStakedInUsd ?? JSBI.BigInt(0)) ? -1 : 1
+  //         } else {
+  //           return info_a.totalStakedInUsd?.lessThan(info_b.totalStakedInUsd ?? JSBI.BigInt(0)) ? -1 : 1
+  //         }
+  //       }
+  //       if (sortBy.field === SortingType.multiplier) {
+  //         if (sortBy.desc) {
+  //           return JSBI.greaterThan(info_a.multiplier, info_b.multiplier) ? -1 : 1
+  //         } else {
+  //           return JSBI.lessThan(info_a.multiplier, info_b.multiplier) ? -1 : 1
+  //         }
+  //       }
+  //       if (sortBy.field === SortingType.totalApr) {
+  //         if (sortBy.desc) {
+  //           return info_a.stakingApr + info_a.swapFeeApr > info_b.stakingApr + info_b.swapFeeApr ? -1 : 1
+  //         } else {
+  //           return info_a.stakingApr + info_a.swapFeeApr < info_b.stakingApr + info_b.swapFeeApr ? -1 : 1
+  //         }
+  //       }
+  //       return 0
+  //     })
+  //   ).then(stakingInfoData => {
+  //     const poolCards = stakingInfoData.map(stakingInfo => (
+  //       <DoubleSidePoolCard
+  //         swapFeeApr={stakingInfo.swapFeeApr}
+  //         stakingApr={stakingInfo.stakingApr}
+  //         key={stakingInfo.stakingRewardAddress}
+  //         stakingInfo={stakingInfo}
+  //         migration={
+  //           MIGRATIONS.find(migration => migration.from.stakingRewardAddress === stakingInfo.stakingRewardAddress)?.to
+  //         }
+  //         version={version}
+  //       />
+  //     ))
+  //     setPoolCards(poolCards)
+  //   })
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [sortBy?.field, sortBy?.desc])
 
-  useEffect(() => {
-    setPoolCardsLoading(true)
-    if (stakingInfos?.length > 0) {
-      Promise.all(
-        stakingInfos
-          .filter(function(info) {
-            // Only include pools that are live or require a migration
-            return !info.isPeriodFinished || info.stakedAmount.greaterThan(JSBI.BigInt(0))
-          })
-          .sort(function(info_a, info_b) {
-            // only first has ended
-            if (info_a.isPeriodFinished && !info_b.isPeriodFinished) return 1
-            // only second has ended
-            if (!info_a.isPeriodFinished && info_b.isPeriodFinished) return -1
-            // greater stake in avax comes first
-            return info_a.totalStakedInUsd?.greaterThan(info_b.totalStakedInUsd ?? JSBI.BigInt(0)) ? -1 : 1
-          })
-          .sort(function(info_a, info_b) {
-            // only the first is being staked, so we should bring the first up
-            if (info_a.stakedAmount.greaterThan(JSBI.BigInt(0)) && !info_b.stakedAmount.greaterThan(JSBI.BigInt(0)))
-              return -1
-            // only the second is being staked, so we should bring the first down
-            if (!info_a.stakedAmount.greaterThan(JSBI.BigInt(0)) && info_b.stakedAmount.greaterThan(JSBI.BigInt(0)))
-              return 1
-            return 0
-          })
-          .sort(function(info_a, info_b) {
-            // Bring pools that require migration to the top
-            const aCanMigrate = MIGRATIONS.find(
-              migration => migration.from.stakingRewardAddress === info_a.stakingRewardAddress
-            )?.to
-            const bCanMigrate = MIGRATIONS.find(
-              migration => migration.from.stakingRewardAddress === info_b.stakingRewardAddress
-            )?.to
-            if (aCanMigrate && !bCanMigrate) return -1
-            if (!aCanMigrate && bCanMigrate) return 1
-            return 0
-          })
-          .map(stakingInfo => {
-            return fetch(`https://api.pangolin.exchange/pangolin/apr/${stakingInfo.stakingRewardAddress}`)
-              .then(res => res.json())
-              .then(res => ({
-                swapFeeApr: Number(res.swapFeeApr),
-                stakingApr: Number(res.stakingApr),
-                combinedApr: Number(res.combinedApr),
-                ...stakingInfo
-              }))
-          })
-      ).then(updatedStakingInfos => {
-        const poolCards = updatedStakingInfos.map(stakingInfo => (
-          <DoubleSidePoolCard
-            swapFeeApr={stakingInfo.swapFeeApr}
-            stakingApr={stakingInfo.stakingApr}
-            key={stakingInfo.stakingRewardAddress}
-            stakingInfo={stakingInfo}
-            migration={
-              MIGRATIONS.find(migration => migration.from.stakingRewardAddress === stakingInfo.stakingRewardAddress)?.to
-            }
-            version={version}
-          />
-        ))
-        setStakingInfoData(updatedStakingInfos)
-        setPoolCards(poolCards)
-        setPoolCardsLoading(false)
-      })
-    }
+  // useEffect(() => {
+  //   setPoolCardsLoading(true)
+  //   if (stakingInfos?.length > 0) {
+  //     Promise.all(
+  //       stakingInfos
+  //         .filter(function(info) {
+  //           // Only include pools that are live or require a migration
+  //           return !info.isPeriodFinished || info.stakedAmount.greaterThan(JSBI.BigInt(0))
+  //         })
+  //         .sort(function(info_a, info_b) {
+  //           // only first has ended
+  //           if (info_a.isPeriodFinished && !info_b.isPeriodFinished) return 1
+  //           // only second has ended
+  //           if (!info_a.isPeriodFinished && info_b.isPeriodFinished) return -1
+  //           // greater stake in avax comes first
+  //           return info_a.totalStakedInUsd?.greaterThan(info_b.totalStakedInUsd ?? JSBI.BigInt(0)) ? -1 : 1
+  //         })
+  //         .sort(function(info_a, info_b) {
+  //           // only the first is being staked, so we should bring the first up
+  //           if (info_a.stakedAmount.greaterThan(JSBI.BigInt(0)) && !info_b.stakedAmount.greaterThan(JSBI.BigInt(0)))
+  //             return -1
+  //           // only the second is being staked, so we should bring the first down
+  //           if (!info_a.stakedAmount.greaterThan(JSBI.BigInt(0)) && info_b.stakedAmount.greaterThan(JSBI.BigInt(0)))
+  //             return 1
+  //           return 0
+  //         })
+  //         .sort(function(info_a, info_b) {
+  //           // Bring pools that require migration to the top
+  //           const aCanMigrate = MIGRATIONS.find(
+  //             migration => migration.from.stakingRewardAddress === info_a.stakingRewardAddress
+  //           )?.to
+  //           const bCanMigrate = MIGRATIONS.find(
+  //             migration => migration.from.stakingRewardAddress === info_b.stakingRewardAddress
+  //           )?.to
+  //           if (aCanMigrate && !bCanMigrate) return -1
+  //           if (!aCanMigrate && bCanMigrate) return 1
+  //           return 0
+  //         })
+  //         .map(stakingInfo => {
+  //           return fetch(`https://api.pangolin.exchange/pangolin/apr/${stakingInfo.stakingRewardAddress}`)
+  //             .then(res => res.json())
+  //             .then(res => ({
+  //               swapFeeApr: Number(res.swapFeeApr),
+  //               stakingApr: Number(res.stakingApr),
+  //               combinedApr: Number(res.combinedApr),
+  //               ...stakingInfo
+  //             }))
+  //         })
+  //     ).then(updatedStakingInfos => {
+  //       const poolCards = updatedStakingInfos.map(stakingInfo => (
+  //         <DoubleSidePoolCard
+  //           swapFeeApr={stakingInfo.swapFeeApr}
+  //           stakingApr={stakingInfo.stakingApr}
+  //           key={stakingInfo.stakingRewardAddress}
+  //           stakingInfo={stakingInfo}
+  //           migration={
+  //             MIGRATIONS.find(migration => migration.from.stakingRewardAddress === stakingInfo.stakingRewardAddress)?.to
+  //           }
+  //           version={version}
+  //         />
+  //       ))
+  //       setStakingInfoData(updatedStakingInfos)
+  //       setPoolCards(poolCards)
+  //       setPoolCardsLoading(false)
+  //     })
+  //   }
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [stakingInfos?.length, version])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [stakingInfos?.length, version])
 
-  const stakingRewardsExist = Boolean(
-    typeof chainId === 'number' && (DOUBLE_SIDE_STAKING_REWARDS_INFO[chainId]?.length ?? 0) > 0
-  )
+  // const stakingRewardsExist = Boolean(
+  //   typeof chainId === 'number' && (DOUBLE_SIDE_STAKING_REWARDS_INFO[chainId]?.length ?? 0) > 0
+  // )
 
-  const getSortField = (label: string, field: string, sortBy: any, setSortBy: Function) => {
-    return (
-      <SortField
-        onClick={() => {
-          const desc = sortBy?.field === field ? !sortBy?.desc : true
-          setSortBy({ field, desc })
-        }}
-      >
-        {label}
-        {sortBy?.field === field && (sortBy?.desc ? <ChevronDown size="16" /> : <ChevronUp size="16" />)}
-      </SortField>
-    )
-  }
+  // const getSortField = (label: string, field: string, sortBy: any, setSortBy: Function) => {
+  //   return (
+  //     <SortField
+  //       onClick={() => {
+  //         const desc = sortBy?.field === field ? !sortBy?.desc : true
+  //         setSortBy({ field, desc })
+  //       }}
+  //     >
+  //       {label}
+  //       {sortBy?.field === field && (sortBy?.desc ? <ChevronDown size="16" /> : <ChevronUp size="16" />)}
+  //     </SortField>
+  //   )
+  // }
 
   return (
     <>
@@ -260,12 +369,120 @@ export default function Earn({
         </BannerTextHolder>
         <PeliconCloseFlipImage src={PelicanCloseLogo} />
       </TopBanner>
-      <PageWrapper gap="lg" justify="center">
+      <ZapSecondComp>
+        <ZapContainer>
+          <ZapHead>Zap</ZapHead>
+          <ZapValue>Total TVL: $0</ZapValue>
+        </ZapContainer>
+      </ZapSecondComp>
+      <CardContainer>
+        <PoolCard>
+          <CardHeadSection>
+            <CardTokenIcon src={SampleTokenTwo} />
+            <CardTokenIcon src={SampleTokenOne} />
+            <CardHead>Sample1</CardHead>
+          </CardHeadSection>
+          <CardContent>
+            <BoxInCard>
+              <CardSubHead>Sample1-s</CardSubHead>
+              <CardValue>value1</CardValue>
+            </BoxInCard>
+            <BoxInCard>
+              <CardSubHead>Sample1-s</CardSubHead>
+              <CardValue>value1</CardValue>
+            </BoxInCard>
+            <BoxInCard>
+              <CardSubHead>Sample1-s</CardSubHead>
+              <CardValue>value1</CardValue>
+            </BoxInCard>
+            <BoxInCard>
+              <CardSubHead>Sample1-s</CardSubHead>
+              <CardValue>value1</CardValue>
+            </BoxInCard>
+          </CardContent>
+        </PoolCard>
+        <PoolCard>
+          <CardHeadSection>
+            <CardTokenIcon src={SampleTokenOne} />
+            <CardTokenIcon src={SampleTokenTwo} />
+            <CardHead>Sample2</CardHead>
+          </CardHeadSection>
+          <CardContent>
+            <BoxInCard>
+              <CardSubHead>Sample2-s</CardSubHead>
+              <CardValue>value2</CardValue>
+            </BoxInCard>
+            <BoxInCard>
+              <CardSubHead>Sample2-s</CardSubHead>
+              <CardValue>value2</CardValue>
+            </BoxInCard>
+            <BoxInCard>
+              <CardSubHead>Sample2-s</CardSubHead>
+              <CardValue>value2</CardValue>
+            </BoxInCard>
+            <BoxInCard>
+              <CardSubHead>Sample2-s</CardSubHead>
+              <CardValue>value2</CardValue>
+            </BoxInCard>
+          </CardContent>
+        </PoolCard>
+        <PoolCard>
+          <CardHeadSection>
+            <CardTokenIcon src={SampleTokenOne} />
+            <CardTokenIcon src={SampleTokenTwo} />
+            <CardHead>Sample3</CardHead>
+          </CardHeadSection>
+          <CardContent>
+            <BoxInCard>
+              <CardSubHead>Sample3-s</CardSubHead>
+              <CardValue>value3</CardValue>
+            </BoxInCard>
+            <BoxInCard>
+              <CardSubHead>Sample3-s</CardSubHead>
+              <CardValue>value3</CardValue>
+            </BoxInCard>
+            <BoxInCard>
+              <CardSubHead>Sample3-s</CardSubHead>
+              <CardValue>value3</CardValue>
+            </BoxInCard>
+            <BoxInCard>
+              <CardSubHead>Sample3-s</CardSubHead>
+              <CardValue>value3</CardValue>
+            </BoxInCard>
+          </CardContent>
+        </PoolCard>
+        <PoolCard>
+          <CardHeadSection>
+            <CardTokenIcon src={SampleTokenTwo} />
+            <CardTokenIcon src={SampleTokenOne} />
+            <CardHead>Sample4</CardHead>
+          </CardHeadSection>
+          <CardContent>
+            <BoxInCard>
+              <CardSubHead>Sample4-s</CardSubHead>
+              <CardValue>value4</CardValue>
+            </BoxInCard>
+            <BoxInCard>
+              <CardSubHead>Sample4-s</CardSubHead>
+              <CardValue>value4</CardValue>
+            </BoxInCard>
+            <BoxInCard>
+              <CardSubHead>Sample4-s</CardSubHead>
+              <CardValue>value4</CardValue>
+            </BoxInCard>
+            <BoxInCard>
+              <CardSubHead>Sample4-s</CardSubHead>
+              <CardValue>value4</CardValue>
+            </BoxInCard>
+          </CardContent>
+        </PoolCard>
+      </CardContainer>
+      {/* <PageWrapper gap="lg" justify="center">
         <TopSection gap="md">
           <DataCard>
             <CardBGImage />
-            <CardNoise />
-            {/* <CardSection>
+            <CardNoise /> */}
+      {/* <CardSection>
               <AutoColumn gap="md">
                 <RowBetween>
                   <TYPE.white fontWeight={600}>{t('earnPage.pangolinLiquidityMining')}</TYPE.white>
@@ -282,7 +499,7 @@ export default function Earn({
                 </ExternalLink>
               </AutoColumn>
             </CardSection> */}
-            <CardBGImage />
+      {/* <CardBGImage />
             <CardNoise />
           </DataCard>
           {(hasPositionV0 || version === '0') && (
@@ -340,7 +557,7 @@ export default function Earn({
             )}
           </PoolSection>
         </AutoColumn>
-      </PageWrapper>
+      </PageWrapper> */}
     </>
   )
 }

@@ -51,7 +51,7 @@ export const BannerTextHead = styled.h1`
   `};
 `
 export const BannerTextTag = styled.h3`
-  color: rgba(245, 161, 39, 1);
+  color: ${({ theme }) => theme.primary1};
   font-size: 1.2rem;
   font-weight: 500;
 

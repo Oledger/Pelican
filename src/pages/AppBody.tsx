@@ -11,7 +11,7 @@ export const BodyWrapper = styled.div`
   border-radius: 30px;
   padding: 1rem;
   ${({ theme }) => theme.mediaWidth.upToExtraSmall`
-  max-width:20rem;
+  width:100vw;
   `};
 `
 

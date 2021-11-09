@@ -47,6 +47,7 @@ const HeaderWrapper = styled.div`
   ${({ theme }) => theme.flexRowNoWrap}
   width: 100%;
   justify-content: space-between;
+  align-items: center;
 `
 
 // const BodyWrapper = styled.div`
