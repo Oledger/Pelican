@@ -60,7 +60,11 @@ export const CPoolBannerTextHead = styled.h1`
   `};
 `
 export const CPoolBannerTextTag = styled.h3`
+<<<<<<< HEAD
   color: ${({ theme }) => theme.primary1};
+=======
+  color: rgba(245, 161, 39, 1);
+>>>>>>> 416120129ba9324d7f2c26dc1e46f2349e284932
   font-size: 1.2rem;
   font-weight: 500;
 
