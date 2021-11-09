@@ -59,17 +59,15 @@ import {
   CreatePoolTextContainer,
   ParaInBox,
   MainHeadinBox,
-  SubHeadinBox
+  SubHeadinBox,
+  CPoolBannerTextHead,
+  CPoolBannerTextHolder,
+  CPoolBannerTextTag,
+  CPoolPeliconCloseFlipImage,
+  CPoolPeliconOpenImage,
+  CPoolSpan,
+  CPoolTopBanner
 } from './styled'
-import {
-  TopBanner,
-  PeliconOpenImage,
-  BannerTextHolder,
-  BannerTextHead,
-  BannerTextTag,
-  Span,
-  PeliconCloseFlipImage
-} from '../Swap/styled'
 
 export default function AddLiquidity({
   match: {
@@ -347,26 +345,26 @@ export default function AddLiquidity({
 
   return (
     <>
-      <TopBanner>
-        <PeliconOpenImage src={PelicanOpenLogo} />
-        <BannerTextHolder>
-          <BannerTextHead>Manage Pool</BannerTextHead>
-          <BannerTextTag>
+      <CPoolTopBanner>
+        <CPoolPeliconOpenImage src={PelicanOpenLogo} />
+        <CPoolBannerTextHolder>
+          <CPoolBannerTextHead>Manage Pool</CPoolBannerTextHead>
+          <CPoolBannerTextTag>
             <Link style={{ color: 'inherit', textDecoration: 'none' }} to="/">
               Home
             </Link>
-            <Span> {'>'} </Span>
+            <CPoolSpan> {'>'} </CPoolSpan>
             <Link style={{ color: 'inherit', textDecoration: 'none' }} to="/pool">
               Pool
             </Link>
-            <Span> {'>'} </Span>
+            <CPoolSpan> {'>'} </CPoolSpan>
             <Link style={{ color: 'inherit', textDecoration: 'none' }} to="/create/AVAX">
               Manage Pool
             </Link>
-          </BannerTextTag>
-        </BannerTextHolder>
-        <PeliconCloseFlipImage src={PelicanCloseLogo} />
-      </TopBanner>
+          </CPoolBannerTextTag>
+        </CPoolBannerTextHolder>
+        <CPoolPeliconCloseFlipImage src={PelicanCloseLogo} />
+      </CPoolTopBanner>
       <CreatePoolHeadBg>
         <CreatePoolHeaderLeft>
           <Link to="/pool" style={{ color: 'inherit', textDecoration: 'inherit' }}>
