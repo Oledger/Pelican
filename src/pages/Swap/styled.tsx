@@ -16,19 +16,28 @@ export const TopBanner = styled.div`
 export const PeliconOpenImage = styled.img`
   height: 220px;
   margin-top: 8rem;
+
+  ${({ theme }) => theme.mediaWidth.upToExtraSmall`
+    height: 7rem;
+    display: none;
+  `};
 `
 export const PeliconCloseFlipImage = styled.img`
   height: 220px;
   -webkit-transform: scaleX(-1);
   transform: scaleX(-1);
   margin-top: 8rem;
+  ${({ theme }) => theme.mediaWidth.upToExtraSmall`
+    height: 7rem;
+    display: none;
+  `};
 `
 export const BannerTextHolder = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 100%;
   align-items: center;
+  gap: 1rem;
 `
 
 export const BannerTextHead = styled.h1`
@@ -37,11 +46,18 @@ export const BannerTextHead = styled.h1`
   margin: 0;
   padding: 0;
   letter-spacing: 1px;
+  ${({ theme }) => theme.mediaWidth.upToSmall`
+  font-size: 3rem;
+  `};
 `
 export const BannerTextTag = styled.h3`
-  color: rgba(245, 161, 39, 1);
+  color: ${({ theme }) => theme.primary1};
   font-size: 1.2rem;
   font-weight: 500;
+
+  ${({ theme }) => theme.mediaWidth.upToSmall`
+  font-size: .9rem;
+  `};
 `
 
 export const Span = styled.span`

@@ -12,17 +12,23 @@ export const StakeFirstTextComponent = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  gap: 1rem;
+
+  margin-bottom: 2rem;
 `
 export const StakeMainHead = styled.h1`
   font-weight: 500;
   font-size: 3rem;
   margin: 0;
+  margin-bottom: 1rem;
+  ${({ theme }) => theme.mediaWidth.upToSmall`
+  font-size: 2.5rem;
+  `};
 `
 export const OrangeSubHead = styled.h3`
   margin: 0;
   font-weight: 500;
   color: ${({ theme }) => theme.primary1};
+  margin-bottom: 1rem;
 `
 export const StakeDescriptions = styled.h4`
   font-size: 1rem;
@@ -33,12 +39,22 @@ export const StakeDescriptions = styled.h4`
 `
 export const StakeBoxesHolder = styled.div`
   width: 80%;
-  height: 25rem;
   display: flex;
-  gap: 3rem;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   margin-top: 3rem;
+  ${({ theme }) => theme.mediaWidth.upToMedium`
+  flex-direction: column;
+  padding: 1rem;
+  width: 85%;
+  `};
+  ${({ theme }) => theme.mediaWidth.upToSmall`
+   width: 90%;  
+  `};
+  ${({ theme }) => theme.mediaWidth.upToExtraSmall`
+   width: 100vw;
+   margin:0;
+  `};
 `
 export const StakeBoxColumnOne = styled.div`
   display: flex;
@@ -47,12 +63,15 @@ export const StakeBoxColumnOne = styled.div`
   align-items: flex-start;
   gap: 0.7rem;
   width: 40%;
+  ${({ theme }) => theme.mediaWidth.upToMedium`
+  width: 100%;  
+  `};
 `
 
 export const OrangeButton = styled.button`
   background-color: ${({ theme }) => theme.primary1};
   border: none;
-  padding: 1rem 1.5rem;
+  padding: 0.6rem;
   color: ${({ theme }) => theme.white};
   cursor: pointer;
   border-radius: 1rem;
@@ -60,26 +79,36 @@ export const OrangeButton = styled.button`
 `
 
 export const StakeConeRone = styled.div`
-  height: 8rem;
   width: 100%;
   background-color: rgba(245, 161, 39, 0.15);
   border-radius: 1rem;
-  padding: 1.5rem;
-`
-export const StakeConeRtwo = styled.div`
-  height: 16rem;
-  width: 100%;
-  background-color: rgba(245, 161, 39, 0.15);
-  border-radius: 1rem;
-  padding: 2rem;
+  padding: 1rem;
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   justify-content: space-between;
+  ${({ theme }) => theme.mediaWidth.upToMedium`
+  align-items: center;
+  `};
+`
+export const StakeConeRtwo = styled.div`
+  width: 100%;
+  background-color: rgba(245, 161, 39, 0.15);
+  border-radius: 1rem;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 `
 export const StakeIconBox = styled.div`
   display: flex;
   justify-content: space-between;
-  gap: 10px;
+  margin: 0.5rem
+    ${({ theme }) => theme.mediaWidth.upToExtraSmall`
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+  `};
 `
 export const StakeConeBoxTwoBottom = styled.div`
   display: flex;
@@ -118,11 +147,13 @@ export const StakedPelican = styled.div`
 export const StakeAPRHead = styled.h2`
   margin: 0;
   font-weight: 600;
+  ${({ theme }) => theme.mediaWidth.upToMedium`
+  font-size: 1.2rem;
+  `};
 `
 
 export const StakeBoxColumnTwo = styled.div`
   width: 40%;
-  height: 100%;
   border-radius: 1rem;
   border: 3px solid rgba(245, 161, 39, 0.2);
   padding: 2rem;
@@ -131,11 +162,17 @@ export const StakeBoxColumnTwo = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
+  ${({ theme }) => theme.mediaWidth.upToMedium`
+  margin-top: 1.5rem;
+  width: 100%;
+  `};
 `
 export const StakePelicanHead = styled.h3`
   margin: 0;
   font-weight: 600;
   font-size: 0.8rem;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
 `
 export const OnlyBorder = styled.h2`
   margin: 0;
@@ -181,6 +218,7 @@ export const StakeConnectWalletBtn = styled.button`
   border-radius: 1rem;
   font-weight: 500;
   width: 100%;
+  margin-top: 1rem;
 `
 
 export const StakeWalletConnectedBtn = styled.button`
@@ -193,6 +231,7 @@ export const StakeWalletConnectedBtn = styled.button`
   color: ${({ theme }) => theme.bg5};
   cursor: crossair;
   font-weight: 500;
+  margin-top: 1rem;
 `
 export const SelectDropDown = styled.select`
   padding: 1% 2% 1% 4%;

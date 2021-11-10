@@ -47,6 +47,7 @@ const HeaderWrapper = styled.div`
   ${({ theme }) => theme.flexRowNoWrap}
   width: 100%;
   justify-content: space-between;
+  align-items: center;
 `
 
 // const BodyWrapper = styled.div`
@@ -86,7 +87,7 @@ const Marginer = styled.div`
 const FooterWrapper = styled.div`
   background-color: rgba(245, 161, 39, 0.15);
   height: 40vh;
-  width: 100%;
+  width: 100vw;
   display: flex;
   justify-content: center;
   align-items: center;

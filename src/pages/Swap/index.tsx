@@ -15,7 +15,7 @@ import ConfirmSwapModal from '../../components/swap/ConfirmSwapModal'
 import CurrencyInputPanel from '../../components/CurrencyInputPanel'
 import { SwapPoolTabs } from '../../components/NavigationTabs'
 import { AutoRow, RowBetween } from '../../components/Row'
-import AdvancedSwapDetailsDropdown from '../../components/swap/AdvancedSwapDetailsDropdown'
+// import AdvancedSwapDetailsDropdown from '../../components/swap/AdvancedSwapDetailsDropdown'
 import BetterTradeLink, { DefaultVersionLink } from '../../components/swap/BetterTradeLink'
 import confirmPriceImpactWithoutFee from '../../components/swap/confirmPriceImpactWithoutFee'
 import { ArrowWrapper, BottomGrouping, SwapCallbackError, Wrapper } from '../../components/swap/styleds'
@@ -65,11 +65,17 @@ import { Link } from 'react-router-dom'
 const TopText = styled.span`
   margin-bottom: 8px;
   font-size: 18px;
+  ${({ theme }) => theme.mediaWidth.upToSmall`
+  font-size: 12px;
+  `};
 `
 
 const BottomText = styled.span`
   margin-top: 8px;
   font-size: 18px;
+  ${({ theme }) => theme.mediaWidth.upToSmall`
+  font-size: 12px;
+  `};
 `
 
 const VeloxLink = styled.a`
@@ -561,7 +567,7 @@ export default function Swap() {
           </BottomGrouping>
         </Wrapper>
       </AppBody>
-      <AdvancedSwapDetailsDropdown trade={trade} />
+      {/* <AdvancedSwapDetailsDropdown trade={trade} /> */}
       <BottomText>
         <Trans i18nKey="swapPage.marginSwap">
           Trade with leverage on
