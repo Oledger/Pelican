@@ -11,6 +11,7 @@ export const TopBanner = styled.div`
   justify-content: space-around;
   align-items: center;
   overflow: hidden;
+  margin-top: 1rem;
 `
 
 export const PeliconOpenImage = styled.img`
@@ -51,7 +52,7 @@ export const BannerTextHead = styled.h1`
   `};
 `
 export const BannerTextTag = styled.h3`
-  color: rgba(245, 161, 39, 1);
+  color: ${({ theme }) => theme.primary1};
   font-size: 1.2rem;
   font-weight: 500;
 

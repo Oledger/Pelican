@@ -215,6 +215,10 @@ export const Table = styled.table`
   width: 90vw;
   border-collapse: separate;
   border-spacing: 0 10px;
+  overflow-x: auto;
+  ${({ theme }) => theme.mediaWidth.upToExtraSmall`
+  width:100vw;
+  `}
 `
 
 export const Thead = styled.thead``
@@ -222,6 +226,12 @@ export const Thead = styled.thead``
 export const Th = styled.th`
   padding: 1rem;
   color: gray;
+  font-size: 1rem;
+
+  ${({ theme }) => theme.mediaWidth.upToExtraSmall`
+  padding: .2rem;
+  font-size: .58rem;
+  `}
 `
 export const Td = styled.td`
   padding-top: 1rem;
@@ -230,7 +240,9 @@ export const Td = styled.td`
   text-align: center;
   font-size: 1rem;
   ${({ theme }) => theme.mediaWidth.upToExtraSmall`
-    font-size:.8rem;
+    font-size:.55rem;
+    padding-top: .2rem;
+    padding-bottom: .2rem;
 `}
 `
 

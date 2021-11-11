@@ -79,6 +79,7 @@ const HeaderControls = styled.div`
     border-radius: 12px 12px 0 0;
     
     background-color: ${({ theme }) => theme.bg1};
+    
   `};
 `
 
@@ -310,7 +311,7 @@ export interface LendingProps {
 const Header = () => {
   const { account, chainId } = useActiveWeb3React()
   const { t } = useTranslation()
-  // const [isLending, setIsLending] = useState(false)
+  const [isLending, setIsLending] = useState(false)
 
   const theme = useContext(ThemeContext)
   const [darkMode, toggleDarkMode] = useDarkModeManager()
@@ -331,7 +332,7 @@ const Header = () => {
   }
 
   return (
-    <HeaderFrame>
+    <HeaderFrame color={isLending ? ' rgba(245, 161, 39, 0.15)' : ''}>
       <Modal isOpen={showPngBalanceModal} onDismiss={() => setShowPngBalanceModal(false)}>
         <PngBalanceContent setShowPngBalanceModal={setShowPngBalanceModal} />
       </Modal>
@@ -370,11 +371,24 @@ const Header = () => {
             </StyledNavLink>
             <StyledNavLink
               onClick={CloseMobileMenu}
+              to={`/lending`}
+              isActive={(match, { pathname }) => {
+                pathname.startsWith('/lending') ? setIsLending(true) : setIsLending(false)
+                return Boolean(match) || pathname.startsWith('/lending')
+              }}
+            >
+              Lending
+            </StyledNavLink>
+            <StyledNavLink
+              onClick={CloseMobileMenu}
               id={`stake-nav-link`}
               to={'/stake/0'}
               isActive={(match, { pathname }) => Boolean(match) || pathname.startsWith('/stake')}
             >
               {t('header.stake')}
+            </StyledNavLink>
+            <StyledNavLink onClick={CloseMobileMenu} id={`vote-nav-link`} to={'/zap'}>
+              Zap
             </StyledNavLink>
           </HeaderLinksMobile>
         ) : (
@@ -405,15 +419,15 @@ const Header = () => {
             >
               {t('header.farm')}
             </StyledNavLink>
-            {/* <StyledNavLink
-            to={`/lending`}
-            isActive={(match, { pathname }) => {
-              pathname.startsWith('/lending') ? setIsLending(true) : setIsLending(false)
-              return Boolean(match) || pathname.startsWith('/lending')
-            }}
-          >
-            Lending
-          </StyledNavLink> */}
+            <StyledNavLink
+              to={`/lending`}
+              isActive={(match, { pathname }) => {
+                pathname.startsWith('/lending') ? setIsLending(true) : setIsLending(false)
+                return Boolean(match) || pathname.startsWith('/lending')
+              }}
+            >
+              Lending
+            </StyledNavLink>
             <StyledNavLink
               id={`stake-nav-link`}
               to={'/stake/0'}
@@ -421,9 +435,9 @@ const Header = () => {
             >
               {t('header.stake')}
             </StyledNavLink>
-            {/* <StyledNavLink id={`vote-nav-link`} to={'/zap'}>
-            Zap
-          </StyledNavLink> */}
+            <StyledNavLink id={`vote-nav-link`} to={'/zap'}>
+              Zap
+            </StyledNavLink>
             {/* <StyledExternalLink id={`info-nav-link`} href={ANALYTICS_PAGE}>
             {t('header.charts')}
             <span style={{ fontSize: '11px' }}>↗</span>

@@ -26,6 +26,7 @@ export const CPoolTopBanner = styled.div`
   justify-content: space-around;
   align-items: center;
   overflow: hidden;
+  margin-top: 1rem;
 `
 
 export const CPoolPeliconOpenImage = styled.img`
@@ -60,7 +61,7 @@ export const CPoolBannerTextHead = styled.h1`
   `};
 `
 export const CPoolBannerTextTag = styled.h3`
-  color: rgba(245, 161, 39, 1);
+  color: ${({ theme }) => theme.primary1};
   font-size: 1.2rem;
   font-weight: 500;
 
@@ -96,7 +97,7 @@ export const CreateCard = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-color: white;
+  background-color: ${({ theme }) => theme.bg1};
   border-radius: 2rem;
   padding: 1rem;
 

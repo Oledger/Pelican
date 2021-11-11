@@ -171,6 +171,8 @@ export const StakePelicanHead = styled.h3`
   margin: 0;
   font-weight: 600;
   font-size: 0.8rem;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
 `
 export const OnlyBorder = styled.h2`
   margin: 0;
