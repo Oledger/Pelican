@@ -370,8 +370,8 @@ const Header = () => {
               {t('header.farm')}
             </StyledNavLink>
             <StyledNavLink
-              onClick={CloseMobileMenu}
               to={`/lending`}
+              onClick={CloseMobileMenu}
               isActive={(match, { pathname }) => {
                 pathname.startsWith('/lending') ? setIsLending(true) : setIsLending(false)
                 return Boolean(match) || pathname.startsWith('/lending')
@@ -379,6 +379,7 @@ const Header = () => {
             >
               Lending
             </StyledNavLink>
+
             <StyledNavLink
               onClick={CloseMobileMenu}
               id={`stake-nav-link`}
