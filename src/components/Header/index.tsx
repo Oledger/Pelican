@@ -79,6 +79,7 @@ const HeaderControls = styled.div`
     border-radius: 12px 12px 0 0;
     
     background-color: ${({ theme }) => theme.bg1};
+    
   `};
 `
 
@@ -331,7 +332,7 @@ const Header = () => {
   }
 
   return (
-    <HeaderFrame color={isLending ? 'rgba(245, 161, 39, 0.15)' : ''}>
+    <HeaderFrame color={isLending ? ' rgba(245, 161, 39, 0.15)' : ''}>
       <Modal isOpen={showPngBalanceModal} onDismiss={() => setShowPngBalanceModal(false)}>
         <PngBalanceContent setShowPngBalanceModal={setShowPngBalanceModal} />
       </Modal>
@@ -378,6 +379,7 @@ const Header = () => {
             >
               Lending
             </StyledNavLink>
+
             <StyledNavLink
               onClick={CloseMobileMenu}
               id={`stake-nav-link`}

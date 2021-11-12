@@ -11,6 +11,7 @@ export const TopBanner = styled.div`
   justify-content: space-around;
   align-items: center;
   overflow: hidden;
+  margin-top: 1rem;
 `
 
 export const PeliconOpenImage = styled.img`

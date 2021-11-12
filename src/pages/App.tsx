@@ -35,6 +35,7 @@ import VotePage from './Vote/VotePage'
 import IDO from './IDO'
 import Migrate from './Earn/Migrate'
 import Footer from '../components/Footer/index'
+import portfolioLend from './Lending/portfolioLend'
 
 const AppWrapper = styled.div`
   display: flex;
@@ -73,7 +74,7 @@ const BodyWrapper = styled.div`
 
   ${({ theme }) => theme.mediaWidth.upToSmall`
     padding: 16px;
-    padding-top: 2rem;
+    padding-top: 0;
   `};
 
   z-index: 1;
@@ -133,6 +134,7 @@ export default function App() {
               <Route exact strict path="/remove/:currencyIdA/:currencyIdB" component={RemoveLiquidity} />
               <Route exact strict path="/png/:currencyIdA/:currencyIdB/:version" component={ManageEarn} />
               <Route exact strict path="/stake/:version/:rewardCurrencyId" component={ManageStake} />
+              <Route exact strict path="/lending/myportfolio" component={portfolioLend} />
               <Route exact strict path="/vote/:id" component={VotePage} />
               <Route
                 exact

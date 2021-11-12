@@ -56,6 +56,9 @@ export const ZapTextContainer = styled.div`
   ${({ theme }) => theme.mediaWidth.upToMedium`
   margin-bottom: 1rem;
   `}
+  ${({ theme }) => theme.mediaWidth.upToExtraSmall`
+width: 100%;
+`}
 `
 export const ZapMainHead = styled.h1`
   margin: 0;
