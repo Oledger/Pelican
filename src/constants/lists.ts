@@ -6,6 +6,7 @@ export const STABLECOIN_TOKEN_LIST =
   'https://raw.githubusercontent.com/pangolindex/tokenlists/main/stablecoin.tokenlist.json'
 export const AVAX_BRIDGE_LIST = 'https://raw.githubusercontent.com/pangolindex/tokenlists/main/ab.tokenlist.json'
 export const ROP_LIST = 'https://raw.githubusercontent.com/linsonsimon/tokens/main/tok.json'
+export const OPTIMISM_DEFI_TOKENS = 'https://raw.githubusercontent.com/linsonsimon/tokens/main/optimistic_token.json'
 export const DEFAULT_TOKEN_LIST_URL = ROP_LIST
 
 export const DEFAULT_LIST_OF_LISTS: string[] = [
@@ -15,5 +16,6 @@ export const DEFAULT_LIST_OF_LISTS: string[] = [
   DEFI_TOKEN_LIST,
   STABLECOIN_TOKEN_LIST,
   AVAX_BRIDGE_LIST,
-  ROP_LIST
+  ROP_LIST,
+  OPTIMISM_DEFI_TOKENS
 ]
