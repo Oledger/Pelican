@@ -1,18 +1,8 @@
-# Pangolin Interface
-
-An open source interface for Pangolin -- a community-driven decentralized exchange for Avalanche and Ethereum assets with fast settlement, low transaction fees, and a democratic distribution -- powered by Avalanche.
-
-- Website: [pangolin.exchange](https://pangolin.exchange/)
-- Interface: [app.pangolin.exchange](https://app.pangolin.exchange)
-- Telegram: [Pangolin](https://t.me/pangolindex)
-- Discord: [Pangolin](https://discord.com/invite/PARrDYYbfw)
-- Twitter: [@pangolindex](https://twitter.com/pangolindex)
+# Tasks Run remaining: 1.Make API for lists of supported tokens and supported farms
+                       2.Add addresses for router and factory on optimism mainnet
+                       3.Implemet Lending page
 
 
-
-## Accessing the Pangolin Interface
-
-Visit [app.pangolin.exchange](https://app.pangolin.exchange).
 
 ## Development
 
